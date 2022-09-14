@@ -1,6 +1,11 @@
 {
   "dependencies": {
+    "@chakra-ui/react": "^2.3.2",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/base": "^5.0.0-alpha.97",
     "axios": "^0.27.2",
+    "framer-motion": "^7.3.4",
     "react-router-dom": "^6.4.0",
     "styled-components": "^5.3.5"
   }
