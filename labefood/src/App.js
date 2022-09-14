@@ -1,9 +1,19 @@
+// import { ChakraProvider } from "@chakra-ui/react";
+import { theme } from "./styles";
+import {
+  ChakraProvider
+} from "@chakra-ui/react";
+import { FormContainer } from "./components/styled-containers";
+import { LoginPage } from "./pages/login";
 
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <ChakraProvider theme={theme}>
+      <FormContainer>
+        <LoginPage></LoginPage>
+      </FormContainer>
+    </ChakraProvider>
   );
 }
 
