@@ -10,9 +10,8 @@ import { LoginPage } from "./pages/login";
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <FormContainer>
-        <LoginPage></LoginPage>
-      </FormContainer>
+        <LoginPage/>
+
     </ChakraProvider>
   );
 }

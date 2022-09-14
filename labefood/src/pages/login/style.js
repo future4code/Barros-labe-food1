@@ -39,6 +39,7 @@ export const LoginPageContainer = styled.div`
   }
 
   button {
+    width:100%;
     height: 2.625rem;
     margin-bottom: 1rem;
     color: #000;
