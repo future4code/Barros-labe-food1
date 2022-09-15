@@ -4,11 +4,12 @@ import {
   ChakraProvider
 } from "@chakra-ui/react";
 import { LoginPage } from "./pages/login";
+import { Router } from "./routes/router";
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
-        <LoginPage/>
+        <Router/>
     </ChakraProvider>
   );
 }
