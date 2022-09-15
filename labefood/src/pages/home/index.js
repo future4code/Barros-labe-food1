@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom"
-import { Backgroud } from "./HomeStyled"
+import {Backgroud} from "./HomeStyled"
 import Logo from '../../img/logo-future-eats.png'
 
 export const HomePage = () =>{
