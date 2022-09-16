@@ -13,6 +13,9 @@ export const goToSignUp = (navigator) => {
 // export const goTo = (navigator) =>{
 //     navigator('/')
 // }
+export const goToFeedPage = (navigator) =>{
+    navigator('/feed')
+}
 
 // export const goTo = (navigator) =>{
 //     navigator(`/`)
