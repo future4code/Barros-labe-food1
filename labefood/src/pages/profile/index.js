@@ -1,5 +1,19 @@
+import { useNavigate } from "react-router-dom"
+
+
+
+
 export const ProfilePage = () =>{
+    const navigate = useNavigate()
+    const [profile] = useRequest(`/{appName}/profile`,{})
+
+
+
+
+
     return(
-        <h1>Profile Page</h1>
+        <p>Meu Perfil</p>
+
+
     )
 }
