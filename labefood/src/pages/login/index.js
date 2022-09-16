@@ -109,7 +109,7 @@ export const LoginPage = () => {
               />
               <FormLabel>Senha</FormLabel>
               <InputRightElement right="-10px" top="7px" width="3rem">
-                <button h="1.75rem" size="3rm" onClick={onClickShowPassword}>
+                <button h="1.75rem" size="3rm" onClick={onClickShowPassword} type="button">
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
               </InputRightElement>
