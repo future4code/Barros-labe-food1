@@ -15,10 +15,13 @@ import {
   import { useState } from "react";
   import { FaEye, FaEyeSlash } from "react-icons/fa";
   import {useForm} from '../../hooks/use-form'
-  
+import { useNavigate } from "react-router-dom";
+import * as Coordinator from '../../routes/coordinator'
   
   
   export const LoginPage = () => {
+    const navigate= useNavigate();
+
     const [form, onChange, clearInputs] = useForm({
       email:"",
       password:"",
@@ -83,10 +86,10 @@ import {
                     </FormHelperText>
                 ) : undefined}
               </FormControl>
-              <Button colorScheme="red" variant="solid">
+              <Button type="submit" colorScheme="red" variant="solid">
               Entrar
               </Button>
-              <Button  colorScheme="black" variant="ghost">
+              <Button onClick={()=>Coordinator.goToSignUp(navigate)}  colorScheme="black" variant="ghost">
               Não possui cadastro? Clique aqui.
               </Button>
 </Box>

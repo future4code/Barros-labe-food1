@@ -6,6 +6,10 @@ export const goToLogin = (navigator) =>{
     navigator('/login')
 }
 
+export const goToSignUp = (navigator) => {
+    navigator('/singup')
+}
+
 // export const goTo = (navigator) =>{
 //     navigator('/')
 // }
