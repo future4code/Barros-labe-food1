@@ -15,28 +15,46 @@ import {
   import { useState } from "react";
   import { FaEye, FaEyeSlash } from "react-icons/fa";
   import {useForm} from '../../hooks/use-form'
-  
+  import axios from "axios";
+  import { useNavigate } from "react-router-dom";
+  import { useProtectPage } from "../../hooks/useProtectPage";
+  import {BASE_URL, appName} from "../../constants/index.js"
   
   
   export const LoginPage = () => {
+    useProtectPage();
+
+    const [isEmailValid, setIsEmailValid] = useState(true)
+    const [isPasswordValid, setIsPasswordValid]= useState(true)
+    const [showPassword, setShowPassword] = useState(false)
+
     const [form, onChange, clearInputs] = useForm({
       email:"",
       password:"",
     });
-    const [isEmailValid, setIsEmailValid] = useState(true)
-    const [isPasswordValid, setIsPasswordValid]= useState(true)
-    const [showPassword, setShowPassword] = useState(false)
+
+   
+    const navigate = useNavigate();
+    const onClick=()=>navigate("/feed")
   
     const onSubmit = (e) =>{
     e.preventDefault();
-    console.log(form);
-    setIsEmailValid(/[a-zA-Z0-9]+@[a-z]{3}[.a-z]?/.test(form.email))
-    setIsPasswordValid(/.{6,}/.test(form.password))
-    }
-  
+    axios.post(`${BASE_URL}/${appName}/login`, form).then((response)=>{
+      console.log(response.data)
+      onClick();
+      localStorage.setItem("token",response.data.token)
+    }).catch((erro)=>{console.log("Deu erro!");alert ("Acesso invalido")})
+
+    clearInputs();
+  }
+  // console.log(form);
+  // setIsEmailValid(/[a-zA-Z0-9]+@[a-z]{3}[.a-z]?/.test(form.email))
+  // setIsPasswordValid(/.{6,}/.test(form.password))
     const onClickShowPassword = () => {
       setShowPassword(!showPassword);
     };
+
+    //email:astrodev@future4.com senha:123456
     return (
         <LoginPageContainer>
       <img src={logo} alt="Logo da empresa" />
@@ -52,6 +70,8 @@ import {
               value={form.email}
               onChange={onChange}
               placeholder= ""
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              required
               />
               <FormLabel>E-mail</FormLabel>
             {!isEmailValid ? (
@@ -69,6 +89,8 @@ import {
                 pr='4.5rem'
                 type={showPassword ? 'text' : 'password'}
                 placeholder=''
+                pattern="^.{6}"
+                required
               />
               <FormLabel>Senha</FormLabel>
                 <InputRightElement  right="-10px" top="7px"  width='3rem'>
@@ -83,10 +105,10 @@ import {
                     </FormHelperText>
                 ) : undefined}
               </FormControl>
-              <Button colorScheme="red" variant="solid">
+              <Button colorScheme="red" variant="solid" type={"submit"}>
               Entrar
               </Button>
-              <Button  colorScheme="black" variant="ghost">
+              <Button  colorScheme="black" variant="ghost" type={"button"} >
               Não possui cadastro? Clique aqui.
               </Button>
 </Box>
