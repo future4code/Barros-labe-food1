@@ -10,9 +10,10 @@ export const goToSignUp = (navigator) => {
     navigator('/singup')
 }
 
-// export const goTo = (navigator) =>{
-//     navigator('/')
-// }
+export const goToAdressRegistration = (navigator) =>{
+    navigator('/adress')
+}
+
 export const goToFeedPage = (navigator) =>{
     navigator('/feed')
 }

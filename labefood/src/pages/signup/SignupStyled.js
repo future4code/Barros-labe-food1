@@ -29,5 +29,28 @@ export const SignupContainer = styled.main`
         button{
             width: 100%;
         }
+
+        input{
+            /* height: 3.5rem; */
+            margin: 0.5rem 0 0;
+            /* padding: 1.188rem 3rem 1.188rem 1rem; */
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0.5rem;
+            border-color: #b8b8b8;
+        }
+
+        label {
+            position: absolute;
+            top: -6%;
+            left: 5%;
+            background-color: white;
+            z-index: 2;
+            color: #b8b8b8;
+        }
+
+        p{
+            margin: 1% 0;
+        }
     }
 `
