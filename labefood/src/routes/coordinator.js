@@ -18,6 +18,10 @@ export const goToFeedPage = (navigator) =>{
     navigator('/feed')
 }
 
+export const goBack = (navigator) =>{
+    navigator(-1)
+}
+
 // export const goTo = (navigator) =>{
 //     navigator(`/`)
 // }

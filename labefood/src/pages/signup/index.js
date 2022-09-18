@@ -6,6 +6,7 @@ import axios from "axios";
 import * as Coordinator from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FiChevronLeft } from "react-icons/fi";
 
 import {
   FormControl,
@@ -67,9 +68,16 @@ export const SignupPage = () => {
       })
       .catch((error) => console.log(error));
   };
+  
 
   return (
     <SignupContainer>
+      <button
+        className="go-back-button"
+        onClick={() => Coordinator.goBack(navigate)}
+      >
+        <FiChevronLeft />
+      </button>
       <img src={LogoInvert} alt="logo da Future Eats" />
       <h2>Cadastrar</h2>
 
@@ -82,11 +90,13 @@ export const SignupPage = () => {
             placeholder="Nome e sobrenome"
             value={form.name}
             onChange={onChange}
-            size='lg'
+            size="lg"
             required
           />
           {!isNameValid ? (
-            <FormErrorMessage as='p'>Atenção: Nome e sobrenome</FormErrorMessage>
+            <FormErrorMessage as="p">
+              Atenção: Nome e sobrenome
+            </FormErrorMessage>
           ) : undefined}
         </FormControl>
 
@@ -98,11 +108,11 @@ export const SignupPage = () => {
             placeholder="email@email.com"
             value={form.email}
             onChange={onChange}
-            size='lg'
+            size="lg"
             required
           />
           {!isEmailValid ? (
-            <FormErrorMessage as='p'>Email inválido.</FormErrorMessage>
+            <FormErrorMessage as="p">Email inválido.</FormErrorMessage>
           ) : undefined}
         </FormControl>
 
@@ -114,57 +124,59 @@ export const SignupPage = () => {
             placeholder="000.000.000-00"
             value={form.cpf}
             onChange={onChange}
-            size='lg'
+            size="lg"
             required
           />
           {!isCpfValid ? (
-            <FormErrorMessage as='p'>Número de CPF inválido.</FormErrorMessage>
+            <FormErrorMessage as="p">Número de CPF inválido.</FormErrorMessage>
           ) : undefined}
         </FormControl>
 
         <FormControl isInvalid={!isPasswordValid}>
           <FormLabel>Senha</FormLabel>
-          <InputGroup size='lg' >
+          <InputGroup size="lg">
             <Input
-              type={showPassword ? "text":"password"}
+              type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Mínimo 6 caracteres"
               value={form.password}
               onChange={onChange}
-              size='lg'
+              size="lg"
             />
             <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size='lg' onClick={handleClickEye}>
+              <Button h="1.75rem" size="lg" onClick={handleClickEye}>
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </Button>
             </InputRightElement>
           </InputGroup>
-            {!isPasswordValid ? (
-              <FormErrorMessage as='p'>Formato de senha inválido.</FormErrorMessage>
-            ) : undefined}
+          {!isPasswordValid ? (
+            <FormErrorMessage as="p">
+              Formato de senha inválido.
+            </FormErrorMessage>
+          ) : undefined}
         </FormControl>
 
         <FormControl isInvalid={!isPasswordConfirmValid}>
           <FormLabel>Confirmar</FormLabel>
-          <InputGroup size='lg'>
+          <InputGroup size="lg">
             <Input
-              type={showPasswordConfirm ? "text":"password"}
+              type={showPasswordConfirm ? "text" : "password"}
               value={passwordConfirm}
               name="passwordConfirm"
               placeholder="Confirme a senha anterior"
               onChange={(e) => setPasswordConfirm(e.target.value)}
-              size='lg'
+              size="lg"
               required
             />
             <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size='lg' onClick={handleClickEyeConfirm}>
-              {showPasswordConfirm ? <FaEyeSlash /> : <FaEye />}
+              <Button h="1.75rem" size="lg" onClick={handleClickEyeConfirm}>
+                {showPasswordConfirm ? <FaEyeSlash /> : <FaEye />}
               </Button>
             </InputRightElement>
           </InputGroup>
-            {!isPasswordConfirmValid ? (
-              <FormErrorMessage as='p'>Senha não confere.</FormErrorMessage>
-            ) : undefined}
+          {!isPasswordConfirmValid ? (
+            <FormErrorMessage as="p">Senha não confere.</FormErrorMessage>
+          ) : undefined}
         </FormControl>
 
         <Button type="submit" colorScheme="red" variant="solid">
