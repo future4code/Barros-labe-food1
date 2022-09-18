@@ -7,7 +7,7 @@ export const goToLogin = (navigator) =>{
 }
 
 export const goToSignUp = (navigator) => {
-    navigator('/singup')
+    navigator('/signup')
 }
 
 export const goToAdressRegistration = (navigator) =>{

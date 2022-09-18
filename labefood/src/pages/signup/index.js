@@ -143,8 +143,8 @@ export const SignupPage = () => {
               onChange={onChange}
               size="lg"
             />
-            <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size="lg" onClick={handleClickEye}>
+            <InputRightElement height="100%" width="4.5rem">
+              <Button background="none" h="1.75rem" size="lg" onClick={handleClickEye}>
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </Button>
             </InputRightElement>
@@ -168,8 +168,8 @@ export const SignupPage = () => {
               size="lg"
               required
             />
-            <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size="lg" onClick={handleClickEyeConfirm}>
+            <InputRightElement height="100%" width="4.5rem">
+              <Button background="none" h="1.75rem" size="lg" onClick={handleClickEyeConfirm}>
                 {showPasswordConfirm ? <FaEyeSlash /> : <FaEye />}
               </Button>
             </InputRightElement>
