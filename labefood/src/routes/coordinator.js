@@ -7,14 +7,19 @@ export const goToLogin = (navigator) =>{
 }
 
 export const goToSignUp = (navigator) => {
-    navigator('/singup')
+    navigator('/signup')
 }
 
-// export const goTo = (navigator) =>{
-//     navigator('/')
-// }
+export const goToAdressRegistration = (navigator) =>{
+    navigator('/adress')
+}
+
 export const goToFeedPage = (navigator) =>{
     navigator('/feed')
+}
+
+export const goBack = (navigator) =>{
+    navigator(-1)
 }
 
 // export const goTo = (navigator) =>{
