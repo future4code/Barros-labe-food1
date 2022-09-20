@@ -78,10 +78,13 @@ export const LoginPage = () => {
         />
         <PasswordInput
           isValid={isPasswordValid}
+          label={"Senha"}
+          placeholder={"Digite sua senha"}
           value={form.password}
           onChange={onChange}
           showPassword={showPassword}
           handleClick={onClickShowPassword}
+          errorMessage={"Senha invalida"}
         />
         <Button
           type="submit"

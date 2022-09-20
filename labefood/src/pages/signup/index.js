@@ -17,7 +17,12 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
-import { EmailInput } from "../../components/inputs/email";
+import {
+  CpfInput,
+  EmailInput,
+  NameInput,
+  PasswordInput,
+} from "../../components/inputs";
 
 export const SignupPage = () => {
   const navigate = useNavigate();
@@ -42,7 +47,8 @@ export const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(true); //primeira senha
   const handleClickEye = () => setShowPassword(!showPassword);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(true); //segunda senha
-  const handleClickEyeConfirm = () => setShowPasswordConfirm(!showPasswordConfirm)
+  const handleClickEyeConfirm = () =>
+    setShowPasswordConfirm(!showPasswordConfirm);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -69,7 +75,6 @@ export const SignupPage = () => {
       })
       .catch((error) => console.log(error));
   };
-  
 
   return (
     <SignupContainer>
@@ -83,6 +88,13 @@ export const SignupPage = () => {
       <h2>Cadastrar</h2>
 
       <form onSubmit={handleSubmit}>
+        <NameInput
+          isValid={isNameValid}
+          value={form.name}
+          onChange={onChange}
+        />
+
+        {/* 
         <FormControl isInvalid={!isNameValid}>
           <FormLabel>Nome</FormLabel>
           <Input
@@ -99,9 +111,13 @@ export const SignupPage = () => {
               Atenção: Nome e sobrenome
             </FormErrorMessage>
           ) : undefined}
-        </FormControl>
+        </FormControl> */}
 
-        < EmailInput isValid={isEmailValid} value={form.email} onChange={onChange} />
+        <EmailInput
+          isValid={isEmailValid}
+          value={form.email}
+          onChange={onChange}
+        />
 
         {/* <FormControl isInvalid={!isEmailValid}>
           <FormLabel>E mail</FormLabel>
@@ -119,7 +135,9 @@ export const SignupPage = () => {
           ) : undefined}
         </FormControl> */}
 
-        <FormControl isInvalid={!isCpfValid}>
+        <CpfInput isValid={isCpfValid} value={form.cpf} onChange={onChange} />
+
+        {/* <FormControl isInvalid={!isCpfValid}>
           <FormLabel>CPF</FormLabel>
           <Input
             type="number"
@@ -133,9 +151,20 @@ export const SignupPage = () => {
           {!isCpfValid ? (
             <FormErrorMessage as="p">Número de CPF inválido.</FormErrorMessage>
           ) : undefined}
-        </FormControl>
+        </FormControl> */}
 
-        <FormControl isInvalid={!isPasswordValid}>
+        <PasswordInput
+          isValid={isPasswordValid}
+          label={"Senha"}
+          placeholder={"Mínimo 6 caracteres"}
+          value={form.password}
+          onChange={onChange}
+          showPassword={showPassword}
+          handleClick={handleClickEye}
+          errorMessage={"Formato de senha inválido."}
+        />
+
+        {/* <FormControl isInvalid={!isPasswordValid}>
           <FormLabel>Senha</FormLabel>
           <InputGroup size="lg">
             <Input
@@ -157,9 +186,20 @@ export const SignupPage = () => {
               Formato de senha inválido.
             </FormErrorMessage>
           ) : undefined}
-        </FormControl>
+        </FormControl> */}
 
-        <FormControl isInvalid={!isPasswordConfirmValid}>
+        <PasswordInput
+          isValid={isPasswordConfirmValid}
+          label={"Confirmar"}
+          placeholder={"Confirme a senha anterior."}
+          value={passwordConfirm}
+          onChange={(e) => setPasswordConfirm(e.target.value)}
+          showPassword={showPasswordConfirm}
+          handleClick={handleClickEyeConfirm}
+          errorMessage={"Senha nâo Confere"}
+        />
+
+        {/* <FormControl isInvalid={!isPasswordConfirmValid}>
           <FormLabel>Confirmar</FormLabel>
           <InputGroup size="lg">
             <Input
@@ -172,7 +212,12 @@ export const SignupPage = () => {
               required
             />
             <InputRightElement height="100%" width="4.5rem">
-              <Button background="none" h="1.75rem" size="lg" onClick={handleClickEyeConfirm}>
+              <Button
+                background="none"
+                h="1.75rem"
+                size="lg"
+                onClick={handleClickEyeConfirm}
+              >
                 {showPasswordConfirm ? <FaEyeSlash /> : <FaEye />}
               </Button>
             </InputRightElement>
@@ -180,7 +225,7 @@ export const SignupPage = () => {
           {!isPasswordConfirmValid ? (
             <FormErrorMessage as="p">Senha não confere.</FormErrorMessage>
           ) : undefined}
-        </FormControl>
+        </FormControl> */}
 
         <Button type="submit" colorScheme="red" variant="solid">
           Criar

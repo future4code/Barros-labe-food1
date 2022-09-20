@@ -9,15 +9,15 @@ import {
 } from "@chakra-ui/react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-export const PasswordInput = ({isValid, value, onChange, showPassword, handleClick}) => {
+export const PasswordInput = ({isValid, placeholder, label, value, onChange, showPassword, handleClick, errorMessage}) => {
   return (
     <FormControl isInvalid={!isValid}>
-      <FormLabel>Senha</FormLabel>
+      <FormLabel>{label}</FormLabel>
       <InputGroup size="lg">
         <Input
           type={showPassword ? "text" : "password"}
           name="password"
-          placeholder="Mínimo 6 caracteres"
+          placeholder={placeholder}
           value={value}
           onChange={onChange}
           size="lg"
@@ -34,7 +34,7 @@ export const PasswordInput = ({isValid, value, onChange, showPassword, handleCli
         </InputRightElement>
       </InputGroup>
       {!isValid ? (
-        <FormErrorMessage as="p">Formato de senha inválido.</FormErrorMessage>
+        <FormErrorMessage as="p">{errorMessage}</FormErrorMessage>
       ) : undefined}
     </FormControl>
   );

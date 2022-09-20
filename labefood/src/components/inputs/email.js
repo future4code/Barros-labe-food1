@@ -2,10 +2,7 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  InputGroup,
-  InputRightElement,
   Input,
-  Button,
 } from "@chakra-ui/react";
 
 export const EmailInput = ({value, onChange, isValid}) => {

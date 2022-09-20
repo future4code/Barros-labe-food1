@@ -78,9 +78,7 @@ export const LoginPageContainer = styled.main`
     }
 
     input {
-      /* height: 3.5rem; */
       margin: 1rem 0 0;
-      /* padding: 1.188rem 3rem 1.188rem 1rem; */
       position: relative;
       z-index: 1;
       border-color: #b8b8b8;
@@ -97,3 +95,4 @@ export const LoginPageContainer = styled.main`
       color: #b8b8b8;
     }
     `;
+    
