@@ -24,3 +24,4 @@ export const EmailInput = ({value, onChange, isValid}) => {
   </FormControl>
   )
 };
+

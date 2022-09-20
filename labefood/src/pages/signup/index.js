@@ -1,7 +1,7 @@
 import LogoInvert from "../../img/logo-future-eats-invert.png";
 import { SignupContainer } from "./SignupStyled";
 import { useForm } from "../../hooks/use-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import * as Coordinator from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +23,7 @@ import {
   NameInput,
   PasswordInput,
 } from "../../components/inputs";
+import { BASE_URL } from "../../constants";
 
 export const SignupPage = () => {
   const navigate = useNavigate();
@@ -40,40 +41,48 @@ export const SignupPage = () => {
   const [isPasswordValid, setIsPasswordValid] = useState(true);
 
   //--- Estados para confirmação de senha, não vai para a requisição
-  const [isPasswordConfirmValid, setPasswordConfirmaValid] = useState(true);
+  const [isPasswordConfirmValid, setIsPasswordConfirmValid] = useState(true);
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
   //---Lógica para o 'olho' da senha
-  const [showPassword, setShowPassword] = useState(true); //primeira senha
+  const [showPassword, setShowPassword] = useState(false); //primeira senha
   const handleClickEye = () => setShowPassword(!showPassword);
-  const [showPasswordConfirm, setShowPasswordConfirm] = useState(true); //segunda senha
-  const handleClickEyeConfirm = () =>
-    setShowPasswordConfirm(!showPasswordConfirm);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false); //segunda senha
+  const handleClickEyeConfirm = () => setShowPasswordConfirm(!showPasswordConfirm);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     //--- Testes de validação que retorna booleanos para usar nas mensagens de erro do form control...
     setIsEmailValid(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(form.email));
-    setIsNameValid(/[A-Z][a-z]* [A-Z][a-z]{2,}$/.test(form.name));
+    setIsNameValid(/[A-Za-z]* [A-Za-z]{2,}$/.test(form.name));
     setIsCpfValid(
       /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/.test(
         form.cpf
       )
     );
-    setIsPasswordValid(/^[0-9]{6,8}$/.test(form.password));
-    setPasswordConfirmaValid(passwordConfirm === form.password ? true : false);
+    setIsPasswordValid(/.{6,}/.test(form.password));
+    setIsPasswordConfirmValid(passwordConfirm === form.password ? true : false);
 
     //--- Requisição para criar um novo cadastro
-    axios
-      .post(
-        `https://us-central1-missao-newton.cloudfunctions.net/rappi4A/signup`,
-        form
-      )
-      .then((response) => {
-        console.log(response);
-        Coordinator.goToAdressRegistration(navigate);
-      })
-      .catch((error) => console.log(error));
+    if (
+      isEmailValid &&
+      isNameValid &&
+      isCpfValid &&
+      isPasswordConfirmValid &&
+      isPasswordValid
+    ) {
+      axios
+        .post(`${BASE_URL}/rappi4A/signup`, form)
+        .then((response) => {
+          localStorage.setItem("token", response.data.token);
+          Coordinator.goToAdressRegistration(navigate);
+        })
+        .catch((error) => {
+          alert(
+            "Erro ao processar sua requisição: " + error.response.data.message
+          );
+        });
+    }
   };
 
   return (
@@ -96,7 +105,7 @@ export const SignupPage = () => {
 
         {/* 
         <FormControl isInvalid={!isNameValid}>
-          <FormLabel>Nome</FormLabel>
+          <FormLabel>Nome*</FormLabel>
           <Input
             type="text"
             name="name"
@@ -108,7 +117,7 @@ export const SignupPage = () => {
           />
           {!isNameValid ? (
             <FormErrorMessage as="p">
-              Atenção: Nome e sobrenome
+              Atenção: Nome e sobrenome.
             </FormErrorMessage>
           ) : undefined}
         </FormControl> */}
@@ -140,7 +149,6 @@ export const SignupPage = () => {
         {/* <FormControl isInvalid={!isCpfValid}>
           <FormLabel>CPF</FormLabel>
           <Input
-            type="number"
             name="cpf"
             placeholder="000.000.000-00"
             value={form.cpf}
@@ -176,7 +184,12 @@ export const SignupPage = () => {
               size="lg"
             />
             <InputRightElement height="100%" width="4.5rem">
-              <Button background="none" h="1.75rem" size="lg" onClick={handleClickEye}>
+              <Button
+                background="none"
+                h="1.75rem"
+                size="lg"
+                onClick={handleClickEye}
+              >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </Button>
             </InputRightElement>
