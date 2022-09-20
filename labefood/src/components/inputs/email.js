@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 export const EmailInput = ({value, onChange, isValid}) => {
+  return (
   <FormControl isInvalid={!isValid}>
     <FormLabel>E mail</FormLabel>
     <Input
@@ -23,5 +24,6 @@ export const EmailInput = ({value, onChange, isValid}) => {
     {!isValid ? (
       <FormErrorMessage as="p">Email inválido.</FormErrorMessage>
     ) : undefined}
-  </FormControl>;
+  </FormControl>
+  )
 };

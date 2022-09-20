@@ -17,6 +17,7 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
+import { EmailInput } from "../../components/inputs/email";
 
 export const SignupPage = () => {
   const navigate = useNavigate();
@@ -100,7 +101,9 @@ export const SignupPage = () => {
           ) : undefined}
         </FormControl>
 
-        <FormControl isInvalid={!isEmailValid}>
+        < EmailInput isValid={isEmailValid} value={form.email} onChange={onChange} />
+
+        {/* <FormControl isInvalid={!isEmailValid}>
           <FormLabel>E mail</FormLabel>
           <Input
             type="email"
@@ -114,7 +117,7 @@ export const SignupPage = () => {
           {!isEmailValid ? (
             <FormErrorMessage as="p">Email inválido.</FormErrorMessage>
           ) : undefined}
-        </FormControl>
+        </FormControl> */}
 
         <FormControl isInvalid={!isCpfValid}>
           <FormLabel>CPF</FormLabel>
