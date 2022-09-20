@@ -41,8 +41,14 @@ export const SignupPage = () => {
   const [isPasswordValid, setIsPasswordValid] = useState(true);
 
   //--- Estados para confirmação de senha, não vai para a requisição
-  const [isPasswordConfirmValid, setIsPasswordConfirmValid] = useState(true);
+  const [isPasswordConfirmValid, setIsPasswordConfirmValid] = useState(false);
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [aux, setAux] = useState(false)
+
+  useEffect(() => {
+    setIsPasswordConfirmValid(passwordConfirm === form.password ? true : false)
+    setIsPasswordValid(true)
+  },[passwordConfirm, form.password])
 
   //---Lógica para o 'olho' da senha
   const [showPassword, setShowPassword] = useState(false); //primeira senha
@@ -63,26 +69,36 @@ export const SignupPage = () => {
     setIsPasswordValid(/.{6,}/.test(form.password));
     setIsPasswordConfirmValid(passwordConfirm === form.password ? true : false);
 
-    //--- Requisição para criar um novo cadastro
-    if (
-      isEmailValid &&
-      isNameValid &&
-      isCpfValid &&
-      isPasswordConfirmValid &&
-      isPasswordValid
-    ) {
-      axios
-        .post(`${BASE_URL}/rappi4A/signup`, form)
-        .then((response) => {
-          localStorage.setItem("token", response.data.token);
-          Coordinator.goToAdressRegistration(navigate);
-        })
-        .catch((error) => {
-          alert(
-            "Erro ao processar sua requisição: " + error.response.data.message
-          );
-        });
-    }
+ if (
+   isEmailValid &&
+   isNameValid &&
+   isCpfValid &&
+   isPasswordValid &&
+   isPasswordConfirmValid
+ ) {
+  setAux(true)
+ }
+   if (
+     isEmailValid &&
+     isNameValid &&
+     isCpfValid &&
+     isPasswordValid &&
+     isPasswordConfirmValid &&
+     aux
+   ) {
+     //--- Requisição para criar um novo cadastro
+     axios
+       .post(`${BASE_URL}/rappi4A/signup`, form)
+       .then((response) => {
+         localStorage.setItem("token", response.data.token);
+         Coordinator.goToAdressRegistration(navigate);
+       })
+       .catch((error) => {
+         alert(
+           "Erro ao processar sua requisição: " + error.response.data.message
+         );
+       });
+   }
   };
 
   return (
