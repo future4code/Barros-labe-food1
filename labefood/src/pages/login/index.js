@@ -1,5 +1,6 @@
 import { LoginPageContainer } from "./style";
 import logo from "../../components/assets/logo.svg";
+import { EmailInput, PasswordInput } from "../../components/inputs";
 import {
   FormControl,
   FormLabel,
@@ -22,6 +23,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useProtectPage } from "../../hooks/useProtectPage";
 import { BASE_URL, appName } from "../../constants/index.js";
+import { SignupContainer } from "../signup/SignupStyled";
 
 export const LoginPage = () => {
   useProtectPage();
@@ -66,70 +68,124 @@ export const LoginPage = () => {
     <LoginPageContainer>
       <img src={logo} alt="Logo da empresa" />
       <div className="title">
-        <span className="text">Entrar</span>
+        <h2>Entrar</h2>
       </div>
       <form onSubmit={onSubmit}>
-        <Box p={0}>
-          <FormControl
-            marginBottom="1rem"
-            variant="floating"
-            id="email"
-            isInvalid={!isEmailValid}
-          >
-            <Input
-              name="email"
-              type="email"
-              value={form.email}
-              onChange={onChange}
-              placeholder=""
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-              required
-            />
-            <FormLabel>E-mail</FormLabel>
-            {!isEmailValid ? (
-              <FormErrorMessage as="p">E-mail inválido.</FormErrorMessage>
-            ) : undefined}
-          </FormControl>
-          <FormControl
-            paddingBottom="1rem"
-            variant="floating"
-            id="password"
-            isInvalid={!isPasswordValid}
-          >
-            <InputGroup size="md">
-              <Input
-                name="password"
-                value={form.password}
-                onChange={onChange}
-                pr="4.5rem"
-                type={showPassword ? "text" : "password"}
-                placeholder=""
-                pattern="^.{6}"
-                required
-              />
-              <FormLabel>Senha</FormLabel>
-              <InputRightElement right="-10px" top="7px" width="3rem">
-                <button h="1.75rem" size="3rm" onClick={onClickShowPassword} type="button">
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
-                </button>
-              </InputRightElement>
-            </InputGroup>
-            {!isPasswordValid ? (
-              <FormHelperText as="p">E-mail inválido.</FormHelperText>
-            ) : undefined}
-          </FormControl>
-          <Button type="submit" colorScheme="red" variant="solid">
-            Entrar
-          </Button>
-          <Button
-            onClick={() => Coordinator.goToSignUp(navigate)}
-            colorScheme="black"
-            variant="ghost"
-          >
-            Não possui cadastro? Clique aqui.
-          </Button>
-        </Box>
+         <EmailInput
+          isValid={isEmailValid}
+          value={form.email}
+          onChange={onChange}
+        /> 
+
+        <PasswordInput
+          isValid={isPasswordValid}
+          label={"Senha"}
+          placeholder={"Digite sua senha"}
+          value={form.password}
+          onChange={onChange}
+          showPassword={showPassword}
+          handleClick={onClickShowPassword}
+          errorMessage={"Senha invalida"}
+        />
+        <Button
+          type="submit"
+          colorScheme="red"
+          variant="solid"
+          borderRadius="2px"
+          height="2.625rem"
+        >
+          Entrar
+        </Button>
+        <Button
+          onClick={() => Coordinator.goToSignUp(navigate)}
+          colorScheme="black"
+          variant="ghost"
+        >
+          Não possui cadastro? Clique aqui.
+        </Button>
       </form>
     </LoginPageContainer>
+    // <LoginPageContainer>
+    //   <img src={logo} alt="Logo da empresa" />
+    //   <div className="title">
+    //     <span className="text">Entrar</span>
+    //   </div>
+    //   <img src={logo} alt="Logo da empresa" />
+    //   <div className="title">
+    //     <span className="text">Entrar</span>
+    //   </div>
+    //   <form onSubmit={onSubmit}>
+    //     <Box p={0}>
+    //       <EmailInput
+    //         isValid={isEmailValid}
+    //         value={form.email}
+    //         onChange={onChange}
+    //       />
+    //       {/* <FormControl
+    //         marginBottom="1rem"
+    //         variant="floating"
+    //         id="email"
+    //         isInvalid={!isEmailValid}
+    //       >
+    //         <Input
+    //           name="email"
+    //           type="email"
+    //           value={form.email}
+    //           onChange={onChange}
+    //           placeholder=""
+    //           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+    //           required
+    //         />
+    //         <FormLabel>E-mail</FormLabel>
+    //         {!isEmailValid ? (
+    //           <FormErrorMessage as="p">E-mail inválido.</FormErrorMessage>
+    //         ) : undefined}
+    //       </FormControl> */}
+    //       <FormControl
+    //         paddingBottom="1rem"
+    //         variant="floating"
+    //         id="password"
+    //         isInvalid={!isPasswordValid}
+    //       >
+    //         <InputGroup size="md">
+    //           <Input
+    //             name="password"
+    //             value={form.password}
+    //             onChange={onChange}
+    //             pr="4.5rem"
+    //             type={showPassword ? "text" : "password"}
+    //             placeholder=""
+    //             pattern="^.{6}"
+    //             required
+    //           />
+    //           <FormLabel>Senha</FormLabel>
+    //           <InputRightElement right="-10px" top="7px" width="3rem">
+    //             <button
+    //               h="1.75rem"
+    //               size="3rm"
+    //               onClick={onClickShowPassword}
+    //               type="button"
+    //             >
+    //               {showPassword ? <FaEyeSlash /> : <FaEye />}
+    //             </button>
+    //           </InputRightElement>
+    //         </InputGroup>
+    //         {!isPasswordValid ? (
+    //           <FormHelperText as="p">E-mail inválido.</FormHelperText>
+    //         ) : undefined}
+    //       </FormControl>
+    //       <Button type="submit" colorScheme="red" variant="solid">
+    //         Entrar
+    //       </Button>
+    //       <Button
+    //         onClick={() => Coordinator.goToSignUp(navigate)}
+    //         colorScheme="black"
+    //         variant="ghost"
+    //       >
+    //         Não possui cadastro? Clique aqui.
+    //       </Button>
+    //     </Box>
+    //   </form>
+    // </LoginPageContainer>
   );
 };

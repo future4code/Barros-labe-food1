@@ -17,6 +17,12 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
+import {
+  CpfInput,
+  EmailInput,
+  NameInput,
+  PasswordInput,
+} from "../../components/inputs";
 import { BASE_URL } from "../../constants";
 
 export const SignupPage = () => {
@@ -35,8 +41,14 @@ export const SignupPage = () => {
   const [isPasswordValid, setIsPasswordValid] = useState(true);
 
   //--- Estados para confirmação de senha, não vai para a requisição
-  const [isPasswordConfirmValid, setIsPasswordConfirmValid] = useState(true);
+  const [isPasswordConfirmValid, setIsPasswordConfirmValid] = useState(false);
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [aux, setAux] = useState(false)
+
+  useEffect(() => {
+    setIsPasswordConfirmValid(passwordConfirm === form.password ? true : false)
+    setIsPasswordValid(true)
+  },[passwordConfirm, form.password])
 
   //---Lógica para o 'olho' da senha
   const [showPassword, setShowPassword] = useState(false); //primeira senha
@@ -57,26 +69,36 @@ export const SignupPage = () => {
     setIsPasswordValid(/.{6,}/.test(form.password));
     setIsPasswordConfirmValid(passwordConfirm === form.password ? true : false);
 
-    //--- Requisição para criar um novo cadastro
-    if (
-      isEmailValid &&
-      isNameValid &&
-      isCpfValid &&
-      isPasswordConfirmValid &&
-      isPasswordValid
-    ) {
-      axios
-        .post(`${BASE_URL}/rappi4A/signup`, form)
-        .then((response) => {
-          localStorage.setItem("token", response.data.token);
-          Coordinator.goToAdressRegistration(navigate);
-        })
-        .catch((error) => {
-          alert(
-            "Erro ao processar sua requisição: " + error.response.data.message
-          );
-        });
-    }
+ if (
+   isEmailValid &&
+   isNameValid &&
+   isCpfValid &&
+   isPasswordValid &&
+   isPasswordConfirmValid
+ ) {
+  setAux(true)
+ }
+   if (
+     isEmailValid &&
+     isNameValid &&
+     isCpfValid &&
+     isPasswordValid &&
+     isPasswordConfirmValid &&
+     aux
+   ) {
+     //--- Requisição para criar um novo cadastro
+     axios
+       .post(`${BASE_URL}/rappi4A/signup`, form)
+       .then((response) => {
+         localStorage.setItem("token", response.data.token);
+         Coordinator.goToAdressRegistration(navigate);
+       })
+       .catch((error) => {
+         alert(
+           "Erro ao processar sua requisição: " + error.response.data.message
+         );
+       });
+   }
   };
 
   return (
@@ -91,6 +113,13 @@ export const SignupPage = () => {
       <h2>Cadastrar</h2>
 
       <form onSubmit={handleSubmit}>
+        <NameInput
+          isValid={isNameValid}
+          value={form.name}
+          onChange={onChange}
+        />
+
+        {/* 
         <FormControl isInvalid={!isNameValid}>
           <FormLabel>Nome*</FormLabel>
           <Input
@@ -107,10 +136,16 @@ export const SignupPage = () => {
               Atenção: Nome e sobrenome.
             </FormErrorMessage>
           ) : undefined}
-        </FormControl>
+        </FormControl> */}
 
-        <FormControl isInvalid={!isEmailValid}>
-          <FormLabel>E mail*</FormLabel>
+        <EmailInput
+          isValid={isEmailValid}
+          value={form.email}
+          onChange={onChange}
+        />
+
+        {/* <FormControl isInvalid={!isEmailValid}>
+          <FormLabel>E mail</FormLabel>
           <Input
             type="email"
             name="email"
@@ -123,10 +158,12 @@ export const SignupPage = () => {
           {!isEmailValid ? (
             <FormErrorMessage as="p">Email inválido.</FormErrorMessage>
           ) : undefined}
-        </FormControl>
+        </FormControl> */}
 
-        <FormControl isInvalid={!isCpfValid}>
-          <FormLabel>CPF*</FormLabel>
+        <CpfInput isValid={isCpfValid} value={form.cpf} onChange={onChange} />
+
+        {/* <FormControl isInvalid={!isCpfValid}>
+          <FormLabel>CPF</FormLabel>
           <Input
             name="cpf"
             placeholder="000.000.000-00"
@@ -138,10 +175,21 @@ export const SignupPage = () => {
           {!isCpfValid ? (
             <FormErrorMessage as="p">Número de CPF inválido.</FormErrorMessage>
           ) : undefined}
-        </FormControl>
+        </FormControl> */}
 
-        <FormControl isInvalid={!isPasswordValid}>
-          <FormLabel>Senha*</FormLabel>
+        <PasswordInput
+          isValid={isPasswordValid}
+          label={"Senha"}
+          placeholder={"Mínimo 6 caracteres"}
+          value={form.password}
+          onChange={onChange}
+          showPassword={showPassword}
+          handleClick={handleClickEye}
+          errorMessage={"Formato de senha inválido."}
+        />
+
+        {/* <FormControl isInvalid={!isPasswordValid}>
+          <FormLabel>Senha</FormLabel>
           <InputGroup size="lg">
             <Input
               type={showPassword ? "text" : "password"}
@@ -167,10 +215,21 @@ export const SignupPage = () => {
               Formato de senha inválido.
             </FormErrorMessage>
           ) : undefined}
-        </FormControl>
+        </FormControl> */}
 
-        <FormControl isInvalid={!isPasswordConfirmValid}>
-          <FormLabel>Confirmar*</FormLabel>
+        <PasswordInput
+          isValid={isPasswordConfirmValid}
+          label={"Confirmar"}
+          placeholder={"Confirme a senha anterior."}
+          value={passwordConfirm}
+          onChange={(e) => setPasswordConfirm(e.target.value)}
+          showPassword={showPasswordConfirm}
+          handleClick={handleClickEyeConfirm}
+          errorMessage={"Senha nâo Confere"}
+        />
+
+        {/* <FormControl isInvalid={!isPasswordConfirmValid}>
+          <FormLabel>Confirmar</FormLabel>
           <InputGroup size="lg">
             <Input
               type={showPasswordConfirm ? "text" : "password"}
@@ -195,7 +254,7 @@ export const SignupPage = () => {
           {!isPasswordConfirmValid ? (
             <FormErrorMessage as="p">Senha não confere.</FormErrorMessage>
           ) : undefined}
-        </FormControl>
+        </FormControl> */}
 
         <Button type="submit" colorScheme="red" variant="solid">
           Criar
