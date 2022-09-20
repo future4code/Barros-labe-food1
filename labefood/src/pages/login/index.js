@@ -83,7 +83,13 @@ export const LoginPage = () => {
           showPassword={showPassword}
           handleClick={onClickShowPassword}
         />
-        <Button type="submit" colorScheme="red" variant="solid">
+        <Button
+          type="submit"
+          colorScheme="red"
+          variant="solid"
+          borderRadius="2px"
+          height="2.625rem"
+        >
           Entrar
         </Button>
         <Button
