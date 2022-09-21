@@ -137,7 +137,7 @@ export const FeedPage = () => {
       ></input>
       <Tabs>
 
-        <TabList variant='scrollable' scrollButtons="auto">
+        <TabList overflowX="auto">
           <Tab>Todos</Tab>
           <Tab>Árabe</Tab>
           <Tab>Asiática</Tab>
