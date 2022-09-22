@@ -1,0 +1,107 @@
+import styled from "styled-components";
+
+
+export const Span = styled.span`
+  
+  width: 2.813rem;
+  height: 1.188rem;
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.39px;
+  text-align: center;
+  color: #000;
+ 
+
+    div{
+        padding-top: 1.5%;
+    }
+`
+
+export const ConteinerInput = styled.div`
+    padding-left:1.25rem ;
+    padding-right: 1.25rem;
+
+    input{
+
+        width: 20.5rem;
+        height: 3.5rem;
+        padding: 1rem 0.503rem 1rem 1.063rem;
+        border-radius: 2px;
+        border: solid 1px #b8b8b8;
+    }
+
+`
+
+
+export const Card=styled.div`
+
+  width: 20.5rem;
+  height: 11.75rem;
+  padding: 0 0 1rem;
+  border-radius: 8px;
+  border: solid 1px #b8b8b8;
+
+
+  img{
+  width: 20.5rem;
+  height: 7.5rem;
+  margin: 0 0 0.75rem;
+  object-fit: contain;
+  }
+
+
+
+`
+
+export const Restaurant=styled.p`
+
+  width: 18.5rem;
+  height: 1.125rem;
+  margin: 0.75rem 1rem 0.25rem;
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.39px;
+  color: #e8222e;
+`
+
+export const Detail=styled.span`
+    display: flex;
+
+  p{
+
+  width: 9.25rem;
+  height: 1.125rem;
+  margin: 0.25rem 0.5rem 0 1rem;
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.39px;
+  color: #b8b8b8;
+  }
+
+  h6{
+  width: 8.75rem;
+  height: 1.125rem;
+  margin: 0.25rem 1rem 0 0.5rem;
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.39px;
+  text-align: right;
+  color: #b8b8b8;
+  }
+`

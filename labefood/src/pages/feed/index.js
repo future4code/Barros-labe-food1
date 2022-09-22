@@ -3,16 +3,19 @@ import axios from "axios";
 import { useProtectPage } from '../../hooks/useProtectPage'
 import { BASE_URL, appName } from '../../constants/index'
 import { useNavigate } from "react-router-dom";
-import { goToRestaurants } from "../../routes/coordinator";
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@chakra-ui/react'
+import { Span, ConteinerInput,Card, Restaurant, Detail } from "./styledFeed";
+
 
 export const FeedPage = () => {
   useProtectPage();
 
   const [restaurants, setRestaurants] = useState([])
   const [input, setInput] = useState("")
-  const [category, setCategory] = useState(0)
+  
+
   const navigate = useNavigate()
+  const goToRestaurants = (id) => { navigate(`/restaurants/${id}`)};
 
   const token = localStorage.getItem("token")
 
@@ -28,116 +31,25 @@ export const FeedPage = () => {
   const onChangeInput = (e) => { setInput(e.target.value) }
 
 
-  // const feedRestaurants = () => {
-
-  //   if (category === 0) {
-
-  //     return (
-  //       <section value={category} index={0}>
-  //         <div
-  //          onClick={()=>{goToRestaurants(navigate)}}
-  //         >
-  //           {restaurants && restaurants.map((i) => {
-  //             return (
-  //               <div  onClick={()=>{goToRestaurants(navigate)}}>
-  //                 <img src={i.logoUrl} alt='Restaurante' />
-  //                 <p>{i.name}</p>
-  //                 <p>{i.deliveryTime}</p>
-  //                 <p>{i.shipping}</p>
-  //               </div>
-  //             )
-  //           })}
-  //         </div>
-  //       </section>
-  //     )
-  //   }
-  //   else if(category === 1) {
-  //     <section value={category} index={1}>
-
-  //       <div
-  //       //  onClick={(i)=>{goToRestaurante (navigate, i.id)}}
-  //       >
-  //         {restaurants && restaurants.filter((rest) => {
-  //           return rest.category === "Árabe"
-  //         }).map((rest) => {
-  //           console.log(rest.category)
-  //           return (
-  //             <div>
-  //               <img src={rest.logoUrl} alt='Restaurante' />
-  //               <p>{rest.name}</p>
-  //               <p>{rest.deliveryTime}</p>
-  //               <p>{rest.shipping}</p>
-  //             </div>
-  //           )
-  //         })
-  //         }
-
-  //       </div>
-
-  //     </section>
-  //   }
-  //   else if(category === 2){
-  //     <section value={category} index={2}>
-  //   <div
-  //   //  onClick={(i)=>{goToRestaurante (navigate, i.id)}}
-  //   >
-  //     {restaurants && restaurants.filter((rest) => {
-  //       return rest.category === "Asiática"
-  //     }).map((rest) => {
-  //       console.log(rest.category)
-  //       return (
-  //         <div>
-  //           <img src={rest.logoUrl} alt='Restaurante' />
-  //           <p>{rest.name}</p>
-  //           <p>{rest.deliveryTime}</p>
-  //           <p>{rest.shipping}</p>
-  //         </div>
-  //       )
-  //     })
-  //     }
-
-  //   </div>
-
-  // </section>
-
-  //   }
-  //   else if(category === 3){
-  //     <section value={category} index={2}>
-  //   <div
-  //   //  onClick={(i)=>{goToRestaurante (navigate, i.id)}}
-  //   >
-  //     {restaurants && restaurants.filter((rest) => {
-  //       return rest.category === "Baiana"
-  //     }).map((rest) => {
-  //       console.log(rest.category)
-  //       return (
-  //         <div>
-  //           <img src={rest.logoUrl} alt='Restaurante' />
-  //           <p>{rest.name}</p>
-  //           <p>{rest.deliveryTime}</p>
-  //           <p>{rest.shipping}</p>
-  //         </div>
-  //       )
-  //     })
-  //     }
-
-  //   </div>
-  // </section>
-
-  //   }
-
-  // }
-
 
   return (
     <>
+
+    <Span>
+      <div>
+        Ifuture
+      </div>
+    </Span>
+
+      <ConteinerInput>
       <input
         onChange={onChangeInput}
         placeholder="Busca"
       ></input>
-      <Tabs>
-
-        <TabList overflowX="auto">
+      </ConteinerInput>
+      <Tabs colorScheme='red'>
+ 
+        <TabList overflowX="auto" >
           <Tab>Todos</Tab>
           <Tab>Árabe</Tab>
           <Tab>Asiática</Tab>
@@ -153,12 +65,14 @@ export const FeedPage = () => {
           <TabPanel>
             {restaurants && restaurants.map((i) => {
               return (
-                <div onClick={() => { goToRestaurants(navigate) }}>
+                <Card onClick={() => { goToRestaurants(i.id) }}>
                   <img src={i.logoUrl} alt='Restaurante' />
-                  <p>{i.name}</p>
-                  <p>{i.deliveryTime}</p>
-                  <p>{i.shipping}</p>
-                </div>
+                  <Restaurant>{i.name}</Restaurant>
+                  <Detail>
+                  <p>{i.deliveryTime} min</p>
+                  <h6>Frete R$:{i.shipping},00</h6>
+                  </Detail>
+                </Card>
               )
             })}
           </TabPanel>
@@ -166,14 +80,15 @@ export const FeedPage = () => {
             {restaurants && restaurants.filter((rest) => {
               return rest.category === "Árabe"
             }).map((rest) => {
-              console.log(rest.category)
               return (
-                <div>
+                <Card onClick={() => goToRestaurants(rest.id)}>
                   <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
+                  <Restaurant>{rest.name}</Restaurant>
+                  <Detail>
+                  <p>{rest.deliveryTime} min</p>
+                  <h6>Frete R$:{rest.shipping},00</h6>
+                  </Detail>
+                </Card>
               )
             })}
           </TabPanel>
@@ -181,14 +96,15 @@ export const FeedPage = () => {
             {restaurants && restaurants.filter((rest) => {
               return rest.category === "Asiática"
             }).map((rest) => {
-              console.log(rest.category)
               return (
-                <div>
+                <Card onClick={() => goToRestaurants(rest.id)}>
                   <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
+                  <Restaurant>{rest.name}</Restaurant>
+                  <Detail>
+                  <p>{rest.deliveryTime} min</p>
+                  <h6>Frete R$:{rest.shipping},00</h6>
+                  </Detail>
+                </Card>
               )
             })}
           </TabPanel>
@@ -196,14 +112,15 @@ export const FeedPage = () => {
             {restaurants && restaurants.filter((rest) => {
               return rest.category === "Baiana"
             }).map((rest) => {
-              console.log(rest.category)
               return (
-                <div>
+                <Card onClick={() => goToRestaurants(rest.id)}>
                   <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
+                  <Restaurant>{rest.name}</Restaurant>
+                  <Detail>
+                  <p>{rest.deliveryTime} min</p>
+                  <h6>Frete R$:{rest.shipping},00</h6>
+                  </Detail>
+                </Card>
               )
             })
             }
@@ -212,14 +129,15 @@ export const FeedPage = () => {
             {restaurants && restaurants.filter((rest) => {
               return rest.category === "Carnes"
             }).map((rest) => {
-              console.log(rest.category)
               return (
-                <div>
+                <Card>
                   <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
+                  <Restaurant>{rest.name}</Restaurant>
+                  <Detail>
+                  <p>{rest.deliveryTime} min</p>
+                  <h6>Frete R$:{rest.shipping},00</h6>
+                  </Detail>
+                </Card>
               )
             })
             }
@@ -229,14 +147,15 @@ export const FeedPage = () => {
             {restaurants && restaurants.filter((rest) => {
               return rest.category === "Hamburguer"
             }).map((rest) => {
-              console.log(rest.category)
               return (
-                <div>
+                <Card onClick={() => goToRestaurants(rest.id)}>
                   <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
+                  <Restaurant>{rest.name}</Restaurant>
+                  <Detail>
+                  <p>{rest.deliveryTime} min</p>
+                  <h6>Frete R$:{rest.shipping},00</h6>
+                  </Detail>
+                </Card>
               )
             })}
           </TabPanel>
@@ -245,14 +164,15 @@ export const FeedPage = () => {
             {restaurants && restaurants.filter((rest) => {
               return rest.category === "Italiana"
             }).map((rest) => {
-              console.log(rest.category)
               return (
-                <div>
+                <Card onClick={() => goToRestaurants(rest.id)}>
                   <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
+                  <Restaurant>{rest.name}</Restaurant>
+                  <Detail>
+                  <p>{rest.deliveryTime} min</p>
+                  <h6>Frete R$:{rest.shipping},00</h6>
+                  </Detail>
+                </Card>
               )
             })}
           </TabPanel>
@@ -261,14 +181,15 @@ export const FeedPage = () => {
             {restaurants && restaurants.filter((rest) => {
               return rest.category === "Mexicana"
             }).map((rest) => {
-              console.log(rest.category)
               return (
-                <div>
+                <Card onClick={() => goToRestaurants(rest.id)}>
                   <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
+                  <Restaurant>{rest.name}</Restaurant>
+                  <Detail>
+                  <p>{rest.deliveryTime} min</p>
+                  <p>Frete R$:{rest.shipping},00</p>
+                  </Detail>
+                </Card>
               )
             })}
           </TabPanel>
@@ -277,14 +198,15 @@ export const FeedPage = () => {
             {restaurants && restaurants.filter((rest) => {
               return rest.category === "Petiscos"
             }).map((rest) => {
-              console.log(rest.category)
               return (
-                <div>
+                <Card onClick={() => goToRestaurants(rest.id)}>
                   <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
+                  <Restaurant>{rest.name}</Restaurant>
+                  <Detail>
+                  <p>{rest.deliveryTime} min</p>
+                  <h6>Frete R$:{rest.shipping},00</h6>
+                  </Detail>
+                </Card>
               )
             })}
           </TabPanel>
@@ -292,14 +214,15 @@ export const FeedPage = () => {
             {restaurants && restaurants.filter((rest) => {
               return rest.category === "Sorvetes"
             }).map((rest) => {
-              console.log(rest.category)
               return (
-                <div>
+                <Card onClick={() => goToRestaurants(rest.id)}>
                   <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
+                  <Restaurant>{rest.name}</Restaurant>
+                  <Detail>
+                  <p>{rest.deliveryTime} min</p>
+                  <h6>Frete R$:{rest.shipping},00</h6>
+                  </Detail>
+                </Card>
               )
             })}
           </TabPanel>
