@@ -1,15 +1,16 @@
 import {useNavigate} from "react-router-dom"
 import {Backgroud} from "./HomeStyled"
 import Logo from '../../img/logo-future-eats.png'
+import { goToLogin } from "../../routes/coordinator";
 
 export const HomePage = () =>{
     const navigate= useNavigate();
+    setTimeout(() => {goToLogin (navigate)}, 4000)
+
     return(
-        <Backgroud
-        onClick={()=>navigate("/login")}
-        >
+        <Backgroud>
          <div>
-     
+        {setTimeout}
          <img src={Logo}></img>
          </div>
      
