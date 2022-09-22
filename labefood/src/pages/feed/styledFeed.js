@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 
+export const Main=styled.main`
+    height: 100%;
+    min-height: 100%;
+`
+
 export const Span = styled.span`
   
   width: 2.813rem;
@@ -29,19 +34,29 @@ export const ConteinerInput = styled.div`
 
         width: 20.5rem;
         height: 3.5rem;
-        padding: 1rem 0.503rem 1rem 1.063rem;
+        padding: 0.8rem 0.503rem 1rem 2rem;
         border-radius: 2px;
         border: solid 1px #b8b8b8;
+
+    }
+    img{
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-top: -11%;
+        object-fit: contain;
     }
 
 `
-
+export const CardRestaurant=styled.div`
+  height: 12.25rem;
+ 
+`
 
 export const Card=styled.div`
 
   width: 20.5rem;
   height: 11.75rem;
-  padding: 0 0 1rem;
+  padding: 0 0 0;
   border-radius: 8px;
   border: solid 1px #b8b8b8;
 
@@ -51,9 +66,8 @@ export const Card=styled.div`
   height: 7.5rem;
   margin: 0 0 0.75rem;
   object-fit: contain;
+ 
   }
-
-
 
 `
 
