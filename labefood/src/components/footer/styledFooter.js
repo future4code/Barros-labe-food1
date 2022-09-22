@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const ConteinerFooter=styled.footer`
-  position: absolute;
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
   margin-top: auto;
   display: flex;
   width: 22.5rem;
