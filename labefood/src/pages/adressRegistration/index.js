@@ -33,6 +33,8 @@ export const AdressRegistrationPage = () => {
         
 });
 
+console.log(form);
+
 const [isStreetValid, setIsStreetValid] = useState(true)
 const [isNumberValid, setIsNumberValid] = useState(true)
 const [isNeighbourhoodValid, setIsNeighbourhoodValid] = useState(true)

@@ -5,21 +5,21 @@ import {
     FormErrorMessage,
 } from '@chakra-ui/react'
 
-export const ComplementInput = ({value, onChange}) =>{
+export const ComplementInput = ({isValid, value, onChange}) =>{
     return(
-        <FormControl>
-            <FormLabel> Complemento* </FormLabel>
+        <FormControl isInvalid={!isValid}>
+            <FormLabel> Complemento </FormLabel>
             <Input
                 name="complement"
                 value={value}
                 onChange={onChange}
                 placeholder= "Apto./Bloco"
                 />
-                {/* {!isValid ? (
+                {!isValid ? (
             <FormErrorMessage as="p">
                 Campo obrigatório
             </FormErrorMessage>
-                ) : undefined} */}
+                ) : undefined}
         </FormControl>
     )
 }
