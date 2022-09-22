@@ -8,7 +8,7 @@ import {
 export const ComplementInput = ({isValid, value, onChange}) =>{
     return(
         <FormControl isInvalid={!isValid}>
-            <FormLabel> Complemento* </FormLabel>
+            <FormLabel> Complemento </FormLabel>
             <Input
                 name="complement"
                 value={value}
