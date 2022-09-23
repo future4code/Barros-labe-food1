@@ -69,36 +69,36 @@ export const SignupPage = () => {
     setIsPasswordValid(/.{6,}/.test(form.password));
     setIsPasswordConfirmValid(passwordConfirm === form.password ? true : false);
 
- if (
-   isEmailValid &&
-   isNameValid &&
-   isCpfValid &&
-   isPasswordValid &&
-   isPasswordConfirmValid
- ) {
+if (
+  isEmailValid &&
+  isNameValid &&
+  isCpfValid &&
+  isPasswordValid &&
+  isPasswordConfirmValid
+) {
   setAux(true)
- }
-   if (
-     isEmailValid &&
-     isNameValid &&
-     isCpfValid &&
-     isPasswordValid &&
-     isPasswordConfirmValid &&
-     aux
-   ) {
+}
+  if (
+    isEmailValid &&
+    isNameValid &&
+    isCpfValid &&
+    isPasswordValid &&
+    isPasswordConfirmValid &&
+    aux
+  ) {
      //--- Requisição para criar um novo cadastro
-     axios
-       .post(`${BASE_URL}/rappi4A/signup`, form)
-       .then((response) => {
-         localStorage.setItem("token", response.data.token);
-         Coordinator.goToAdressRegistration(navigate);
-       })
-       .catch((error) => {
-         alert(
-           "Erro ao processar sua requisição: " + error.response.data.message
-         );
-       });
-   }
+    axios
+      .post(`${BASE_URL}/rappi4A/signup`, form)
+      .then((response) => {
+        localStorage.setItem("token", response.data.token);
+        Coordinator.goToAdressRegistration(navigate);
+      })
+      .catch((error) => {
+        alert(
+          "Erro ao processar sua requisição: " + error.response.data.message
+        );
+      });
+  }
   };
 
   return (

@@ -71,7 +71,7 @@ export const LoginPage = () => {
         <h2>Entrar</h2>
       </div>
       <form onSubmit={onSubmit}>
-         <EmailInput
+        <EmailInput
           isValid={isEmailValid}
           value={form.email}
           onChange={onChange}

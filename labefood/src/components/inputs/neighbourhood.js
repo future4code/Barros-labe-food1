@@ -8,12 +8,13 @@ import {
 export const NeighbourhoodInput = ({isValid, value, onChange}) =>{
     return(
         <FormControl isInvalid={!isValid}>
-            <FormLabel> Logradouro* </FormLabel>
+            <FormLabel> Bairro* </FormLabel>
             <Input
-                name="street"
+                name="neighbourhood"
                 value={value}
                 onChange={onChange}
-                placeholder= "Rua / Av."
+                placeholder= "Bairro"
+                required
                 />
                 {!isValid ? (
             <FormErrorMessage as="p">

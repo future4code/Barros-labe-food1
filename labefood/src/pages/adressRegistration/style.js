@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const AdressRegistrationContainer = styled.main`
+export const AddressRegistrationContainer = styled.main`
     display: flex;
     justify-content: flex-start;
     align-items: center;
