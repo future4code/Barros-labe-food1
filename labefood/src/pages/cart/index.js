@@ -63,6 +63,11 @@ export const CartPage = () => {
           <p>Endereço de entrega</p>
           <p>Rua teste, 13</p>
         </div>
+        <div className="rest-info">
+          <h2>Bullguer Vila Madalena</h2>
+          <p>R. Fradique Coutinho, 1136 - Vila Madalena</p>
+          <p>30 - 45 min</p>
+        </div>
         {/* <div className="title">
             <h2>Carrinho cheio</h2>
           </div> */}

@@ -166,11 +166,45 @@ export const CartContainer = styled.div`
     display: flex;
     width: 85vw;
     align-items: center;
-    margin-top: 8rem;
+    margin-top: 1rem;
   }
 
   .submit-button button {
     width: 100%;
     color: #000;
+  }
+
+  .rest-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .rest-info h2 {
+    width: 20.5rem;
+    height: 1.125rem;
+    margin: 1rem 1rem 0.5rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.39px;
+    color: #e8222e;
+  }
+
+  .rest-info p {
+    width: 20.5rem;
+    height: 1.125rem;
+    margin: 0.5rem 1rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.39px;
+    color: #b8b8b8;
   }
 `;
