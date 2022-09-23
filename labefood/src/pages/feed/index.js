@@ -30,7 +30,7 @@ export const FeedPage = () => {
   }
 
     useEffect(() => { getRestaurants() }, [])
-    console.log(restaurants);
+   
 
     //INPUT FILTRO
   const onChangeInput = (e) => { setInput(e.target.value) }
@@ -95,7 +95,7 @@ export const FeedPage = () => {
               {restaurants &&
                 restaurants
                   .filter((rest) => {
-                    return rest.category === "Árabe";
+                    return (input ? rest.name.includes(input)  : rest.category === "Árabe")
                   })
                   .map((rest) => {
                     return (
@@ -157,8 +157,10 @@ export const FeedPage = () => {
                 restaurants
                   .filter((rest) => {
                     return input
-                      ? rest.name.includes(input)
-                      : rest.category === "Carnes";
+                    ? 
+                    rest.name.includes(input)
+                    :
+                     rest.category === "Carnes";
                   })
                   .map((rest) => {
                     return (

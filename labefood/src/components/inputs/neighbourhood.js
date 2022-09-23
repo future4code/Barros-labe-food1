@@ -13,7 +13,7 @@ export const NeighbourhoodInput = ({isValid, value, onChange}) =>{
           name="neighbourhood"
           value={value}
           onChange={onChange}
-          placeholder="Rua / Av."
+          placeholder="Bairro"
         />
         {!isValid ? (
           <FormErrorMessage as="p">Campo obrigatório</FormErrorMessage>
