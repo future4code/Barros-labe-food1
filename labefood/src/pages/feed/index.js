@@ -14,7 +14,8 @@ export const FeedPage = () => {
 
   const [restaurants, setRestaurants] = useState([])
   const [input, setInput] = useState("")
-
+  const [name, setName]= useState ("")
+  
 
   const navigate = useNavigate()
   const goToRestaurants = (id) => { navigate(`/restaurants/${id}`) };
@@ -28,10 +29,30 @@ export const FeedPage = () => {
       .catch((erro) => { console.log(erro) })
   }
 
-  useEffect(() => { getRestaurants() }, [])
+    useEffect(() => { getRestaurants() }, [])
+    
 
+    //INPUT FILTRO
   const onChangeInput = (e) => { setInput(e.target.value) }
 
+  const searchInput = restaurants.filter((item)=>{
+    if(name  === name  ){
+      return (item.name.includes(input))
+    }}).map((rest)=>{
+      return(<Card onClick={() => goToRestaurants(rest.id)}>
+      <img src={rest.logoUrl} alt='Restaurante' />
+      <Restaurant>{rest.name}</Restaurant>
+      <Detail>
+        <p>{rest.deliveryTime} min</p>
+        <h6>Frete R$:{rest.shipping},00</h6>
+      </Detail>
+    </Card> )
+    })
+    //PARA CASO NAO TENHA DAR MENSAGEM
+    // }else if (name !== name){
+    //   return "Não possui esse restaurante :( !"
+    // }
+    // console.log(searchInput)
   const dataTab = () => {
     return (
       <>
@@ -233,11 +254,12 @@ export const FeedPage = () => {
 
       <ConteinerInput>
         <input
+          value={searchInput}
           onChange={onChangeInput}
           placeholder="Busca"
           type='text'
         ></input>
-        <span><img src={search} /></span>
+        <span><img src={search} alt="busca" /></span>
       </ConteinerInput>
 
       {dataTab()}
