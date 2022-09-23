@@ -5,7 +5,7 @@ import { BASE_URL, appName } from '../../constants/index'
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../../components/footer/Footer";
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@chakra-ui/react'
-import { Span, ConteinerInput, Card, Restaurant, Detail, CardRestaurant, Main } from "./styledFeed";
+import { Span, ConteinerInput, Card, Restaurant, Detail, CardRestaurant, Main, Erro } from "./styledFeed";
 import search from '../../img/imgFooter/search_2022-09-22/search@2x.png'
 
 
@@ -14,9 +14,7 @@ export const FeedPage = () => {
 
   const [restaurants, setRestaurants] = useState([])
   const [input, setInput] = useState("")
-  const [name, setName]= useState ("")
   
-
   const navigate = useNavigate()
   const goToRestaurants = (id) => { navigate(`/restaurants/${id}`) };
 
@@ -36,7 +34,7 @@ export const FeedPage = () => {
   const onChangeInput = (e) => { setInput(e.target.value) }
 
   const filteredRest = restaurants.filter((item)=>{
-    return item.name.includes(input)
+    return  item.name.includes(input)
   }).map((rest)=>{
     return(<Card onClick={() => goToRestaurants(rest.id)}>
     <img src={rest.logoUrl} alt='Restaurante' />
@@ -47,15 +45,7 @@ export const FeedPage = () => {
     </Detail>
   </Card> )
   })
-  if (restaurants && restaurants.name && !restaurants.name.includes(input)) {
-    return <p>Não possui esse restaurante :/</p>;
-  }
   
-    //PARA CASO NAO TENHA DAR MENSAGEM
-    // }else if (name !== name){
-    //   return "Não possui esse restaurante :( !"
-    // }
-    // console.log(searchInput)
   const dataTab = () => {
     return (
       <>
@@ -76,20 +66,7 @@ export const FeedPage = () => {
             <TabPanel>
               {filteredRest}
 
-              {/* {restaurants && restaurants.map((i) => {
-                return (
-                  <CardRestaurant>
-                    <Card onClick={() => { goToRestaurants(i.id) }}>
-                      <img src={i.logoUrl} alt='Restaurante' />
-                      <Restaurant>{i.name}</Restaurant>
-                      <Detail>
-                        <p>{i.deliveryTime} min</p>
-                        <h6>Frete R$:{i.shipping},00</h6>
-                      </Detail>
-                    </Card>
-                  </CardRestaurant>
-                )
-              })} */}
+            
             </TabPanel>
             <TabPanel>
               {restaurants &&
@@ -306,14 +283,11 @@ export const FeedPage = () => {
         <span>
           <img src={search} alt="busca" />
         </span>
-        {/* {restaurants &&
-          restaurants.name &&
-          !restaurants.name.includes(input) &&
-          "Não possui esse restaurante :( !"} */}
       </ConteinerInput>
 
       {dataTab()}
 
+      {!restaurants.includes(input) && <Erro>Não encontramos :( </Erro>}
       <Footer />
     </Main>
   );

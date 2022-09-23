@@ -123,3 +123,9 @@ export const Detail=styled.span`
   color: #b8b8b8;
   }
 `
+
+export const Erro=styled.h4`
+    font-family: Roboto;
+    text-align: center;
+
+`
