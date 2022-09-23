@@ -16,6 +16,7 @@ export const Span = styled.span`
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
+  margin:3rem 4rem ;
   letter-spacing: -0.39px;
   text-align: center;
   color: #000;
@@ -37,9 +38,12 @@ export const ConteinerInput = styled.div`
         padding: 0.8rem 0.503rem 1rem 2rem;
         border-radius: 2px;
         border: solid 1px #b8b8b8;
+        margin-bottom: 1rem;
 
     }
     img{
+        position: absolute;
+        top: 8.2rem;
         width: 1.5rem;
         height: 1.5rem;
         margin-top: -11%;

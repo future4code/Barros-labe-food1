@@ -115,7 +115,7 @@ export const FeedPage = () => {
                 restaurants
                   .filter((rest) => {
                     return (
-                      rest.category === "Asiática" && rest.name.includes(input)
+                       input ? rest.name.includes(input)  : rest.category === "Asiática"
                     );
                   })
                   .map((rest) => {
@@ -135,7 +135,9 @@ export const FeedPage = () => {
               {restaurants &&
                 restaurants
                   .filter((rest) => {
-                    return rest.category === "Baiana" && rest.name.includes(input);
+                    return input
+                      ? rest.name.includes(input)
+                      : rest.category === "Baiana";
                   })
                   .map((rest) => {
                     return (
@@ -154,9 +156,9 @@ export const FeedPage = () => {
               {restaurants &&
                 restaurants
                   .filter((rest) => {
-                    return (
-                      rest.category === "Carnes" && rest.name.includes(input)
-                    );
+                    return input
+                      ? rest.name.includes(input)
+                      : rest.category === "Carnes";
                   })
                   .map((rest) => {
                     return (
@@ -176,10 +178,9 @@ export const FeedPage = () => {
               {restaurants &&
                 restaurants
                   .filter((rest) => {
-                    return (
-                      rest.category === "Hamburguer" &&
-                      rest.name.includes(input)
-                    );
+                    return input
+                      ? rest.name.includes(input)
+                      : rest.category === "Hamburguer";
                   })
                   .map((rest) => {
                     return (
@@ -199,9 +200,9 @@ export const FeedPage = () => {
               {restaurants &&
                 restaurants
                   .filter((rest) => {
-                    return (
-                      rest.category === "Italiana" && rest.name.includes(input)
-                    );
+                    return input
+                      ? rest.name.includes(input)
+                      : rest.category === "Italiana";
                   })
                   .map((rest) => {
                     return (
@@ -221,9 +222,9 @@ export const FeedPage = () => {
               {restaurants &&
                 restaurants
                   .filter((rest) => {
-                    return (
-                      rest.category === "Mexicana" && rest.name.includes(input)
-                    );
+                    return input
+                      ? rest.name.includes(input)
+                      : rest.category === "Mexicana";
                   })
                   .map((rest) => {
                     return (
@@ -243,9 +244,9 @@ export const FeedPage = () => {
               {restaurants &&
                 restaurants
                   .filter((rest) => {
-                    return (
-                      rest.category === "Petiscos" && rest.name.includes(input)
-                    );
+                    return input
+                      ? rest.name.includes(input)
+                      : rest.category === "Petiscos";
                   })
                   .map((rest) => {
                     return (
@@ -264,9 +265,9 @@ export const FeedPage = () => {
               {restaurants &&
                 restaurants
                   .filter((rest) => {
-                    return (
-                      rest.category === "Sorvetes" && rest.name.includes(input)
-                    );
+                    return input
+                      ? rest.name.includes(input)
+                      : rest.category === "Sorvetes";
                   })
                   .map((rest) => {
                     return (
