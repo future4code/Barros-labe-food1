@@ -1,11 +1,12 @@
 import { CartContainer } from "./style";
 import { Stack, Radio, RadioGroup, Button } from "@chakra-ui/react";
 import { useState } from "react";
+import { CardCart } from "../../components/card";
 
 export const CartPage = () => {
-  const [cart, setCart] = useState(false);
+  const [cart, setCart] = useState(true);
 
-  if (cart) {
+  if (!cart) {
     return (
       <CartContainer>
         <header>
@@ -62,9 +63,10 @@ export const CartPage = () => {
           <p>Endereço de entrega</p>
           <p>Rua teste, 13</p>
         </div>
-        <div className="title">
-          <h2>Carrinho cheio</h2>
-        </div>
+        {/* <div className="title">
+            <h2>Carrinho cheio</h2>
+          </div> */}
+        <CardCart />
         <div className="price-container">
           <div className="subtotal">
             <p>SUBTOTAL</p>
