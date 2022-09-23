@@ -11,10 +11,8 @@ export const HomePage = () =>{
         <Backgroud>
          <div>
         {setTimeout}
-         <img src={Logo}></img>
+         <img src={Logo} alt="Logo Ifuture"></img>
          </div>
-     
-        
         </Backgroud>
     )
 }

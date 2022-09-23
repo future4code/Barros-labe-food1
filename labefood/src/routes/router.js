@@ -5,7 +5,8 @@ import { LoginPage } from '../pages/login';
 import {SignupPage} from '../pages/signup';
 import {AdressRegistrationPage} from "../pages/adressRegistration/index"
 import { RestaurantsPage} from '../pages/restaurants/index'
-import { CartPage } from '../pages/cart';
+import { CartPage} from '../pages/cart/index'
+import { ProfilePage } from '../pages/profile';
 
 export const Router = () =>{
     return(
@@ -17,7 +18,9 @@ export const Router = () =>{
                 <Route path='/feed' element={<FeedPage/>}/>
                 <Route path='/restaurants/:restauranteId' element={<RestaurantsPage/>}/>
                 <Route path='/adress' element={< AdressRegistrationPage />}/>
-                <Route path='/cart' element={<CartPage />}/>
+                <Route path='/cart' element={<CartPage/>}/>
+                <Route path='/profile' element={<ProfilePage/>}/>
+
             </Routes>
         </BrowserRouter>
     )
