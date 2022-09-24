@@ -19,7 +19,7 @@ div{
   padding: 0.625rem 2.875rem 0.563rem 2.938rem;
 
 }
-img{
+svg{
     
     width: 1.688rem;
     height: 1.688rem;
