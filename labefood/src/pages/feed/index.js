@@ -3,16 +3,22 @@ import axios from "axios";
 import { useProtectPage } from '../../hooks/useProtectPage'
 import { BASE_URL, appName } from '../../constants/index'
 import { useNavigate } from "react-router-dom";
-import { goToRestaurants } from "../../routes/coordinator";
+import { Footer } from "../../components/footer/Footer";
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@chakra-ui/react'
+import { Span, ConteinerInput, Card, Restaurant, Detail, CardRestaurant, Main } from "./styledFeed";
+import search from '../../img/imgFooter/search_2022-09-22/search@2x.png'
+
 
 export const FeedPage = () => {
   useProtectPage();
 
   const [restaurants, setRestaurants] = useState([])
   const [input, setInput] = useState("")
-  const [category, setCategory] = useState(0)
+  const [name, setName]= useState ("")
+  
+
   const navigate = useNavigate()
+  const goToRestaurants = (id) => { navigate(`/restaurants/${id}`) };
 
   const token = localStorage.getItem("token")
   console.log(token);
@@ -24,188 +30,292 @@ export const FeedPage = () => {
       .catch((erro) => { console.log(erro) })
   }
 
-  useEffect(() => { getRestaurants() }, [])
+    useEffect(() => { getRestaurants() }, [])
+    console.log(restaurants);
 
+    //INPUT FILTRO
   const onChangeInput = (e) => { setInput(e.target.value) }
 
+
+  const filteredRest = restaurants.filter((item)=>{
+    return item.name.includes(input)
+  }).map((rest)=>{
+    return(<Card onClick={() => goToRestaurants(rest.id)}>
+    <img src={rest.logoUrl} alt='Restaurante' />
+    <Restaurant>{rest.name}</Restaurant>
+    <Detail>
+      <p>{rest.deliveryTime} min</p>
+      <h6>Frete R$:{rest.shipping},00</h6>
+    </Detail>
+  </Card> )
+  })
+  if (restaurants && restaurants.name && !restaurants.name.includes(input)) {
+    return <p>Não possui esse restaurante :/</p>;
+  }
+  
+    //PARA CASO NAO TENHA DAR MENSAGEM
+    // }else if (name !== name){
+    //   return "Não possui esse restaurante :( !"
+    // }
+    // console.log(searchInput)
+  const dataTab = () => {
+    return (
+      <>
+        <Tabs colorScheme="red">
+          <TabList overflowX="auto">
+            <Tab>Todos</Tab>
+            <Tab>Árabe</Tab>
+            <Tab>Asiática</Tab>
+            <Tab>Baiana</Tab>
+            <Tab>Carnes</Tab>
+            <Tab>Hambúrguer</Tab>
+            <Tab>Italiana</Tab>
+            <Tab>Mexicana</Tab>
+            <Tab>Petiscos</Tab>
+            <Tab>Sorvetes</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              {filteredRest}
+
+              {/* {restaurants && restaurants.map((i) => {
+                return (
+                  <CardRestaurant>
+                    <Card onClick={() => { goToRestaurants(i.id) }}>
+                      <img src={i.logoUrl} alt='Restaurante' />
+                      <Restaurant>{i.name}</Restaurant>
+                      <Detail>
+                        <p>{i.deliveryTime} min</p>
+                        <h6>Frete R$:{i.shipping},00</h6>
+                      </Detail>
+                    </Card>
+                  </CardRestaurant>
+                )
+              })} */}
+            </TabPanel>
+            <TabPanel>
+              {restaurants &&
+                restaurants
+                  .filter((rest) => {
+                    return rest.category === "Árabe";
+                  })
+                  .map((rest) => {
+                    return (
+                      <Card onClick={() => goToRestaurants(rest.id)}>
+                        <img src={rest.logoUrl} alt="Restaurante" />
+                        <Restaurant>{rest.name}</Restaurant>
+                        <Detail>
+                          <p>{rest.deliveryTime} min</p>
+                          <h6>Frete R$:{rest.shipping},00</h6>
+                        </Detail>
+                      </Card>
+                    );
+                  })}
+            </TabPanel>
+            <TabPanel>
+              {restaurants &&
+                restaurants
+                  .filter((rest) => {
+                    return (
+                       input ? rest.name.includes(input)  : rest.category === "Asiática"
+                    );
+                  })
+                  .map((rest) => {
+                    return (
+                      <Card onClick={() => goToRestaurants(rest.id)}>
+                        <img src={rest.logoUrl} alt="Restaurante" />
+                        <Restaurant>{rest.name}</Restaurant>
+                        <Detail>
+                          <p>{rest.deliveryTime} min</p>
+                          <h6>Frete R$:{rest.shipping},00</h6>
+                        </Detail>
+                      </Card>
+                    );
+                  })}
+            </TabPanel>
+            <TabPanel>
+              {restaurants &&
+                restaurants
+                  .filter((rest) => {
+                    return input
+                      ? rest.name.includes(input)
+                      : rest.category === "Baiana";
+                  })
+                  .map((rest) => {
+                    return (
+                      <Card onClick={() => goToRestaurants(rest.id)}>
+                        <img src={rest.logoUrl} alt="Restaurante" />
+                        <Restaurant>{rest.name}</Restaurant>
+                        <Detail>
+                          <p>{rest.deliveryTime} min</p>
+                          <h6>Frete R$:{rest.shipping},00</h6>
+                        </Detail>
+                      </Card>
+                    );
+                  })}
+            </TabPanel>
+            <TabPanel>
+              {restaurants &&
+                restaurants
+                  .filter((rest) => {
+                    return input
+                      ? rest.name.includes(input)
+                      : rest.category === "Carnes";
+                  })
+                  .map((rest) => {
+                    return (
+                      <Card>
+                        <img src={rest.logoUrl} alt="Restaurante" />
+                        <Restaurant>{rest.name}</Restaurant>
+                        <Detail>
+                          <p>{rest.deliveryTime} min</p>
+                          <h6>Frete R$:{rest.shipping},00</h6>
+                        </Detail>
+                      </Card>
+                    );
+                  })}
+            </TabPanel>
+
+            <TabPanel>
+              {restaurants &&
+                restaurants
+                  .filter((rest) => {
+                    return input
+                      ? rest.name.includes(input)
+                      : rest.category === "Hamburguer";
+                  })
+                  .map((rest) => {
+                    return (
+                      <Card onClick={() => goToRestaurants(rest.id)}>
+                        <img src={rest.logoUrl} alt="Restaurante" />
+                        <Restaurant>{rest.name}</Restaurant>
+                        <Detail>
+                          <p>{rest.deliveryTime} min</p>
+                          <h6>Frete R$:{rest.shipping},00</h6>
+                        </Detail>
+                      </Card>
+                    );
+                  })}
+            </TabPanel>
+
+            <TabPanel>
+              {restaurants &&
+                restaurants
+                  .filter((rest) => {
+                    return input
+                      ? rest.name.includes(input)
+                      : rest.category === "Italiana";
+                  })
+                  .map((rest) => {
+                    return (
+                      <Card onClick={() => goToRestaurants(rest.id)}>
+                        <img src={rest.logoUrl} alt="Restaurante" />
+                        <Restaurant>{rest.name}</Restaurant>
+                        <Detail>
+                          <p>{rest.deliveryTime} min</p>
+                          <h6>Frete R$:{rest.shipping},00</h6>
+                        </Detail>
+                      </Card>
+                    );
+                  })}
+            </TabPanel>
+
+            <TabPanel>
+              {restaurants &&
+                restaurants
+                  .filter((rest) => {
+                    return input
+                      ? rest.name.includes(input)
+                      : rest.category === "Mexicana";
+                  })
+                  .map((rest) => {
+                    return (
+                      <Card onClick={() => goToRestaurants(rest.id)}>
+                        <img src={rest.logoUrl} alt="Restaurante" />
+                        <Restaurant>{rest.name}</Restaurant>
+                        <Detail>
+                          <p>{rest.deliveryTime} min</p>
+                          <p>Frete R$:{rest.shipping},00</p>
+                        </Detail>
+                      </Card>
+                    );
+                  })}
+            </TabPanel>
+
+            <TabPanel>
+              {restaurants &&
+                restaurants
+                  .filter((rest) => {
+                    return input
+                      ? rest.name.includes(input)
+                      : rest.category === "Petiscos";
+                  })
+                  .map((rest) => {
+                    return (
+                      <Card onClick={() => goToRestaurants(rest.id)}>
+                        <img src={rest.logoUrl} alt="Restaurante" />
+                        <Restaurant>{rest.name}</Restaurant>
+                        <Detail>
+                          <p>{rest.deliveryTime} min</p>
+                          <h6>Frete R$:{rest.shipping},00</h6>
+                        </Detail>
+                      </Card>
+                    );
+                  })}
+            </TabPanel>
+            <TabPanel>
+              {restaurants &&
+                restaurants
+                  .filter((rest) => {
+                    return input
+                      ? rest.name.includes(input)
+                      : rest.category === "Sorvetes";
+                  })
+                  .map((rest) => {
+                    return (
+                      <Card onClick={() => goToRestaurants(rest.id)}>
+                        <img src={rest.logoUrl} alt="Restaurante" />
+                        <Restaurant>{rest.name}</Restaurant>
+                        <Detail>
+                          <p>{rest.deliveryTime} min</p>
+                          <h6>Frete R$:{rest.shipping},00</h6>
+                        </Detail>
+                      </Card>
+                    );
+                  })}
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </>
+    );
+  }
+
   return (
-    <>
-      <input
-        onChange={onChangeInput}
-        placeholder="Busca"
-      ></input>
-      <Tabs>
+    <Main>
+      <Span>
+        <div>Ifuture</div>
+      </Span>
 
-        <TabList overflowX="auto">
-          <Tab>Todos</Tab>
-          <Tab>Árabe</Tab>
-          <Tab>Asiática</Tab>
-          <Tab>Baiana</Tab>
-          <Tab>Carnes</Tab>
-          <Tab>Hambúrguer</Tab>
-          <Tab>Italiana</Tab>
-          <Tab>Mexicana</Tab>
-          <Tab>Petiscos</Tab>
-          <Tab>Sorvetes</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>
-            {restaurants && restaurants.map((i) => {
-              return (
-                <div onClick={() => { goToRestaurants(navigate) }}>
-                  <img src={i.logoUrl} alt='Restaurante' />
-                  <p>{i.name}</p>
-                  <p>{i.deliveryTime}</p>
-                  <p>{i.shipping}</p>
-                </div>
-              )
-            })}
-          </TabPanel>
-          <TabPanel>
-            {restaurants && restaurants.filter((rest) => {
-              return rest.category === "Árabe"
-            }).map((rest) => {
-              console.log(rest.category)
-              return (
-                <div>
-                  <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
-              )
-            })}
-          </TabPanel>
-          <TabPanel>
-            {restaurants && restaurants.filter((rest) => {
-              return rest.category === "Asiática"
-            }).map((rest) => {
-              console.log(rest.category)
-              return (
-                <div>
-                  <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
-              )
-            })}
-          </TabPanel>
-          <TabPanel>
-            {restaurants && restaurants.filter((rest) => {
-              return rest.category === "Baiana"
-            }).map((rest) => {
-              console.log(rest.category)
-              return (
-                <div>
-                  <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
-              )
-            })
-            }
-          </TabPanel>
-          <TabPanel>
-            {restaurants && restaurants.filter((rest) => {
-              return rest.category === "Carnes"
-            }).map((rest) => {
-              console.log(rest.category)
-              return (
-                <div>
-                  <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
-              )
-            })
-            }
-          </TabPanel>
+      <ConteinerInput>
+        <input
+          value={input}
+          onChange={onChangeInput}
+          placeholder="Busca"
+          type="text"
+        ></input>
+        <span>
+          <img src={search} alt="busca" />
+        </span>
+        {/* {restaurants &&
+          restaurants.name &&
+          !restaurants.name.includes(input) &&
+          "Não possui esse restaurante :( !"} */}
+      </ConteinerInput>
 
-          <TabPanel>
-            {restaurants && restaurants.filter((rest) => {
-              return rest.category === "Hamburguer"
-            }).map((rest) => {
-              console.log(rest.category)
-              return (
-                <div>
-                  <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
-              )
-            })}
-          </TabPanel>
+      {dataTab()}
 
-          <TabPanel>
-            {restaurants && restaurants.filter((rest) => {
-              return rest.category === "Italiana"
-            }).map((rest) => {
-              console.log(rest.category)
-              return (
-                <div>
-                  <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
-              )
-            })}
-          </TabPanel>
-
-          <TabPanel>
-            {restaurants && restaurants.filter((rest) => {
-              return rest.category === "Mexicana"
-            }).map((rest) => {
-              console.log(rest.category)
-              return (
-                <div>
-                  <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
-              )
-            })}
-          </TabPanel>
-
-          <TabPanel>
-            {restaurants && restaurants.filter((rest) => {
-              return rest.category === "Petiscos"
-            }).map((rest) => {
-              console.log(rest.category)
-              return (
-                <div>
-                  <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
-              )
-            })}
-          </TabPanel>
-          <TabPanel>
-            {restaurants && restaurants.filter((rest) => {
-              return rest.category === "Sorvetes"
-            }).map((rest) => {
-              console.log(rest.category)
-              return (
-                <div>
-                  <img src={rest.logoUrl} alt='Restaurante' />
-                  <p>{rest.name}</p>
-                  <p>{rest.deliveryTime}</p>
-                  <p>{rest.shipping}</p>
-                </div>
-              )
-            })}
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
-
-    </>
+      <Footer />
+    </Main>
   );
 
 

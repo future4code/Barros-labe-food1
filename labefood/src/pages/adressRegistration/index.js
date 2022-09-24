@@ -66,15 +66,19 @@ const onSubmit =  (e)=>{
     }
     
 return (
-    <AddressRegistrationContainer>
+
+  <AdressRegistrationContainer>
+
     <button
-        className="go-back-button"
-        onClick={() => Coordinator.goBack(navigate)}
+      className="go-back-button"
+      onClick={() => Coordinator.goBack(navigate)}
     >
-        <FiChevronLeft />
+      <FiChevronLeft />
     </button>
-    <Divider/>
-    <h2><strong>Meu endereço</strong></h2>
+    <Divider />
+    <h2>
+      <strong>Meu endereço</strong>
+    </h2>
 
     <form onSubmit={onSubmit}>
         <StreetInput
@@ -108,10 +112,20 @@ return (
             isValid={isStateValid}  
         />
 
-        <Button type="submit" colorScheme="red" variant="solid" color="black">
+
+      <Button
+        marginTop="0.5rem"
+        borderRadius="2px"
+        height="2.625rem"
+        type="submit"
+        colorScheme="red"
+        variant="solid"
+        color="black"
+      >
         Salvar
-        </Button>
+      </Button>
     </form>
     </AddressRegistrationContainer>
+
 );
 };

@@ -31,6 +31,7 @@ h2 {
     letter-spacing: -0.39px;
     text-align: center;
     padding: 0.75rem 2rem;
+    height: 1,125rem;
 }
 
 form {
@@ -41,7 +42,7 @@ form {
     }
 
     input {
-      /* height: 3.5rem; */
+    height: 3.5rem;
     margin: 0.5rem 0 0;
       /* padding: 1.188rem 3rem 1.188rem 1rem; */
     position: relative;
