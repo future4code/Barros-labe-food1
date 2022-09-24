@@ -16,6 +16,7 @@ export const FeedPage = () => {
   const [input, setInput] = useState("")
   
   const navigate = useNavigate()
+  
   const goToRestaurants = (id) => { navigate(`/restaurants/${id}`) };
 
   const token = localStorage.getItem("token")
@@ -288,6 +289,7 @@ export const FeedPage = () => {
       {dataTab()}
 
       {!restaurants.includes(input) && <Erro>Não encontramos :( </Erro>}
+      
       <Footer />
     </Main>
   );
