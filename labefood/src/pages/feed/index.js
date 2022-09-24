@@ -15,6 +15,7 @@ export const FeedPage = () => {
   const navigate = useNavigate()
 
   const token = localStorage.getItem("token")
+  console.log(token);
 
   const getRestaurants = () => {
     axios.get(`${BASE_URL}/${appName}/restaurants`, {
@@ -26,108 +27,6 @@ export const FeedPage = () => {
   useEffect(() => { getRestaurants() }, [])
 
   const onChangeInput = (e) => { setInput(e.target.value) }
-
-
-  // const feedRestaurants = () => {
-
-  //   if (category === 0) {
-
-  //     return (
-  //       <section value={category} index={0}>
-  //         <div
-  //          onClick={()=>{goToRestaurants(navigate)}}
-  //         >
-  //           {restaurants && restaurants.map((i) => {
-  //             return (
-  //               <div  onClick={()=>{goToRestaurants(navigate)}}>
-  //                 <img src={i.logoUrl} alt='Restaurante' />
-  //                 <p>{i.name}</p>
-  //                 <p>{i.deliveryTime}</p>
-  //                 <p>{i.shipping}</p>
-  //               </div>
-  //             )
-  //           })}
-  //         </div>
-  //       </section>
-  //     )
-  //   }
-  //   else if(category === 1) {
-  //     <section value={category} index={1}>
-
-  //       <div
-  //       //  onClick={(i)=>{goToRestaurante (navigate, i.id)}}
-  //       >
-  //         {restaurants && restaurants.filter((rest) => {
-  //           return rest.category === "Árabe"
-  //         }).map((rest) => {
-  //           console.log(rest.category)
-  //           return (
-  //             <div>
-  //               <img src={rest.logoUrl} alt='Restaurante' />
-  //               <p>{rest.name}</p>
-  //               <p>{rest.deliveryTime}</p>
-  //               <p>{rest.shipping}</p>
-  //             </div>
-  //           )
-  //         })
-  //         }
-
-  //       </div>
-
-  //     </section>
-  //   }
-  //   else if(category === 2){
-  //     <section value={category} index={2}>
-  //   <div
-  //   //  onClick={(i)=>{goToRestaurante (navigate, i.id)}}
-  //   >
-  //     {restaurants && restaurants.filter((rest) => {
-  //       return rest.category === "Asiática"
-  //     }).map((rest) => {
-  //       console.log(rest.category)
-  //       return (
-  //         <div>
-  //           <img src={rest.logoUrl} alt='Restaurante' />
-  //           <p>{rest.name}</p>
-  //           <p>{rest.deliveryTime}</p>
-  //           <p>{rest.shipping}</p>
-  //         </div>
-  //       )
-  //     })
-  //     }
-
-  //   </div>
-
-  // </section>
-
-  //   }
-  //   else if(category === 3){
-  //     <section value={category} index={2}>
-  //   <div
-  //   //  onClick={(i)=>{goToRestaurante (navigate, i.id)}}
-  //   >
-  //     {restaurants && restaurants.filter((rest) => {
-  //       return rest.category === "Baiana"
-  //     }).map((rest) => {
-  //       console.log(rest.category)
-  //       return (
-  //         <div>
-  //           <img src={rest.logoUrl} alt='Restaurante' />
-  //           <p>{rest.name}</p>
-  //           <p>{rest.deliveryTime}</p>
-  //           <p>{rest.shipping}</p>
-  //         </div>
-  //       )
-  //     })
-  //     }
-
-  //   </div>
-  // </section>
-
-  //   }
-
-  // }
-
 
   return (
     <>

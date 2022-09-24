@@ -25,7 +25,3 @@ export const goBack = (navigator) =>{
 export const goToRestaurants = (navigator, restaurantsId) =>{
     navigator(`/restaurants/${restaurantsId}`)
 }
-
-// export const goTo = (navigator) =>{
-//     navigator('/')
-// }

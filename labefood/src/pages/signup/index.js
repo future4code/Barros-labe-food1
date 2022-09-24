@@ -5,16 +5,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import * as Coordinator from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FiChevronLeft } from "react-icons/fi";
 
 import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  InputGroup,
-  InputRightElement,
-  Input,
   Button,
 } from "@chakra-ui/react";
 import {
@@ -103,13 +96,15 @@ if (
 
   return (
     <SignupContainer>
+
       <button
         className="go-back-button"
         onClick={() => Coordinator.goBack(navigate)}
-      >
-        <FiChevronLeft />
+      ><FiChevronLeft />
       </button>
+
       <img src={LogoInvert} alt="logo da Future Eats" />
+
       <h2>Cadastrar</h2>
 
       <form onSubmit={handleSubmit}>
@@ -119,63 +114,13 @@ if (
           onChange={onChange}
         />
 
-        {/* 
-        <FormControl isInvalid={!isNameValid}>
-          <FormLabel>Nome*</FormLabel>
-          <Input
-            type="text"
-            name="name"
-            placeholder="Nome e sobrenome"
-            value={form.name}
-            onChange={onChange}
-            size="lg"
-            required
-          />
-          {!isNameValid ? (
-            <FormErrorMessage as="p">
-              Atenção: Nome e sobrenome.
-            </FormErrorMessage>
-          ) : undefined}
-        </FormControl> */}
-
         <EmailInput
           isValid={isEmailValid}
           value={form.email}
           onChange={onChange}
         />
 
-        {/* <FormControl isInvalid={!isEmailValid}>
-          <FormLabel>E mail</FormLabel>
-          <Input
-            type="email"
-            name="email"
-            placeholder="email@email.com"
-            value={form.email}
-            onChange={onChange}
-            size="lg"
-            required
-          />
-          {!isEmailValid ? (
-            <FormErrorMessage as="p">Email inválido.</FormErrorMessage>
-          ) : undefined}
-        </FormControl> */}
-
         <CpfInput isValid={isCpfValid} value={form.cpf} onChange={onChange} />
-
-        {/* <FormControl isInvalid={!isCpfValid}>
-          <FormLabel>CPF</FormLabel>
-          <Input
-            name="cpf"
-            placeholder="000.000.000-00"
-            value={form.cpf}
-            onChange={onChange}
-            size="lg"
-            required
-          />
-          {!isCpfValid ? (
-            <FormErrorMessage as="p">Número de CPF inválido.</FormErrorMessage>
-          ) : undefined}
-        </FormControl> */}
 
         <PasswordInput
           isValid={isPasswordValid}
@@ -188,35 +133,6 @@ if (
           errorMessage={"Formato de senha inválido."}
         />
 
-        {/* <FormControl isInvalid={!isPasswordValid}>
-          <FormLabel>Senha</FormLabel>
-          <InputGroup size="lg">
-            <Input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              placeholder="Mínimo 6 caracteres"
-              value={form.password}
-              onChange={onChange}
-              size="lg"
-            />
-            <InputRightElement height="100%" width="4.5rem">
-              <Button
-                background="none"
-                h="1.75rem"
-                size="lg"
-                onClick={handleClickEye}
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </Button>
-            </InputRightElement>
-          </InputGroup>
-          {!isPasswordValid ? (
-            <FormErrorMessage as="p">
-              Formato de senha inválido.
-            </FormErrorMessage>
-          ) : undefined}
-        </FormControl> */}
-
         <PasswordInput
           isValid={isPasswordConfirmValid}
           label={"Confirmar"}
@@ -228,37 +144,10 @@ if (
           errorMessage={"Senha nâo Confere"}
         />
 
-        {/* <FormControl isInvalid={!isPasswordConfirmValid}>
-          <FormLabel>Confirmar</FormLabel>
-          <InputGroup size="lg">
-            <Input
-              type={showPasswordConfirm ? "text" : "password"}
-              value={passwordConfirm}
-              name="passwordConfirm"
-              placeholder="Confirme a senha anterior"
-              onChange={(e) => setPasswordConfirm(e.target.value)}
-              size="lg"
-              required
-            />
-            <InputRightElement height="100%" width="4.5rem">
-              <Button
-                background="none"
-                h="1.75rem"
-                size="lg"
-                onClick={handleClickEyeConfirm}
-              >
-                {showPasswordConfirm ? <FaEyeSlash /> : <FaEye />}
-              </Button>
-            </InputRightElement>
-          </InputGroup>
-          {!isPasswordConfirmValid ? (
-            <FormErrorMessage as="p">Senha não confere.</FormErrorMessage>
-          ) : undefined}
-        </FormControl> */}
-
         <Button type="submit" colorScheme="red" variant="solid">
           Criar
         </Button>
+
       </form>
     </SignupContainer>
   );

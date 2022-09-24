@@ -4,7 +4,6 @@ import * as Coordinator from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
 import { FiChevronLeft } from "react-icons/fi";
 import { AddressRegistrationContainer } from "./style";
-
 import {
     Button,
     Divider
@@ -25,7 +24,7 @@ export const AdressRegistrationPage = () => {
         complement: ""
         
 });
-
+//--- Estados com valores booleanos para a validação do dados preenchidos no form
 const [isStreetValid, setIsStreetValid] = useState(true)
 const [isNumberValid, setIsNumberValid] = useState(true)
 const [isNeighbourhoodValid, setIsNeighbourhoodValid] = useState(true)
@@ -38,6 +37,7 @@ const [isComplementValid, setIsComplementValid] = useState(true)
 
 const onSubmit =  (e)=>{
     e.preventDefault();
+      //--- Testes de validação que retorna booleanos para usar nas mensagens de erro do form control...
     setIsStreetValid(validateInput(form.street))
     setIsNumberValid(validateInput(form.number))
     setIsNeighbourhoodValid(validateInput(form.neighbourhood))
@@ -55,6 +55,7 @@ const onSubmit =  (e)=>{
                 state: form.state,
                 complement: form.complement
             })
+            // localStorage.setItem("token");
             alert("Cadastro efetuado com sucesso!")
             Coordinator.goToFeedPage(navigate)
             }
@@ -89,7 +90,7 @@ return (
         <ComplementInput
             value={form.complement} 
             onChange={onChangeInputs}
-            isValid={true}  
+            isValid={isComplementValid}  
         />
         <NeighbourhoodInput
             value={form.neighbourhood} 
