@@ -8,7 +8,9 @@ export const CardContainer = styled.div`
   border: solid 1px #b8b8b8;
 
   .image {
-    background-image: url(${(props) => props.bgImage});
+    /* background-image: url(${(props) => props.bgImage}); */
+    display: flex;
+    align-items: center;
     width: 6rem;
     height: 7rem;
     margin: 0 1rem 0 0;
@@ -86,6 +88,9 @@ export const CardContainer = styled.div`
   }
 
   .buttons button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 5.625rem;
     height: 1.938rem;
     margin: 0.438rem 0 0 0.5rem;
@@ -95,7 +100,7 @@ export const CardContainer = styled.div`
   }
 
   .buttons button p {
-    width: 3rem;
+    width: 3.5rem;
 
     height: 0.875rem;
     font-family: Roboto;

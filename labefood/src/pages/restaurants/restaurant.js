@@ -8,9 +8,12 @@ import {
   Title,
   Detail,
   MainConteiner,
+  Info,
+  Cards,
 } from "./styledRest";
 import { FiChevronLeft } from "react-icons/fi";
 import { goBack } from "../../routes/coordinator";
+import { CardCart } from "../../components/card";
 
 export const RestaurantsPage = () => {
   useProtectPage();
@@ -24,6 +27,8 @@ export const RestaurantsPage = () => {
   const token = localStorage.getItem("token");
 
 
+
+
   const detailRestaurant = () => {
     axios.get(`${BASE_URL}/${appName}/restaurants/${parametro.restauranteId}`, {
       headers: { auth: token }
@@ -34,31 +39,46 @@ export const RestaurantsPage = () => {
   useEffect(() => { detailRestaurant() }, [])
 
   return (
-    <MainConteiner>
-      <div>
-        <button
-          className="go-back-button"
-          onClick={() => goBack(navigate)}>
-          <FiChevronLeft />
-        </button>
-        <div className="title">
-        <Title>Restaurante</Title>
+    <>
+      <MainConteiner>
+        <div>
+          <button className="go-back-button" onClick={() => goBack(navigate)}>
+            <FiChevronLeft />
+          </button>
+          <div className="title">
+            <Title>Restaurante</Title>
+          </div>
         </div>
-      </div>
 
-      <Detail>
-        <img src={states.logoUrl} alt="Logo restaurante" />
-        <p className="name-restaurant">{states.name}</p>
+        <Detail>
+          <img src={states.logoUrl} alt="Logo restaurante" />
+          <p className="name-restaurant">{states.name}</p>
+        </Detail>
+      </MainConteiner>
+      <Info>
         <p>{states.category}</p>
-        <p>{states.shipping} min</p>
-        <p>Frete R$:{states.deliveryTime},00</p>
+        <div className="shipping-price">
+          <p>{states.shipping} min</p>
+          <p>Frete R$:{states.deliveryTime},00</p>
+        </div>
         <p>{states.address}</p>
-      </Detail>
-
-      {states.products && states.products.map((i) => {
-        return (
-          <>
-            <>
+      </Info>
+      <Cards>
+        {states.products &&
+          states.products.map((i) => {
+            return (
+              <>
+              {i.photoUrl && 
+                <CardCart
+                  image={i && i.photoUrl && i.photoUrl}
+                  title={i.name}
+                  description={i.description}
+                  price={i.price.toFixed(2)}
+                  button={"Adicionar"}
+                />
+              }
+                {/* <CardCart /> */}
+                {/* <>
 
               <img src={i.photoUrl} alt='Produtos' />
               <p>{i.name}</p>
@@ -66,13 +86,11 @@ export const RestaurantsPage = () => {
                 <p>{i.description}</p>
                 <h6>Preço R$:{i.price}</h6>
               </>
-            </>
-          </>
-        )
-      })}
-
-
-
-    </MainConteiner>
-  )
+            </> */}
+              </>
+            );
+          })}
+      </Cards>
+    </>
+  );
 }
