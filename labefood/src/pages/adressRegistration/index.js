@@ -8,14 +8,14 @@ import {
     Button,
     Divider
 } from "@chakra-ui/react";
-import { AddressRegistration, BASE_URL, validateInput } from "../../constants";
+import { AddressRegistration, validateInput } from "../../constants";
 import { CityInput, ComplementInput, NeighbourhoodInput, NumberInput, StateInput, StreetInput } from "../../components/inputs";
 import { useProtectPage } from "../../hooks/useProtectPage";
 
 export const AdressRegistrationPage = () => {
+    useProtectPage();
     const navigate = useNavigate();
-    useProtectPage()
-    const [form, onChangeInputs, clearInputs] = useForm({
+    const [form, onChangeInputs] = useForm({
         street: "",
         number: "",
         neighbourhood: "",
@@ -67,7 +67,7 @@ const onSubmit =  (e)=>{
     
 return (
 
-  <AdressRegistrationContainer>
+  <AddressRegistrationContainer>
 
     <button
       className="go-back-button"
