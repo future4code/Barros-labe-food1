@@ -5,7 +5,7 @@ import { BASE_URL, appName } from '../../constants/index'
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../../components/footer/Footer";
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@chakra-ui/react'
-import { Span, ConteinerInput, Card, Restaurant, Detail, CardRestaurant, Main, Erro } from "./styledFeed";
+import { Span, ConteinerInput, Card, Restaurant, Detail, CardRestaurant, Main, Erro, Spin } from "./styledFeed";
 import search from '../../img/imgFooter/search_2022-09-22/search@2x.png'
 
 
@@ -291,7 +291,7 @@ export const FeedPage = () => {
       {dataTab()}
 
       {!isLoading && filteredRest.length === 0 && <Erro>Não encontramos :( </Erro>}
-      {isLoading && <Erro>Carregando...</Erro>}
+      {isLoading && <Spin />}
       
       <Footer />
     </Main>
