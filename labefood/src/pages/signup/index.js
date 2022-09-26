@@ -35,6 +35,7 @@ export const SignupPage = () => {
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
   useEffect(() => {
+    //testes do formulário para não enviar o cadastro incompleto
     setIsPasswordConfirmValid(passwordConfirm === form.password ? true : false)
     setIsPasswordValid(true)
     setIsEmailValid(form.email === "" ? 'true' : /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(form.email));
@@ -46,7 +47,7 @@ export const SignupPage = () => {
     );
     setIsPasswordValid(form.password === "" ? 'true' : /^.{6,15}$/.test(form.password));
     setIsPasswordConfirmValid(passwordConfirm === form.password ? true : false);
-  },[form, passwordConfirm])
+  }, [form, passwordConfirm])
 
   //---Lógica para o 'olho' da senha
   const [showPassword, setShowPassword] = useState(false); //primeira senha
@@ -56,26 +57,26 @@ export const SignupPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-   if (
-     isEmailValid &&
-     isNameValid &&
-     isCpfValid &&
-     isPasswordValid &&
-     isPasswordConfirmValid
-   ) {
-     //--- Requisição para criar um novo cadastro
-     axios
-       .post(`${BASE_URL}/rappi4A/signup`, form)
-       .then((response) => {
-         localStorage.setItem("token", response.data.token);
-         Coordinator.goToAdressRegistration(navigate);
-       })
-       .catch((error) => {
-         alert(
-           "Erro ao processar sua requisição: " + error.response.data.message
-         );
-       });
-   }
+    if (
+      isEmailValid &&
+      isNameValid &&
+      isCpfValid &&
+      isPasswordValid &&
+      isPasswordConfirmValid
+    ) {
+      //--- Requisição para criar um novo cadastro
+      axios
+        .post(`${BASE_URL}/rappi4A/signup`, form)
+        .then((response) => {
+          localStorage.setItem("token", response.data.token);
+          Coordinator.goToAdressRegistration(navigate);
+        })
+        .catch((error) => {
+          alert(
+            "Erro ao processar sua requisição: " + error.response.data.message
+          );
+        });
+    }
   };
 
   return (
