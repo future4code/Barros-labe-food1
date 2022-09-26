@@ -87,7 +87,7 @@ export const CardContainer = styled.div`
     color: #e8222e;
   }
 
-  .buttons button {
+  .buttons .add-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -112,5 +112,12 @@ export const CardContainer = styled.div`
     letter-spacing: -0.29px;
     text-align: center;
     color: #e02020;
+  }
+
+  .close-button {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0;
+    border: none;
   }
 `;

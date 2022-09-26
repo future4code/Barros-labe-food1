@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { CartContext } from "../../context/Context";
 import { useNavigate, useParams } from "react-router-dom";
 import { Footer } from "../../components/footer/Footer"
 import { appName, BASE_URL } from "../../constants";
@@ -26,8 +27,20 @@ export const RestaurantsPage = () => {
 
   const token = localStorage.getItem("token");
 
+  // const { cart, setCart } = useContext(CartContext);
+
+  const [ quantity, setQuantity] = useState()
 
 
+  // console.log(quantity);
+  // const handleQuantity = (e) => {
+  //   setQuantity(e.target.value)
+  // }
+
+
+   const getData = (data) => {
+     console.log(data);
+   };
 
   const detailRestaurant = () => {
     axios.get(`${BASE_URL}/${appName}/restaurants/${parametro.restauranteId}`, {
@@ -58,8 +71,8 @@ export const RestaurantsPage = () => {
       <Info>
         <p>{states.category}</p>
         <div className="shipping-price">
-          <p>{states.shipping} min</p>
-          <p>Frete R$:{states.deliveryTime},00</p>
+          <p>{states.deliveryTime} min</p>
+          <p>Frete R$:{states.shipping},00</p>
         </div>
         <p>{states.address}</p>
       </Info>
@@ -68,15 +81,18 @@ export const RestaurantsPage = () => {
           states.products.map((i) => {
             return (
               <>
-              {i.photoUrl && 
-                <CardCart
-                  image={i && i.photoUrl && i.photoUrl}
-                  title={i.name}
-                  description={i.description}
-                  price={i.price.toFixed(2)}
-                  button={"Adicionar"}
-                />
-              }
+                {i.photoUrl && (
+                  <CardCart
+                    image={i && i.photoUrl && i.photoUrl}
+                    title={i.name}
+                    description={i.description}
+                    price={i.price.toFixed(2)}
+                    button={"Adicionar"}
+                    onSubmit={getData}
+                    // value={quantity}
+                    // onChange={handleQuantity}
+                  />
+                )}
                 {/* <CardCart /> */}
                 {/* <>
 
