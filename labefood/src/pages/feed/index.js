@@ -14,6 +14,7 @@ export const FeedPage = () => {
 
   const [restaurants, setRestaurants] = useState([])
   const [input, setInput] = useState("")
+  const [isLoading, setIsLoading] = useState(true)
   
   const navigate = useNavigate()
   
@@ -24,8 +25,9 @@ export const FeedPage = () => {
   const getRestaurants = () => {
     axios.get(`${BASE_URL}/${appName}/restaurants`, {
       headers: { auth: token }
-    }).then((response) => { setRestaurants(response.data.restaurants); console.log(response) })
-      .catch((erro) => { console.log(erro) })
+    }).then((response) => { setRestaurants(response.data.restaurants);     setIsLoading(!isLoading) })
+
+    .catch((erro) => { console.log(erro) })
   }
 
     useEffect(() => { getRestaurants() }, [])
@@ -288,7 +290,8 @@ export const FeedPage = () => {
 
       {dataTab()}
 
-      {filteredRest.length === 0 && <Erro>Não encontramos :( </Erro>}
+      {!isLoading && filteredRest.length === 0 && <Erro>Não encontramos :( </Erro>}
+      {isLoading && <Erro>Carregando...</Erro>}
       
       <Footer />
     </Main>
