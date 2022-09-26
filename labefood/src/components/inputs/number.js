@@ -14,6 +14,7 @@ export const NumberInput = ({isValid, value, onChange}) =>{
                 value={value}
                 onChange={onChange}
                 placeholder= "Número"
+                required
                 />
                 {!isValid ? (
             <FormErrorMessage as="p">

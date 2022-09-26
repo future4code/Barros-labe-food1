@@ -21,6 +21,7 @@ export const FeedPage = () => {
   const goToRestaurants = (id) => { navigate(`/restaurants/${id}`) };
 
   const token = localStorage.getItem("token")
+  console.log(token);
 
   const getRestaurants = () => {
     axios.get(`${BASE_URL}/${appName}/restaurants`, {
@@ -34,6 +35,7 @@ export const FeedPage = () => {
 
     //INPUT FILTRO
   const onChangeInput = (e) => { setInput(e.target.value) }
+
 
   const filteredRest = restaurants.filter((item)=>{
     return item.name.includes(input)
