@@ -10,6 +10,7 @@ import { FiChevronLeft } from "react-icons/fi";
 import {
   Button,
 } from "@chakra-ui/react";
+
 import {
   CpfInput,
   EmailInput,
@@ -41,7 +42,7 @@ export const SignupPage = () => {
   useEffect(() => {
     setIsPasswordConfirmValid(passwordConfirm === form.password ? true : false)
     setIsPasswordValid(true)
-  },[passwordConfirm, form.password])
+  },[passwordConfirm, form.password, onchange])
 
   //---Lógica para o 'olho' da senha
   const [showPassword, setShowPassword] = useState(false); //primeira senha
@@ -59,7 +60,7 @@ export const SignupPage = () => {
         form.cpf
       )
     );
-    setIsPasswordValid(/.{6,}/.test(form.password));
+    setIsPasswordValid(/^.{6,15}$/.test(form.password));
     setIsPasswordConfirmValid(passwordConfirm === form.password ? true : false);
 
 if (
