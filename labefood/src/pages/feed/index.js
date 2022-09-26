@@ -142,7 +142,7 @@ export const FeedPage = () => {
                   })
                   .map((rest) => {
                     return (
-                      <Card>
+                      <Card onClick={() => goToRestaurants(rest.id)}>
                         <img src={rest.logoUrl} alt="Restaurante" />
                         <Restaurant>{rest.name}</Restaurant>
                         <Detail>
