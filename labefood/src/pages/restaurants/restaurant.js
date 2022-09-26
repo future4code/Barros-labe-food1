@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import { CartContext } from "../../context/Context";
+import StateGlobal from '../../context/StateGlobal'
 import { useNavigate, useParams } from "react-router-dom";
-import { Footer } from "../../components/footer/Footer"
 import { appName, BASE_URL } from "../../constants";
 import { useProtectPage } from "../../hooks/useProtectPage";
 import {
@@ -27,7 +27,7 @@ export const RestaurantsPage = () => {
 
   const token = localStorage.getItem("token");
 
-  // const { cart, setCart } = useContext(CartContext);
+  // const { cart, quantity } = useContext(CartContext, stateGlobal);
 
   const [ quantity, setQuantity] = useState()
 
@@ -53,6 +53,7 @@ export const RestaurantsPage = () => {
 
   return (
     <>
+   
       <MainConteiner>
         <div>
           <button className="go-back-button" onClick={() => goBack(navigate)}>
@@ -71,8 +72,8 @@ export const RestaurantsPage = () => {
       <Info>
         <p>{states.category}</p>
         <div className="shipping-price">
-          <p>{states.deliveryTime} min</p>
-          <p>Frete R$:{states.shipping},00</p>
+          <h6>{states.deliveryTime} min</h6>
+          <p> Frete R$:{states.shipping},00</p>
         </div>
         <p>{states.address}</p>
       </Info>
@@ -107,6 +108,8 @@ export const RestaurantsPage = () => {
             );
           })}
       </Cards>
+
+
     </>
   );
 }

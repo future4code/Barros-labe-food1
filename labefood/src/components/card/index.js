@@ -19,6 +19,7 @@ import {
 import { useState } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../context/Context";
+import StateGlobal from '../../context/StateGlobal'
 
 export const CardCart = ({
   image,
@@ -31,7 +32,7 @@ export const CardCart = ({
   onSubmit
 }) => {
 
-  // const { quantity, setQuantity } = useContext(CartContext)
+  // const { quantity, setQuantity } = useContext(CartContext, StateGlobal)
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({
       step: 1,
