@@ -14,6 +14,7 @@ export const StreetInput = ({isValid, value, onChange}) =>{
                 value={value}
                 onChange={onChange}
                 placeholder= "Rua / Av."
+                required
                 />
                 {!isValid ? (
             <FormErrorMessage as="p">

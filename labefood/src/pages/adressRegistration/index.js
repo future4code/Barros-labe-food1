@@ -1,29 +1,21 @@
-import LogoInvert from "../../img/logo-future-eats-invert.png";
 import { useForm } from "../../hooks/use-form";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import * as Coordinator from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FiChevronLeft } from "react-icons/fi";
-import { AdressRegistrationContainer } from "./style";
-
+import { AddressRegistrationContainer } from "./style";
 import {
-    FormControl,
-    FormLabel,
-    FormErrorMessage,
-    InputGroup,
-    InputRightElement,
-    Input,
     Button,
     Divider
 } from "@chakra-ui/react";
-import { AdressRegistration, BASE_URL } from "../../constants";
+import { AddressRegistration, validateInput } from "../../constants";
 import { CityInput, ComplementInput, NeighbourhoodInput, NumberInput, StateInput, StreetInput } from "../../components/inputs";
+import { useProtectPage } from "../../hooks/useProtectPage";
 
 export const AdressRegistrationPage = () => {
+    useProtectPage();
     const navigate = useNavigate();
-    const [form, onChangeInputs, clearInputs] = useForm({
+    const [form, onChangeInputs] = useForm({
         street: "",
         number: "",
         neighbourhood: "",
@@ -32,43 +24,51 @@ export const AdressRegistrationPage = () => {
         complement: ""
         
 });
-
-console.log(form);
-
+//--- Estados com valores booleanos para a validação do dados preenchidos no form
 const [isStreetValid, setIsStreetValid] = useState(true)
 const [isNumberValid, setIsNumberValid] = useState(true)
 const [isNeighbourhoodValid, setIsNeighbourhoodValid] = useState(true)
 const [isCityValid, setIsCityValid] = useState(true)
 const [isStateValid, setIsStateValid] = useState(true)
-const [iscomplementValid, setIscomplementValid] = useState(true)
+const [isComplementValid, setIsComplementValid] = useState(true)
 
 
-const onSubmit = async (e)=>{
+
+
+const onSubmit =  (e)=>{
     e.preventDefault();
+      //--- Testes de validação que retorna booleanos para usar nas mensagens de erro do form control...
+    setIsStreetValid(validateInput(form.street))
+    setIsNumberValid(validateInput(form.number))
+    setIsNeighbourhoodValid(validateInput(form.neighbourhood))
+    setIsCityValid(validateInput(form.city))
+    setIsStateValid(validateInput(form.state))
+    setIsComplementValid(validateInput(form.complement))
+    
     try{
-        if(
-            isStreetValid&&
-            isNumberValid&&
-            isNeighbourhoodValid&&
-            isCityValid&&
-            isStateValid
-            ){
-                await AdressRegistration({
-                    street: form.street,
-                    number: form.number,
-                    neighbourhood: form.neighbourhood,
-                    city: form.city,
-                    state: form.state
-                })
-                alert("Cadastro efetuado com sucesso!")
+        if(isStreetValid && isNumberValid && isNeighbourhoodValid && isCityValid && isStateValid){
+            AddressRegistration({
+                street: form.street,
+                number: form.number,
+                neighbourhood: form.neighbourhood,
+                city: form.city,
+                state: form.state,
+                complement: form.complement
+            })
+            // localStorage.setItem("token");
+            alert("Cadastro efetuado com sucesso!")
+            Coordinator.goToFeedPage(navigate)
             }
-    } catch(e){
-        alert(e.response.data.message)
+        } catch(e){
+            console.log(e.response);
+            // alert(e)
+        }
     }
-}
-
+    
 return (
-  <AdressRegistrationContainer>
+
+  <AddressRegistrationContainer>
+
     <button
       className="go-back-button"
       onClick={() => Coordinator.goBack(navigate)}
@@ -81,36 +81,37 @@ return (
     </h2>
 
     <form onSubmit={onSubmit}>
-      <StreetInput
-        value={form.title}
-        onChange={onChangeInputs}
-        isValid={isStreetValid}
-      />
-      <NumberInput
-        value={form.number}
-        onChange={onChangeInputs}
-        isValid={isNumberValid}
-      />
-      <ComplementInput
-        value={form.complement}
-        onChange={onChangeInputs}
-        isValid={true}
-      />
-      <NeighbourhoodInput
-        value={form.neighbourhood}
-        onChange={onChangeInputs}
-        isValid={isNeighbourhoodValid}
-      />
-      <CityInput
-        value={form.city}
-        onChange={onChangeInputs}
-        isValid={isCityValid}
-      />
-      <StateInput
-        value={form.state}
-        onChange={onChangeInputs}
-        isValid={isStateValid}
-      />
+        <StreetInput
+            value={form.title} 
+            onChange={onChangeInputs}
+            isValid={isStreetValid}  
+        />
+        <NumberInput
+            value={form.number} 
+            onChange={onChangeInputs}
+            isValid={isNumberValid}  
+        />
+        <ComplementInput
+            value={form.complement} 
+            onChange={onChangeInputs}
+            isValid={isComplementValid}  
+        />
+        <NeighbourhoodInput
+            value={form.neighbourhood} 
+            onChange={onChangeInputs}
+            isValid={isNeighbourhoodValid}  
+        />
+        <CityInput
+            value={form.city} 
+            onChange={onChangeInputs}
+            isValid={isCityValid}  
+        />
+        <StateInput
+            value={form.state} 
+            onChange={onChangeInputs}
+            isValid={isStateValid}  
+        />
+
 
       <Button
         marginTop="0.5rem"
@@ -124,6 +125,7 @@ return (
         Salvar
       </Button>
     </form>
-  </AdressRegistrationContainer>
+    </AddressRegistrationContainer>
+
 );
 };
