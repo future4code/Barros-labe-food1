@@ -4,7 +4,7 @@ import { HomePage } from '../pages/home';
 import { LoginPage } from '../pages/login';
 import {SignupPage} from '../pages/signup';
 import {AdressRegistrationPage} from "../pages/adressRegistration/index"
-import { RestaurantsPage} from '../pages/restaurants/index'
+import { RestaurantsPage} from '../pages/restaurants/restaurant'
 import { CartPage} from '../pages/cart/index'
 import { ProfilePage } from '../pages/profile';
 

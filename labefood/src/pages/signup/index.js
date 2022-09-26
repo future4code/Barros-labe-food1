@@ -6,7 +6,12 @@ import axios from "axios";
 import * as Coordinator from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
 import { FiChevronLeft } from "react-icons/fi";
-import { Button } from "@chakra-ui/react";
+
+
+import {
+  Button,
+} from "@chakra-ui/react";
+
 import {
   CpfInput,
   EmailInput,
@@ -57,6 +62,7 @@ export const SignupPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     if (
       isEmailValid &&
       isNameValid &&
@@ -77,17 +83,20 @@ export const SignupPage = () => {
           );
         });
     }
-  };
+
+   
 
   return (
     <SignupContainer>
+
       <button
         className="go-back-button"
         onClick={() => Coordinator.goBack(navigate)}
-      >
-        <FiChevronLeft />
+      ><FiChevronLeft />
       </button>
+
       <img src={LogoInvert} alt="logo da Future Eats" />
+
       <h2>Cadastrar</h2>
 
       <form onSubmit={handleSubmit}>
@@ -130,6 +139,7 @@ export const SignupPage = () => {
         <Button type="submit" colorScheme="red" variant="solid">
           Criar
         </Button>
+
       </form>
     </SignupContainer>
   );
