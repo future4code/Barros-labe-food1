@@ -6,6 +6,7 @@ import {
 } from '@chakra-ui/react'
 
 export const NeighbourhoodInput = ({isValid, value, onChange}) =>{
+
     return(
         <FormControl isInvalid={!isValid}>
             <FormLabel> Bairro* </FormLabel>
@@ -23,4 +24,5 @@ export const NeighbourhoodInput = ({isValid, value, onChange}) =>{
                 ) : undefined}
         </FormControl>
     )
+
 }

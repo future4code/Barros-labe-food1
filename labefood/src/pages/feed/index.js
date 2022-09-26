@@ -5,7 +5,7 @@ import { BASE_URL, appName } from '../../constants/index'
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../../components/footer/Footer";
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@chakra-ui/react'
-import { Span, ConteinerInput, Card, Restaurant, Detail, CardRestaurant, Main } from "./styledFeed";
+import { Span, ConteinerInput, Card, Restaurant, Detail, CardRestaurant, Main, Erro, Spin } from "./styledFeed";
 import search from '../../img/imgFooter/search_2022-09-22/search@2x.png'
 
 
@@ -14,10 +14,10 @@ export const FeedPage = () => {
 
   const [restaurants, setRestaurants] = useState([])
   const [input, setInput] = useState("")
-  const [name, setName]= useState ("")
+  const [isLoading, setIsLoading] = useState(true)
   
-
   const navigate = useNavigate()
+  
   const goToRestaurants = (id) => { navigate(`/restaurants/${id}`) };
 
   const token = localStorage.getItem("token")
@@ -26,19 +26,20 @@ export const FeedPage = () => {
   const getRestaurants = () => {
     axios.get(`${BASE_URL}/${appName}/restaurants`, {
       headers: { auth: token }
-    }).then((response) => { setRestaurants(response.data.restaurants); console.log(response) })
-      .catch((erro) => { console.log(erro) })
+    }).then((response) => { setRestaurants(response.data.restaurants);     setIsLoading(!isLoading) })
+
+    .catch((erro) => { console.log(erro) })
   }
 
     useEffect(() => { getRestaurants() }, [])
-    console.log(restaurants);
+   
 
     //INPUT FILTRO
   const onChangeInput = (e) => { setInput(e.target.value) }
 
 
   const filteredRest = restaurants.filter((item)=>{
-    return item.name.includes(input)
+    return  item.name.toLowerCase().includes(input.toLowerCase())
   }).map((rest)=>{
     return(<Card onClick={() => goToRestaurants(rest.id)}>
     <img src={rest.logoUrl} alt='Restaurante' />
@@ -49,15 +50,7 @@ export const FeedPage = () => {
     </Detail>
   </Card> )
   })
-  if (restaurants && restaurants.name && !restaurants.name.includes(input)) {
-    return <p>Não possui esse restaurante :/</p>;
-  }
   
-    //PARA CASO NAO TENHA DAR MENSAGEM
-    // }else if (name !== name){
-    //   return "Não possui esse restaurante :( !"
-    // }
-    // console.log(searchInput)
   const dataTab = () => {
     return (
       <>
@@ -78,26 +71,13 @@ export const FeedPage = () => {
             <TabPanel>
               {filteredRest}
 
-              {/* {restaurants && restaurants.map((i) => {
-                return (
-                  <CardRestaurant>
-                    <Card onClick={() => { goToRestaurants(i.id) }}>
-                      <img src={i.logoUrl} alt='Restaurante' />
-                      <Restaurant>{i.name}</Restaurant>
-                      <Detail>
-                        <p>{i.deliveryTime} min</p>
-                        <h6>Frete R$:{i.shipping},00</h6>
-                      </Detail>
-                    </Card>
-                  </CardRestaurant>
-                )
-              })} */}
+            
             </TabPanel>
             <TabPanel>
               {restaurants &&
                 restaurants
                   .filter((rest) => {
-                    return rest.category === "Árabe";
+                    return (input ? rest.name.toLowerCase().includes(input.toLowerCase()) : rest.category === "Árabe")
                   })
                   .map((rest) => {
                     return (
@@ -117,7 +97,7 @@ export const FeedPage = () => {
                 restaurants
                   .filter((rest) => {
                     return (
-                       input ? rest.name.includes(input)  : rest.category === "Asiática"
+                       input ? rest.name.toLowerCase().includes(input.toLowerCase())  : rest.category === "Asiática"
                     );
                   })
                   .map((rest) => {
@@ -138,7 +118,7 @@ export const FeedPage = () => {
                 restaurants
                   .filter((rest) => {
                     return input
-                      ? rest.name.includes(input)
+                      ? rest.name.toLowerCase().includes(input.toLowerCase())
                       : rest.category === "Baiana";
                   })
                   .map((rest) => {
@@ -159,12 +139,14 @@ export const FeedPage = () => {
                 restaurants
                   .filter((rest) => {
                     return input
-                      ? rest.name.includes(input)
-                      : rest.category === "Carnes";
+                    ? 
+                    rest.name.toLowerCase().includes(input.toLowerCase())
+                    :
+                     rest.category === "Carnes";
                   })
                   .map((rest) => {
                     return (
-                      <Card>
+                      <Card onClick={() => goToRestaurants(rest.id)}>
                         <img src={rest.logoUrl} alt="Restaurante" />
                         <Restaurant>{rest.name}</Restaurant>
                         <Detail>
@@ -181,7 +163,7 @@ export const FeedPage = () => {
                 restaurants
                   .filter((rest) => {
                     return input
-                      ? rest.name.includes(input)
+                      ? rest.name.toLowerCase().includes(input.toLowerCase())
                       : rest.category === "Hamburguer";
                   })
                   .map((rest) => {
@@ -203,7 +185,7 @@ export const FeedPage = () => {
                 restaurants
                   .filter((rest) => {
                     return input
-                      ? rest.name.includes(input)
+                      ? rest.name.toLowerCase().includes(input.toLowerCase())
                       : rest.category === "Italiana";
                   })
                   .map((rest) => {
@@ -225,7 +207,7 @@ export const FeedPage = () => {
                 restaurants
                   .filter((rest) => {
                     return input
-                      ? rest.name.includes(input)
+                      ? rest.name.toLowerCase().includes(input.toLowerCase())
                       : rest.category === "Mexicana";
                   })
                   .map((rest) => {
@@ -247,7 +229,7 @@ export const FeedPage = () => {
                 restaurants
                   .filter((rest) => {
                     return input
-                      ? rest.name.includes(input)
+                      ? rest.name.toLowerCase().includes(input.toLowerCase())
                       : rest.category === "Petiscos";
                   })
                   .map((rest) => {
@@ -268,7 +250,7 @@ export const FeedPage = () => {
                 restaurants
                   .filter((rest) => {
                     return input
-                      ? rest.name.includes(input)
+                      ? rest.name.toLowerCase().includes(input.toLowerCase())
                       : rest.category === "Sorvetes";
                   })
                   .map((rest) => {
@@ -306,14 +288,13 @@ export const FeedPage = () => {
         <span>
           <img src={search} alt="busca" />
         </span>
-        {/* {restaurants &&
-          restaurants.name &&
-          !restaurants.name.includes(input) &&
-          "Não possui esse restaurante :( !"} */}
       </ConteinerInput>
 
       {dataTab()}
 
+      {!isLoading && filteredRest.length === 0 && <Erro>Não encontramos :( </Erro>}
+      {isLoading && <Spin />}
+      
       <Footer />
     </Main>
   );
