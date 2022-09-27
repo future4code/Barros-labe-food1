@@ -15,7 +15,6 @@ export const ConteinerFooter=styled.footer`
   
 
 div{
- 
   width: 7.5rem;
   height: 3.062rem;
   padding: 0.625rem 2.875rem 0.563rem 2.938rem;

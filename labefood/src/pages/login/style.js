@@ -94,5 +94,5 @@ export const LoginPageContainer = styled.main`
       z-index: 2;
       color: #b8b8b8;
     }
-    `;
+  }`;
     
