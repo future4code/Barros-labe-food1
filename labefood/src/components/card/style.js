@@ -87,7 +87,7 @@ export const CardContainer = styled.div`
     color: #e8222e;
   }
 
-  .buttons .add-button {
+  .buttons .remove-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,9 +99,21 @@ export const CardContainer = styled.div`
     border: solid 1px #e02020;
   }
 
-  .buttons button p {
-    width: 3.5rem;
+  .buttons .add-button {
+    display: flex;
 
+    align-items: center;
+    justify-content: center;
+    width: 5.625rem;
+    height: 1.938rem;
+    margin: 0.438rem 0 0 0.5rem;
+    padding: 0.5rem 1.438rem 0.563rem 1.5rem;
+    border-radius: 8px 0px;
+    border: solid 1px #000;
+  }
+
+  .buttons .remove-button p {
+    width: 3.5rem;
     height: 0.875rem;
     font-family: Roboto;
     font-size: 0.75rem;
@@ -112,6 +124,20 @@ export const CardContainer = styled.div`
     letter-spacing: -0.29px;
     text-align: center;
     color: #e02020;
+  }
+
+  .buttons .add-button p {
+    width: 3.5rem;
+    height: 0.875rem;
+    font-family: Roboto;
+    font-size: 0.75rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.29px;
+    text-align: center;
+    color: #000;
   }
 
   .close-button {

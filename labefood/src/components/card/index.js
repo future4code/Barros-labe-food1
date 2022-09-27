@@ -82,7 +82,7 @@ export const CardCart = ({
           {showQuantity > 0 ? (
             <Button
               onClick={() => onClickProduct()}
-              className="add-button"
+              className="remove-button"
             >
               <p>Remover</p>
             </Button>
