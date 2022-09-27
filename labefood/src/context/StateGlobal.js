@@ -9,9 +9,7 @@ const StateGlobal =()=>{
 
 
     return(
-
-
-        <CartContext.Provider value={{cart, quantity,}}>
+        <CartContext.Provider value={{cart, setCart, quantity, setQuantity}}>
         <Router/>
         </CartContext.Provider>
     )

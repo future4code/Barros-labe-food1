@@ -29,7 +29,9 @@ export const RestaurantsPage = () => {
 
   // const { cart, quantity } = useContext(CartContext, stateGlobal);
 
-  const [ quantity, setQuantity] = useState()
+    const { quantity } = useContext(CartContext);
+
+    const [ currentQuantity, setCurrentQuantity ] = useState()
 
 
   // console.log(quantity);
@@ -38,9 +40,9 @@ export const RestaurantsPage = () => {
   // }
 
 
-   const getData = (data) => {
-     console.log(data);
-   };
+  //  const getData = (data) => {
+  //    console.log(data);
+  //  };
 
   const detailRestaurant = () => {
     axios.get(`${BASE_URL}/${appName}/restaurants/${parametro.restauranteId}`, {
@@ -48,6 +50,14 @@ export const RestaurantsPage = () => {
     }).then((response) => { setStates(response.data.restaurant); })
       .catch((erro) => { console.log(erro) })
   }
+
+  console.log(currentQuantity);
+
+  // let newElement = {...states, quantity} 
+  // setStates({newElement})
+  // console.log(states)
+
+console.log(states);
 
   useEffect(() => { detailRestaurant() }, [])
 
@@ -80,6 +90,7 @@ export const RestaurantsPage = () => {
       <Cards>
         {states.products &&
           states.products.map((i) => {
+            // let resetValue = {...quantity}
             return (
               <>
                 {i.photoUrl && (
@@ -89,7 +100,9 @@ export const RestaurantsPage = () => {
                     description={i.description}
                     price={i.price.toFixed(2)}
                     button={"Adicionar"}
-                    onSubmit={getData}
+                    onClickProduct={currentQuantity => { setCurrentQuantity(currentQuantity)}}
+                    showQuantity={quantity}
+                    // onSubmit={getData}
                     // value={quantity}
                     // onChange={handleQuantity}
                   />
