@@ -6,8 +6,6 @@ import axios from "axios";
 import * as Coordinator from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
 import { FiChevronLeft } from "react-icons/fi";
-
-
 import {
   Button,
 } from "@chakra-ui/react";
@@ -28,7 +26,7 @@ export const SignupPage = () => {
     cpf: "",
     password: "",
   });
-
+ 
   //--- Estados com valores booleanos para a validação do dados preenchidos no form
   const [isEmailValid, setIsEmailValid] = useState(undefined);
   const [isNameValid, setIsNameValid] = useState(undefined);
