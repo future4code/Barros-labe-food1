@@ -5,25 +5,30 @@ import { useProtectPage } from "../../hooks/useProtectPage";
 import {useRequestData} from "../../hooks/useRequestData"
 import {Header } from "../../components/header";
 import { BASE_URL } from "../../constants/index";
+import { ProfileContainer } from "./style";
 
 export const ProfilePage = () => {
   useProtectPage();
   const navigate = useNavigate();
-  
+
 
   return (
+
+    <ProfileContainer>
+      {/* <p>Meu Perfil</p> */}
+      <Header showArrow={'false'} showTitle={'true'} title={"Meu perfil"} />
+      {/* <Footer/> */}
+
+    </ProfileContainer>
+
+
+
   
-  
-  <>
-  <p>Meu Perfil</p>
-  <Header showArrow={'false'} showTitle={'true'} title={"Meu perfil"} />
-  <Footer/>
-  </>
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
   )
-};
+  };

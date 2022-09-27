@@ -6,11 +6,13 @@ export const ConteinerFooter=styled.footer`
   z-index: 999;
   margin-top: auto;
   display: flex;
-  width: 22.5rem;
+  width: 100%;
   height: 3.063rem;
   margin: 0.813rem 0 0;
   box-shadow: 0 -1px 3px 0 rgba(0, 0, 0, 0.2), 0 -2px 1px -1px rgba(0, 0, 0, 0.12), 0 -1px 1px 0 rgba(0, 0, 0, 0.14);
   background-color: #fff;
+  justify-content: center;
+  
 
 div{
  
