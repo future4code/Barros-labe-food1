@@ -143,4 +143,4 @@ export const SignupPage = () => {
       </form>
     </SignupContainer>
   );
-};
+};}
