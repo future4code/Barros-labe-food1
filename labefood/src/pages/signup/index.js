@@ -7,7 +7,6 @@ import * as Coordinator from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
 import { FiChevronLeft } from "react-icons/fi";
 
-
 import {
   Button,
 } from "@chakra-ui/react";
@@ -30,29 +29,20 @@ export const SignupPage = () => {
   });
 
   //--- Estados com valores booleanos para a validação do dados preenchidos no form
-  const [isEmailValid, setIsEmailValid] = useState(undefined);
-  const [isNameValid, setIsNameValid] = useState(undefined);
-  const [isCpfValid, setIsCpfValid] = useState(undefined);
-  const [isPasswordValid, setIsPasswordValid] = useState(undefined);
+  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [isNameValid, setIsNameValid] = useState(true);
+  const [isCpfValid, setIsCpfValid] = useState(true);
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
 
   //--- Estados para confirmação de senha, não vai para a requisição
   const [isPasswordConfirmValid, setIsPasswordConfirmValid] = useState(false);
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [aux, setAux] = useState(false)
 
   useEffect(() => {
-    //testes do formulário para não enviar o cadastro incompleto
     setIsPasswordConfirmValid(passwordConfirm === form.password ? true : false)
     setIsPasswordValid(true)
-    setIsEmailValid(form.email === "" ? 'true' : /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(form.email));
-    setIsNameValid(form.name === "" ? 'true' : /[A-Za-z]* [A-Za-z]{2,}$/.test(form.name));
-    setIsCpfValid(form.cpf === "" ? 'true' :
-      /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/.test(
-        form.cpf
-      )
-    );
-    setIsPasswordValid(form.password === "" ? 'true' : /^.{6,15}$/.test(form.password));
-    setIsPasswordConfirmValid(passwordConfirm === form.password ? true : false);
-  }, [form, passwordConfirm])
+  },[passwordConfirm, form.password, onchange])
 
   //---Lógica para o 'olho' da senha
   const [showPassword, setShowPassword] = useState(false); //primeira senha
@@ -62,29 +52,48 @@ export const SignupPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    //--- Testes de validação que retorna booleanos para usar nas mensagens de erro do form control...
+    setIsEmailValid(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(form.email));
+    setIsNameValid(/[A-Za-z]* [A-Za-z]{2,}$/.test(form.name));
+    setIsCpfValid(
+      /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/.test(
+        form.cpf
+      )
+    );
+    setIsPasswordValid(/^.{6,15}$/.test(form.password));
+    setIsPasswordConfirmValid(passwordConfirm === form.password ? true : false);
 
-    if (
-      isEmailValid &&
-      isNameValid &&
-      isCpfValid &&
-      isPasswordValid &&
-      isPasswordConfirmValid
-    ) {
-      //--- Requisição para criar um novo cadastro
-      axios
-        .post(`${BASE_URL}/rappi4A/signup`, form)
-        .then((response) => {
-          localStorage.setItem("token", response.data.token);
-          Coordinator.goToAdressRegistration(navigate);
-        })
-        .catch((error) => {
-          alert(
-            "Erro ao processar sua requisição: " + error.response.data.message
-          );
-        });
-    }
-
-   
+if (
+  isEmailValid &&
+  isNameValid &&
+  isCpfValid &&
+  isPasswordValid &&
+  isPasswordConfirmValid
+) {
+  setAux(true)
+}
+  if (
+    isEmailValid &&
+    isNameValid &&
+    isCpfValid &&
+    isPasswordValid &&
+    isPasswordConfirmValid &&
+    aux
+  ) {
+     //--- Requisição para criar um novo cadastro
+    axios
+      .post(`${BASE_URL}/rappi4A/signup`, form)
+      .then((response) => {
+        localStorage.setItem("token", response.data.token);
+        Coordinator.goToAdressRegistration(navigate);
+      })
+      .catch((error) => {
+        alert(
+          "Erro ao processar sua requisição: " + error.response.data.message
+        );
+      });
+  }
+  };
 
   return (
     <SignupContainer>
@@ -143,4 +152,4 @@ export const SignupPage = () => {
       </form>
     </SignupContainer>
   );
-};}
+};
