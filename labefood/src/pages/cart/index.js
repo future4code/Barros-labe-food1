@@ -34,7 +34,7 @@ export const CartPage = () => {
     produto.quantity = 0;
   };
 
-  console.log(address);
+console.log(restInfo);
 
 
   const cartProducts =
@@ -108,6 +108,7 @@ export const CartPage = () => {
             Confirmar
           </Button>
         </div>
+        <Footer />
       </CartContainer>
     );
   } else {
@@ -117,7 +118,7 @@ export const CartPage = () => {
           <h1>Meu carrinho</h1>
         </header>
         <div className="address">
-          <h6>Endereço de entrega</h6>
+          <p>Endereço de entrega</p>
           <p>
             {address.complement
               ? `${address.street}, ${address.number}, ${address.complement}`
@@ -125,9 +126,9 @@ export const CartPage = () => {
           </p>
         </div>
         <div className="rest-info">
-          <h2>Bullguer Vila Madalena</h2>
-          <p>R. Fradique Coutinho, 1136 - Vila Madalena</p>
-          <p>30 - 45 min</p>
+          <h2>{restInfo.name}</h2>
+          <p>{restInfo.address}</p>
+          <p>{restInfo.deliveryTime} min</p>
         </div>
         {/* <div className="title">
             <h2>Carrinho cheio</h2>
