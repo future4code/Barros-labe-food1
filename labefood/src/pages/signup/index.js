@@ -84,8 +84,8 @@ if (
     axios
       .post(`${BASE_URL}/rappi4A/signup`, form)
       .then((response) => {
-        localStorage.setItem("token", response.data.token);
         Coordinator.goToAdressRegistration(navigate);
+        localStorage.setItem("token", response.data.token);
       })
       .catch((error) => {
         alert(
