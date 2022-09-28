@@ -11,6 +11,11 @@ export const CartPage = () => {
   const { states, setStates, restInfo } = useContext(CartContext);
   const [ totalPrice, setTotalPrice ] = useState();
 
+  const onClickProduct = (produto) => {
+    produto.quantity = 0;
+  };
+
+
   const cartProducts =
     states &&
     states.filter((item) => {
@@ -117,7 +122,7 @@ export const CartPage = () => {
                       <span>{i.quantity}</span>
                     )}
                     <Button
-                      //onClick={() => onClickProduct(i)}
+                      onClick={() => onClickProduct(i)}
                       className="remove-button"
                     >
                       <p>Remover</p>
