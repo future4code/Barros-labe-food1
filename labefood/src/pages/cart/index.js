@@ -1,10 +1,32 @@
 import { CartContainer } from "./style";
 import { Stack, Radio, RadioGroup, Button } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CardCart } from "../../components/card";
+import { useContext } from "react";
+import { CartContext } from "../../context/Context";
+import { CardContainer } from "../../components/card/style";
 
 export const CartPage = () => {
   const [cart, setCart] = useState(true);
+  const { states, setStates } = useContext(CartContext);
+  const [ totalPrice, setTotalPrice ] = useState();
+
+  const cartProducts =
+    states &&
+    states.filter((item) => {
+      return item.quantity > 0;
+    });
+
+     useEffect(() => {
+       let newPrice = 0;
+       cartProducts.forEach((product) => {
+         newPrice += product.price * product.quantity;
+       });
+
+       setTotalPrice(newPrice);
+     }, [cart]);
+
+  console.log(cartProducts);
 
   if (!cart) {
     return (
@@ -71,14 +93,42 @@ export const CartPage = () => {
         {/* <div className="title">
             <h2>Carrinho cheio</h2>
           </div> */}
-        <CardCart />
+        {/* <CardCart /> */}
+        {cartProducts &&
+          cartProducts.map((i) => {
+            return (
+              <>
+                <CardContainer key={i.id}>
+                  <CardCart
+                    image={i && i.photoUrl && i.photoUrl}
+                    title={i.name}
+                    description={i.description}
+                    price={i.price.toFixed(2)}
+                  />
+                  <div className="buttons">
+                    {i.quantity === 0 || i.quantity === undefined ? (
+                      <div></div>
+                    ) : (
+                      <span>{i.quantity}</span>
+                    )}
+                    <Button
+                      //onClick={() => onClickProduct(i)}
+                      className="remove-button"
+                    >
+                      <p>Remover</p>
+                    </Button>
+                  </div>
+                </CardContainer>
+              </>
+            );
+          })}
         <div className="price-container">
           <div className="subtotal">
             <p>SUBTOTAL</p>
           </div>
           <div className="price">
             <h6>Frete R$0,00</h6>
-            <p>R$00,00</p>
+            <p>{`R$${totalPrice && totalPrice.toFixed(2)}`}</p>
           </div>
         </div>
         <div className="payment-title">

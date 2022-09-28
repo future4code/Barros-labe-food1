@@ -7,6 +7,7 @@ import { Title, Detail, MainConteiner, Info, Cards } from "./styledRest";
 import { FiChevronLeft } from "react-icons/fi";
 import { goBack } from "../../routes/coordinator";
 import { CardCart } from "../../components/card";
+import { CartContext } from "../../context/Context";
 import {
   Popover,
   PopoverTrigger,
@@ -24,14 +25,14 @@ import { CardContainer } from "../../components/card/style";
 // import { CartContext } from "../../context/Context";
 
 export const RestaurantsPage = () => {
-  // const { quantities, setQuantities } = useContext(CartContext);
+  const { states, setStates } = useContext(CartContext);
   useProtectPage();
 
   const navigate = useNavigate();
   const parametro = useParams();
   const token = localStorage.getItem("token");
 
-  const [states, setStates] = useState([]);
+  // const [states, setStates] = useState([]);
   const [restInfo, setRestInfo] = useState({});
 
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =

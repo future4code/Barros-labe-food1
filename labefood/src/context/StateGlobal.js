@@ -4,12 +4,12 @@ import {CartContext} from './Context'
 
 const StateGlobal =()=>{
 
-    const [cart, setCart ] = useState([]);
-    const [ quantities, setQuantities ] = useState()
+    const [restInfo, setRestInfo]= useState({});
+    const [ states, setStates ] = useState([])
 
 
     return(
-        <CartContext.Provider value={{cart, setCart, quantities, setQuantities}}>
+        <CartContext.Provider value={{restInfo, setRestInfo, states, setStates}}>
         <Router/>
         </CartContext.Provider>
     )
