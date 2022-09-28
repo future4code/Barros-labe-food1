@@ -22,10 +22,16 @@ export const goBack = (navigator) =>{
     navigator(-1)
 }
 
-// export const goTo = (navigator) =>{
-//     navigator(`/`)
-// }
+export const goToRestaurants = (navigator, restaurantsId) =>{
+    navigator(`/restaurants/${restaurantsId}`)
+}
 
-// export const goTo = (navigator) =>{
-//     navigator('/')
-// }
+
+export const goToCartPage = (navigator) =>{
+    navigator('/cart')
+}
+
+export const goToProfile = (navigator) =>{
+    navigator('/profile')
+}
+
