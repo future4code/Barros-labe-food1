@@ -8,7 +8,7 @@ import { CardContainer } from "../../components/card/style";
 
 export const CartPage = () => {
   const [cart, setCart] = useState(true);
-  const { states, setStates } = useContext(CartContext);
+  const { states, setStates, restInfo } = useContext(CartContext);
   const [ totalPrice, setTotalPrice ] = useState();
 
   const cartProducts =
@@ -16,6 +16,8 @@ export const CartPage = () => {
     states.filter((item) => {
       return item.quantity > 0;
     });
+
+
 
      useEffect(() => {
        let newPrice = 0;
@@ -127,7 +129,7 @@ export const CartPage = () => {
             <p>SUBTOTAL</p>
           </div>
           <div className="price">
-            <h6>Frete R$0,00</h6>
+            <h6>{`Frete R$${restInfo && restInfo.shipping.toFixed(2)}`}</h6>
             <p>{`R$${totalPrice && totalPrice.toFixed(2)}`}</p>
           </div>
         </div>

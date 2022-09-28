@@ -25,7 +25,7 @@ import { CardContainer } from "../../components/card/style";
 // import { CartContext } from "../../context/Context";
 
 export const RestaurantsPage = () => {
-  const { states, setStates } = useContext(CartContext);
+  const { states, setStates, restInfo, setRestInfo } = useContext(CartContext);
   useProtectPage();
 
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ export const RestaurantsPage = () => {
   const token = localStorage.getItem("token");
 
   // const [states, setStates] = useState([]);
-  const [restInfo, setRestInfo] = useState({});
+  // const [restInfo, setRestInfo] = useState({});
 
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({
