@@ -2,6 +2,7 @@ import { CartContainer } from "./style";
 import { Stack, Radio, RadioGroup, Button } from "@chakra-ui/react";
 import { useState } from "react";
 import { CardCart } from "../../components/card";
+import {Footer} from '../../components/footer/Footer'
 
 export const CartPage = () => {
   const [cart, setCart] = useState(true);
@@ -103,6 +104,7 @@ export const CartPage = () => {
             Confirmar
           </Button>
         </div>
+        <Footer/>
       </CartContainer>
     );
   }
