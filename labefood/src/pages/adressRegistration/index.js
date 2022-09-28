@@ -8,9 +8,10 @@ import {
     Button,
     Divider
 } from "@chakra-ui/react";
-import { AddressRegistration, validateInput } from "../../constants";
+import {  appName, BASE_URL } from "../../constants";
 import { CityInput, ComplementInput, NeighbourhoodInput, NumberInput, StateInput, StreetInput } from "../../components/inputs";
 import { useProtectPage } from "../../hooks/useProtectPage";
+import axios from "axios";
 
 export const AdressRegistrationPage = () => {
     useProtectPage();
@@ -33,41 +34,29 @@ const [isStateValid, setIsStateValid] = useState(true)
 const [isComplementValid, setIsComplementValid] = useState(true)
 
 
-
-
-const onSubmit =  (e)=>{
-    e.preventDefault();
-      //--- Testes de validação que retorna booleanos para usar nas mensagens de erro do form control...
-    setIsStreetValid(validateInput(form.street))
-    setIsNumberValid(validateInput(form.number))
-    setIsNeighbourhoodValid(validateInput(form.neighbourhood))
-    setIsCityValid(validateInput(form.city))
-    setIsStateValid(validateInput(form.state))
-    setIsComplementValid(validateInput(form.complement))
-    
-    try{
-        if(isStreetValid && isNumberValid && isNeighbourhoodValid && isCityValid && isStateValid){
-            AddressRegistration({
-                street: form.street,
-                number: form.number,
-                neighbourhood: form.neighbourhood,
-                city: form.city,
-                state: form.state,
-                complement: form.complement
-            })
-            // localStorage.setItem("token");
-            alert("Cadastro efetuado com sucesso!")
-            Coordinator.goToFeedPage(navigate)
+        
+        const onSubmit = (e) => {
+            const token = localStorage.getItem('token') 
+            e.preventDefault();
+            axios
+                .put(`${BASE_URL}/${appName}/address`, form,
+                        {
+                            headers:{
+                                auth: token
+                            }
+                        }
+                        )
+                .then((response) => {
+                    Coordinator.goToFeedPage(navigate)
+                    localStorage.setItem("token", response.data.token);
+                })
+                .catch((erro) => {
+                    alert(erro.response.data.message)
+                });
             }
-        } catch(e){
-            console.log(e.response);
-            // alert(e)
-        }
-    }
-    
-return (
-
-<AddressRegistrationContainer>
+        return (
+            
+            <AddressRegistrationContainer>
 
     <button
         className="go-back-button"
@@ -82,7 +71,7 @@ return (
 
     <form onSubmit={onSubmit}>
         <StreetInput
-            value={form.title} 
+            value={form.street} 
             onChange={onChangeInputs}
             isValid={isStreetValid}  
         />
