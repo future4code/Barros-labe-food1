@@ -16,8 +16,8 @@ export const ProfilePage = () => {
   
   <>
   <p>Meu Perfil</p>
-  <Header showArrow={'false'} showTitle={'true'} title={"Meu perfil"} />
-  <Footer/>
+  {/* <Header showArrow={'false'} showTitle={'true'} title={"Meu perfil"} />
+  <Footer/> */}
   </>
   
   
