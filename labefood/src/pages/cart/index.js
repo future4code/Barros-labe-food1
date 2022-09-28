@@ -14,6 +14,7 @@ export const CartPage = () => {
   const { states, setStates, restInfo } = useContext(CartContext);
   const [ totalPrice, setTotalPrice ] = useState();
   const [ address, setAddress ] = useState({});
+  const [ cartProducts, setCartProducts ] = useState(states)
 
   console.log(token);
 
@@ -37,11 +38,15 @@ export const CartPage = () => {
 console.log(restInfo);
 
 
-  const cartProducts =
-    states &&
-    states.filter((item) => {
-      return item.quantity > 0;
-    });
+  // const cartProducts =
+  //   states &&
+  //   states.filter((item) => {
+  //     return item.quantity > 0;
+  //   });
+
+  useEffect(() => {
+    setCartProducts([...cartProducts]);
+  }, [onClickProduct])
 
     
     useEffect(() => {
@@ -135,33 +140,39 @@ console.log(restInfo);
           </div> */}
         {/* <CardCart /> */}
         {cartProducts &&
-          cartProducts.map((i) => {
-            return (
-              <>
-                <CardContainer key={i.id}>
-                  <CardCart
-                    image={i && i.photoUrl && i.photoUrl}
-                    title={i.name}
-                    description={i.description}
-                    price={i.price.toFixed(2)}
-                  />
-                  <div className="buttons">
-                    {i.quantity === 0 || i.quantity === undefined ? (
-                      <div></div>
-                    ) : (
-                      <span>{i.quantity}</span>
-                    )}
-                    <Button
-                      onClick={() => onClickProduct(i)}
-                      className="remove-button"
-                    >
-                      <p>Remover</p>
-                    </Button>
-                  </div>
-                </CardContainer>
-              </>
-            );
-          })}
+          cartProducts
+            .filter((item) => {
+              return item.quantity > 0;
+            })
+            .map((i) => {
+              return (
+                <>
+                  <CardContainer key={i.id}>
+                    <CardCart
+                      image={i && i.photoUrl && i.photoUrl}
+                      title={i.name}
+                      description={i.description}
+                      price={i.price.toFixed(2)}
+                      // quantity={i.quantity}
+                      // onClickProduct={() => onClickProduct(i)}
+                    />
+                    <div className="buttons">
+                      {i.quantity === 0 || i.quantity === undefined ? (
+                        <div></div>
+                      ) : (
+                        <span>{i.quantity}</span>
+                      )}
+                      <Button
+                        onClick={() => onClickProduct(i)}
+                        className="remove-button"
+                      >
+                        <p>Remover</p>
+                      </Button>
+                    </div>
+                  </CardContainer>
+                </>
+              );
+            })}
         <div className="price-container">
           <div className="subtotal">
             <p>SUBTOTAL</p>
@@ -193,7 +204,7 @@ console.log(restInfo);
             Confirmar
           </Button>
         </div>
-        <Footer/>
+        <Footer />
       </CartContainer>
     );
   }

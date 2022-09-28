@@ -6,6 +6,7 @@ export const CardContainer = styled.div`
   height: 7rem;
   border-radius: 8px;
   border: solid 1px #b8b8b8;
+  justify-content: space-between;
 
   .image {
     /* background-image: url(${(props) => props.bgImage}); */
@@ -147,3 +148,5 @@ export const CardContainer = styled.div`
     border: none;
   }
 `;
+
+// export const Content = styled() 
