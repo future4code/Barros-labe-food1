@@ -7,7 +7,7 @@ import { CartContext } from "../../context/Context";
 import { CardContainer } from "../../components/card/style";
 
 export const CartPage = () => {
-  const [cart, setCart] = useState(true);
+  const [cart, setCart] = useState();
   const { states, setStates, restInfo } = useContext(CartContext);
   const [ totalPrice, setTotalPrice ] = useState();
 
@@ -17,16 +17,19 @@ export const CartPage = () => {
       return item.quantity > 0;
     });
 
-
-
-     useEffect(() => {
+    
+    useEffect(() => {
+      
+      if (cartProducts.length>0) {
+        setCart(true);
        let newPrice = 0;
        cartProducts.forEach((product) => {
          newPrice += product.price * product.quantity;
        });
 
        setTotalPrice(newPrice);
-     }, [cart]);
+      }
+     }, [states]);
 
   console.log(cartProducts);
 
