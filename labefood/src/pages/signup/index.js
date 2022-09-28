@@ -6,7 +6,11 @@ import axios from "axios";
 import * as Coordinator from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
 import { FiChevronLeft } from "react-icons/fi";
-import { Button } from "@chakra-ui/react";
+
+import {
+  Button,
+} from "@chakra-ui/react";
+
 import {
   CpfInput,
   EmailInput,
@@ -59,47 +63,49 @@ export const SignupPage = () => {
     setIsPasswordValid(/^.{6,15}$/.test(form.password));
     setIsPasswordConfirmValid(passwordConfirm === form.password ? true : false);
 
- if (
-   isEmailValid &&
-   isNameValid &&
-   isCpfValid &&
-   isPasswordValid &&
-   isPasswordConfirmValid
- ) {
+if (
+  isEmailValid &&
+  isNameValid &&
+  isCpfValid &&
+  isPasswordValid &&
+  isPasswordConfirmValid
+) {
   setAux(true)
- }
-   if (
-     isEmailValid &&
-     isNameValid &&
-     isCpfValid &&
-     isPasswordValid &&
-     isPasswordConfirmValid &&
-     aux
-   ) {
+}
+  if (
+    isEmailValid &&
+    isNameValid &&
+    isCpfValid &&
+    isPasswordValid &&
+    isPasswordConfirmValid &&
+    aux
+  ) {
      //--- Requisição para criar um novo cadastro
-     axios
-       .post(`${BASE_URL}/rappi4A/signup`, form)
-       .then((response) => {
-         localStorage.setItem("token", response.data.token);
-         Coordinator.goToAdressRegistration(navigate);
-       })
-       .catch((error) => {
-         alert(
-           "Erro ao processar sua requisição: " + error.response.data.message
-         );
-       });
-   }
+    axios
+      .post(`${BASE_URL}/rappi4A/signup`, form)
+      .then((response) => {
+        localStorage.setItem("token", response.data.token);
+        Coordinator.goToAdressRegistration(navigate);
+      })
+      .catch((error) => {
+        alert(
+          "Erro ao processar sua requisição: " + error.response.data.message
+        );
+      });
+  }
   };
 
   return (
     <SignupContainer>
+
       <button
         className="go-back-button"
         onClick={() => Coordinator.goBack(navigate)}
-      >
-        <FiChevronLeft />
+      ><FiChevronLeft />
       </button>
+
       <img src={LogoInvert} alt="logo da Future Eats" />
+
       <h2>Cadastrar</h2>
 
       <form onSubmit={handleSubmit}>
@@ -142,6 +148,7 @@ export const SignupPage = () => {
         <Button type="submit" colorScheme="red" variant="solid">
           Criar
         </Button>
+
       </form>
     </SignupContainer>
   );

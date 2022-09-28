@@ -26,6 +26,7 @@ export const goToRestaurants = (navigator, restaurantsId) =>{
     navigator(`/restaurants/${restaurantsId}`)
 }
 
+
 export const goToCartPage = (navigator) =>{
     navigator('/cart')
 }
@@ -33,3 +34,4 @@ export const goToCartPage = (navigator) =>{
 export const goToProfile = (navigator) =>{
     navigator('/profile')
 }
+

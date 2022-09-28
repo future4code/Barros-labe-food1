@@ -14,6 +14,7 @@ export const StateInput = ({isValid, value, onChange}) =>{
                 value={value}
                 onChange={onChange}
                 placeholder= "Estado"
+                required
                 />
                 {!isValid ? (
             <FormErrorMessage as="p">
