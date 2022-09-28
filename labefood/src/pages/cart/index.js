@@ -7,6 +7,7 @@ import { CartContext } from "../../context/Context";
 import { CardContainer } from "../../components/card/style";
 import { appName, BASE_URL, token } from "../../constants/index";
 import axios from "axios";
+import {Footer} from '../../components/footer/Footer'
 
 export const CartPage = () => {
   const [cart, setCart] = useState();
@@ -191,6 +192,7 @@ export const CartPage = () => {
             Confirmar
           </Button>
         </div>
+        <Footer/>
       </CartContainer>
     );
   }
