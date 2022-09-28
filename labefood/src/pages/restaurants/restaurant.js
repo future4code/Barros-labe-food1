@@ -32,34 +32,53 @@ export const RestaurantsPage = () => {
   const token = localStorage.getItem("token");
 
   const [states, setStates] = useState([]);
+  const [restInfo, setRestInfo] = useState({});
 
-  
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
-  useNumberInput({
-    step: 1,
-    defaultValue: 0,
-    min: 1,
-    max: 10,
-    precision: 0,
-  });
-  
+    useNumberInput({
+      step: 1,
+      defaultValue: 0,
+      min: 1,
+      max: 10,
+      precision: 0,
+    });
+
   const inc = getIncrementButtonProps();
   const dec = getDecrementButtonProps();
   const input = getInputProps();
-  
-  const onClickProduct = (produto) => {produto.quantity = 0};
-  const handleClick = (produto) => {produto.quantity = input.value};
-  
+
+  const onClickProduct = (produto) => {
+    produto.quantity = 0;
+  };
+  const handleClick = (produto) => {
+    produto.quantity = input.value;
+  };
+
   const detailRestaurant = () => {
     axios
-    .get(`${BASE_URL}/${appName}/restaurants/${parametro.restauranteId}`, {
+      .get(`${BASE_URL}/${appName}/restaurants/${parametro.restauranteId}`, {
         headers: { auth: token },
       })
       .then((response) => {
-        const produtos = response && response.data.restaurant.products.map((item)=>{
-          return {photoUrl: item.photoUrl, name: item.name, description: item.description, price: item.price, quantity: 0 }
-        })        
-         setStates(produtos);
+        const request = response.data.restaurant;
+
+        const produtos =
+          request &&
+          request.products.map((item) => {
+            return {
+              photoUrl: item.photoUrl,
+              name: item.name,
+              description: item.description,
+              price: item.price,
+              quantity: 0,
+            };
+          });
+
+        const restaurante = request;
+        delete restaurante.products;
+
+        setRestInfo(restaurante);
+        setStates(produtos);
       })
       .catch((erro) => {
         console.log(erro);
@@ -70,12 +89,11 @@ export const RestaurantsPage = () => {
     detailRestaurant();
   }, []);
 
-  useEffect(()=>{
-    if(states.length > 0){
-
-      setStates([...states])
+  useEffect(() => {
+    if (states.length > 0) {
+      setStates([...states]);
     }
-  },[handleClick])
+  }, [handleClick]);
 
   return (
     <>
@@ -90,15 +108,15 @@ export const RestaurantsPage = () => {
         </div>
 
         <Detail>
-          <img src={states.logoUrl} alt="Logo restaurante" />
-          <p className="name-restaurant">{states.name}</p>
+          <img src={restInfo.logoUrl} alt="Logo restaurante" />
+          <p className="name-restaurant">{restInfo.name}</p>
         </Detail>
       </MainConteiner>
       <Info>
-        <p>{states.category}</p>
+        <p>{restInfo.category}</p>
         <div className="shipping-price">
-          <h6>{states.deliveryTime} min</h6>
-          <p> Frete R$:{states.shipping},00</p>
+          <h6>{restInfo.deliveryTime} min</h6>
+          <p> Frete R$:{restInfo.shipping},00</p>
         </div>
         <p>{states.address}</p>
       </Info>
@@ -142,22 +160,20 @@ export const RestaurantsPage = () => {
                               Selecione a quantidade desejada!
                             </PopoverHeader>
                             <PopoverBody>
-
-                              <form >
+                              <form>
                                 <HStack maxW="320px">
                                   <Button {...inc}>+</Button>
                                   <Input {...input} />
                                   <Button {...dec}>-</Button>
                                 </HStack>
                                 <Button
-                                  onClick={()=>handleClick(i)}
+                                  onClick={() => handleClick(i)}
                                   colorScheme="blue"
                                   variant="ghost"
                                 >
                                   Adicionar ao carrinho
                                 </Button>
                               </form>
-
                             </PopoverBody>
                           </PopoverContent>
                         </Popover>
