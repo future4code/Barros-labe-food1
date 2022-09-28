@@ -8,9 +8,8 @@ import { useContext } from "react";
 import { CartContext } from "../../context/Context";
 
 
-export function HookUsage(props) {
-  // const { quantity, setQuantity } = useContext(CartContext)
-    const { quantity, setQuantity } = useContext(CartContext);
+export function HookUsage({handleSubmit}) {
+  const {quantities, setQuantities} = useContext(CartContext);
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({
       step: 1,
@@ -23,27 +22,14 @@ export function HookUsage(props) {
   const inc = getIncrementButtonProps();
   const dec = getDecrementButtonProps();
   const input = getInputProps();
-  // setQuantity(input.value)
-  // console.log(quantity);
-  // const value = input.value
-  // console.log(input.value);
-  // let onChange= props.changeValue(value)
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // props.onSubmit(value)
-    setQuantity(input.value)
-    console.log("entrei aqui");
-  }
 
   const handleClick = () => {
-    setQuantity(input.value)
+    setQuantities(input.value)
   }
-  console.log(quantity);
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onClick={handleSubmit}>
         <HStack maxW="320px">
           <Button {...inc}>
             +
@@ -54,7 +40,7 @@ export function HookUsage(props) {
           </Button>
         </HStack>
         <Button
-          onClick={() => handleClick()}
+          onClick={handleClick}
           colorScheme="blue"
           variant="ghost"
         >
