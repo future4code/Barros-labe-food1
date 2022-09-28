@@ -2,6 +2,7 @@ import { CartContainer } from "./style";
 import { Stack, Radio, RadioGroup, Button } from "@chakra-ui/react";
 import { useState } from "react";
 import { CardCart } from "../../components/card";
+import {Footer} from '../../components/footer/Footer'
 
 export const CartPage = () => {
   const [cart, setCart] = useState(true);
@@ -25,7 +26,7 @@ export const CartPage = () => {
             <p>SUBTOTAL</p>
           </div>
           <div className="price">
-            <p>Frete R$0,00</p>
+            <h6>Frete R$0,00</h6>
             <p>R$00,00</p>
           </div>
         </div>
@@ -60,7 +61,7 @@ export const CartPage = () => {
           <h1>Meu carrinho</h1>
         </header>
         <div className="address">
-          <p>Endereço de entrega</p>
+          <h6>Endereço de entrega</h6>
           <p>Rua teste, 13</p>
         </div>
         <div className="rest-info">
@@ -77,7 +78,7 @@ export const CartPage = () => {
             <p>SUBTOTAL</p>
           </div>
           <div className="price">
-            <p>Frete R$0,00</p>
+            <h6>Frete R$0,00</h6>
             <p>R$00,00</p>
           </div>
         </div>
@@ -103,6 +104,7 @@ export const CartPage = () => {
             Confirmar
           </Button>
         </div>
+        <Footer/>
       </CartContainer>
     );
   }

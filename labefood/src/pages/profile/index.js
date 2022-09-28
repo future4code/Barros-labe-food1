@@ -18,6 +18,7 @@ export const ProfilePage = () => {
   const navigate = useNavigate();
   const [profiles, setProfiles] = useState({})
   
+
   const token = localStorage.getItem("token")
   
 

@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const ConteinerFooter=styled.footer`
-  position: fixed;
+//teste se der errado voltar
+  /* position: ${props => props.url === "/cart" ? "fixed":"sticky"}; */
+  /* position: fixed; */
   bottom: 0;
   z-index: 999;
   margin-top: auto;
