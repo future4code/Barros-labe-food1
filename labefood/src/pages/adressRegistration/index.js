@@ -67,17 +67,17 @@ const onSubmit =  (e)=>{
     
 return (
 
-  <AddressRegistrationContainer>
+<AddressRegistrationContainer>
 
     <button
-      className="go-back-button"
-      onClick={() => Coordinator.goBack(navigate)}
-    >
-      <FiChevronLeft />
+        className="go-back-button"
+        onClick={() => Coordinator.goBack(navigate)}
+        >
+        <FiChevronLeft />
     </button>
-    <Divider />
+        <Divider />
     <h2>
-      <strong>Meu endereço</strong>
+        <strong>Meu endereço</strong>
     </h2>
 
     <form onSubmit={onSubmit}>
