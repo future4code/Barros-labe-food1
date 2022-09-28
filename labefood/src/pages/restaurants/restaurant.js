@@ -13,16 +13,13 @@ import {
   PopoverContent,
   PopoverHeader,
   PopoverBody,
-  PopoverFooter,
   PopoverArrow,
   PopoverCloseButton,
-  PopoverAnchor,
   Button,
   useNumberInput,
   Input,
   HStack,
 } from "@chakra-ui/react";
-// import { HookUsage } from "../../components/quantity-button/index";
 import { CardContainer } from "../../components/card/style";
 // import { CartContext } from "../../context/Context";
 
@@ -31,38 +28,31 @@ export const RestaurantsPage = () => {
   useProtectPage();
 
   const navigate = useNavigate();
-
   const parametro = useParams();
+  const token = localStorage.getItem("token");
 
   const [states, setStates] = useState([]);
 
-  const token = localStorage.getItem("token");
-
-  const onClickProduct = () => {};
-
-
-
+  
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
-    useNumberInput({
-      step: 1,
-      defaultValue: 0,
-      min: 1,
-      max: 10,
-      precision: 0,
-    });
-
+  useNumberInput({
+    step: 1,
+    defaultValue: 0,
+    min: 1,
+    max: 10,
+    precision: 0,
+  });
+  
   const inc = getIncrementButtonProps();
   const dec = getDecrementButtonProps();
   const input = getInputProps();
-
-  const handleClick = (produto) => {
-    produto.quantity = input.value
-    console.log(produto)
-  };
-
+  
+  const onClickProduct = (produto) => {produto.quantity = 0};
+  const handleClick = (produto) => {produto.quantity = input.value};
+  
   const detailRestaurant = () => {
     axios
-      .get(`${BASE_URL}/${appName}/restaurants/${parametro.restauranteId}`, {
+    .get(`${BASE_URL}/${appName}/restaurants/${parametro.restauranteId}`, {
         headers: { auth: token },
       })
       .then((response) => {
@@ -79,6 +69,13 @@ export const RestaurantsPage = () => {
   useEffect(() => {
     detailRestaurant();
   }, []);
+
+  useEffect(()=>{
+    if(states.length > 0){
+
+      setStates([...states])
+    }
+  },[handleClick])
 
   return (
     <>
@@ -108,20 +105,15 @@ export const RestaurantsPage = () => {
       <Cards>
         {states &&
           states.map((i) => {
-            // i.quantity = 0;
             return (
               <>
                 {i.photoUrl && (
-                  <CardContainer>
+                  <CardContainer key={i.id}>
                     <CardCart
                       image={i && i.photoUrl && i.photoUrl}
                       title={i.name}
                       description={i.description}
                       price={i.price.toFixed(2)}
-                      quantidade = {i.quantity}
-                      // onClickProduct={(currentQuantity) => {
-                      //   setCurrentQuantity(currentQuantity);
-                      // }}
                     ></CardCart>
                     <div className="buttons">
                       {i.quantity === 0 || i.quantity === undefined ? (
@@ -131,7 +123,7 @@ export const RestaurantsPage = () => {
                       )}
                       {i.quantity > 0 ? (
                         <Button
-                          onClick={() => onClickProduct()}
+                          onClick={() => onClickProduct(i)}
                           className="remove-button"
                         >
                           <p>Remover</p>

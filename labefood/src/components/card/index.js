@@ -1,11 +1,8 @@
-import { CardContainer } from "./style";
-
 export const CardCart = ({
   image,
   title,
   description,
   price,
-  quantidade
 }) => {
 
   return (
@@ -15,7 +12,7 @@ export const CardCart = ({
       </div>
       <div className="content">
         <div className="info">
-          <h1>{title} {quantidade}</h1>
+          <h1>{title}</h1>
           <p>{description}</p>
           <p>R${price}</p>
         </div>    
