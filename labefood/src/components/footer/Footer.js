@@ -10,11 +10,11 @@ export  const Footer=()=> {
 
     //pega o endpoint da url para mudar a cor dos botões
     const [endpointFooter, setEndpointFooter] = useState(window.location.pathname)
-    const url = window.location.href
+    
 
  return (
     <>
-    {url === "http://localhost:3000/cart"?
+    {endpointFooter === "/cart" ?
    <ConteinerFooter style={ {position:"sticky"}}>
     <div>
     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" onClick={() => goToFeedPage (navigate)}>
