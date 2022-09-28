@@ -14,9 +14,14 @@ export const CartPage = () => {
   const { states, setStates, restInfo } = useContext(CartContext);
   const [ totalPrice, setTotalPrice ] = useState();
   const [ address, setAddress ] = useState({});
-  const [ cartProducts, setCartProducts ] = useState(states)
+  const [cartProducts, setCartProducts] = useState(
+    states &&
+      states.filter((item) => {
+        return item.quantity > 0;
+      })
+  );
 
-  console.log(token);
+
 
   const getAddress = () => {
     axios.get(`${BASE_URL}/${appName}/profile/address`, {
@@ -24,7 +29,7 @@ export const CartPage = () => {
     })
     .then((response) => {
       setAddress(response.data.address)
-      console.log(address);
+
     })
     .catch((err) => {
       console.log(err.response);
@@ -35,7 +40,7 @@ export const CartPage = () => {
     produto.quantity = 0;
   };
 
-console.log(restInfo);
+
 
 
   // const cartProducts =
@@ -48,9 +53,11 @@ console.log(restInfo);
     setCartProducts([...cartProducts]);
   }, [onClickProduct])
 
+  useEffect(() => {
+    getAddress();
+  },[])
     
     useEffect(() => {
-      getAddress()
       if (cartProducts.length>0) {
         setCart(true);
        let newPrice = 0;
@@ -60,11 +67,10 @@ console.log(restInfo);
 
        setTotalPrice(newPrice);
       }
-     }, [states]);
+     }, [onClickProduct]);
 
-  console.log(cartProducts);
 
-  if (!cart) {
+  if (cartProducts.length === 0) {
     return (
       <CartContainer>
         <header>
