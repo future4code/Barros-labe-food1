@@ -5,15 +5,35 @@ import { CardCart } from "../../components/card";
 import { useContext } from "react";
 import { CartContext } from "../../context/Context";
 import { CardContainer } from "../../components/card/style";
+import { appName, BASE_URL, token } from "../../constants/index";
+import axios from "axios";
 
 export const CartPage = () => {
   const [cart, setCart] = useState();
   const { states, setStates, restInfo } = useContext(CartContext);
   const [ totalPrice, setTotalPrice ] = useState();
+  const [ address, setAddress ] = useState({});
+
+  console.log(token);
+
+  const getAddress = () => {
+    axios.get(`${BASE_URL}/${appName}/profile/address`, {
+      headers: { auth: token },
+    })
+    .then((response) => {
+      setAddress(response.data.address)
+      console.log(address);
+    })
+    .catch((err) => {
+      console.log(err.response);
+    })
+  }
 
   const onClickProduct = (produto) => {
     produto.quantity = 0;
   };
+
+  console.log(address);
 
 
   const cartProducts =
@@ -24,7 +44,7 @@ export const CartPage = () => {
 
     
     useEffect(() => {
-      
+      getAddress()
       if (cartProducts.length>0) {
         setCart(true);
        let newPrice = 0;
@@ -47,7 +67,11 @@ export const CartPage = () => {
 
         <div className="address">
           <p>Endereço de entrega</p>
-          <p>Rua teste, 13</p>
+          <p>
+            {address.complement
+              ? `${address.street}, ${address.number}, ${address.complement}`
+              : `${address.street}, ${address.number}}`}
+          </p>
         </div>
         <div className="title">
           <h2>Carrinho vazio</h2>
@@ -93,7 +117,11 @@ export const CartPage = () => {
         </header>
         <div className="address">
           <h6>Endereço de entrega</h6>
-          <p>Rua teste, 13</p>
+          <p>
+            {address.complement
+              ? `${address.street}, ${address.number}, ${address.complement}`
+              : `${address.street}, ${address.number}}`}
+          </p>
         </div>
         <div className="rest-info">
           <h2>Bullguer Vila Madalena</h2>

@@ -7,7 +7,7 @@ export const appName = "rappi4A"
 
 
 //axios put para o endereço
-const token = localStorage.getItem('token')
+export const token = localStorage.getItem('token')
 console.log(token);
 export const AddressRegistration = async (body)=>{
     const {data} = await axios.put(
