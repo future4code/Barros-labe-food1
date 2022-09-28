@@ -119,7 +119,7 @@ export const RestaurantsPage = () => {
           <h6>{restInfo.deliveryTime} min</h6>
           <p> Frete R$:{restInfo.shipping},00</p>
         </div>
-        <p>{states.address}</p>
+        <p>{restInfo.address}</p>
       </Info>
       <Cards>
         {states &&
