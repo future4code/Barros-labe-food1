@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { MdEdit } from "react-icons/md";
+import { goToEditAddress, goToEditProfile } from "../../routes/coordinator";
 
 
 
@@ -55,7 +56,7 @@ const getProfile = () =>{
               <h3>{profiles && profiles.email}</h3>
               <h3>{profiles && profiles.cpf}</h3>
             </section>
-            <button>
+            <button onClick={()=>goToEditProfile(navigate)}>
               <MdEdit />
             </button>
           </UserInfo>
@@ -65,7 +66,7 @@ const getProfile = () =>{
             <p>Endereço cadastrado</p>
             <h3>{profiles && profiles.address}</h3>
           </div>
-            <button>
+            <button onClick={()=>goToEditAddress(navigate)}>
               <MdEdit />
             </button>
         </UserAddress>

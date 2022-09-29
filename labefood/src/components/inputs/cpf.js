@@ -8,7 +8,7 @@ import {
 export const CpfInput = ({isValid, value, onChange}) => {
     return (
       <FormControl isInvalid={!isValid}>
-        <FormLabel>CPF</FormLabel>
+        <FormLabel>CPF*</FormLabel>
         <Input
           type="number"
           name="cpf"

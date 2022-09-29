@@ -9,7 +9,7 @@ import {
 export const NameInput = ({isValid, value, onChange}) => {
     return (
       <FormControl isInvalid={!isValid}>
-        <FormLabel>Nome</FormLabel>
+        <FormLabel>Nome*</FormLabel>
         <Input
           type="text"
           name="name"

@@ -8,7 +8,7 @@ import {
 export const EmailInput = ({value, onChange, isValid}) => {
   return (
     <FormControl isInvalid={!isValid}>
-      <FormLabel>E mail</FormLabel>
+      <FormLabel>E mail*</FormLabel>
       <Input
         type="email"
         name="email"
