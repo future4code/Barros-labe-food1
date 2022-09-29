@@ -14,6 +14,7 @@ export const CartPage = () => {
   const { states, setStates, restInfo } = useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState();
   const [address, setAddress] = useState({});
+  const [ paymentMethodRadio, setPaymentMethodRadio ] = useState(undefined)
   const [cartProducts, setCartProducts] = useState(
     states &&
       states.filter((item) => {
@@ -21,6 +22,19 @@ export const CartPage = () => {
       })
   );
 
+  let products =
+    cartProducts &&
+    cartProducts.map((item) => {
+      return { id: item.id, quantity: item.quantity };
+    });
+    console.log(products);
+    const body = {
+      products: products,
+      paymentMethod: paymentMethodRadio,
+    };
+    console.log(body);
+
+// console.log(cartProducts);
   const getAddress = () => {
     axios
       .get(`${BASE_URL}/${appName}/profile/address`, {
@@ -36,11 +50,35 @@ export const CartPage = () => {
       });
   };
 
+  // let body = {
+  //   products: [cartProducts && cartProducts.map((item) => {
+  //     return {id: item.id, quantity: item.quantity}
+  //   })],
+  //   paymentMethod: paymentMethodRadio
+  // }
+  // console.log(body);
+
+  const placeOrder = () => {
+    axios.post(`${BASE_URL}/${appName}/restaurants/${restInfo.id}/order`, body, {
+      headers: { auth: token }
+    })
+    .then((response)=>{
+      console.log(response);
+    })
+    .catch((err)=>{
+      console.log(err.response);
+    })
+  }
+
+
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onClickProduct = useCallback((produto) => {
     produto.quantity = 0;
+    cartProducts.splice(cartProducts.indexOf(produto),1)
     setCart(!cart)
   });
+
 
   // const cartProducts =
   //   states &&
@@ -50,8 +88,10 @@ export const CartPage = () => {
 
   useEffect(() => {
     if (cartProducts.length > 0) {
+
       setCartProducts([...cartProducts]);
     }
+    console.log(cartProducts);
   }, [cart]);
 
   useEffect(() => {
@@ -79,11 +119,16 @@ export const CartPage = () => {
         <div className="address">
           <p>Endereço de entrega</p>
           <p>
-            {!address&&
-               "Endereço não encontrado :/"}
-              {address.complement
-              ? `${address.street!==undefined?address.street:''}, ${address.number!==undefined?address.number:""}, ${address.complement!==undefined?address.complement:""}`
-              : `${address.street!==undefined?address.street:''} ${address.number!==undefined?address.number:""}`}
+            {!address && "Endereço não encontrado :/"}
+            {address.complement
+              ? `${address.street !== undefined ? address.street : ""}, ${
+                  address.number !== undefined ? address.number : ""
+                }, ${
+                  address.complement !== undefined ? address.complement : ""
+                }`
+              : `${address.street !== undefined ? address.street : ""} ${
+                  address.number !== undefined ? address.number : ""
+                }`}
           </p>
         </div>
         <div className="title">
@@ -105,8 +150,22 @@ export const CartPage = () => {
 
         <RadioGroup width="85vw">
           <Stack direction="column">
-            <Radio value="cash">Dinheiro</Radio>
-            <Radio value="creditCard">Cartão de crédito</Radio>
+            <Radio
+              value="money"
+              onChange={(e) => {
+                setPaymentMethodRadio(e.target.value);
+              }}
+            >
+              Dinheiro
+            </Radio>
+            <Radio
+              value="creditcard"
+              onChange={(e) => {
+                setPaymentMethodRadio(e.target.value);
+              }}
+            >
+              Cartão de crédito
+            </Radio>
           </Stack>
         </RadioGroup>
         <div className="submit-button">
@@ -199,8 +258,22 @@ export const CartPage = () => {
 
         <RadioGroup width="85vw">
           <Stack direction="column">
-            <Radio value="1">Dinheiro</Radio>
-            <Radio value="2">Cartão de crédito</Radio>
+            <Radio
+              value="money"
+              onChange={(e) => {
+                setPaymentMethodRadio(e.target.value);
+              }}
+            >
+              Dinheiro
+            </Radio>
+            <Radio
+              value="creditcard"
+              onChange={(e) => {
+                setPaymentMethodRadio(e.target.value);
+              }}
+            >
+              Cartão de crédito
+            </Radio>
           </Stack>
         </RadioGroup>
         <div className="submit-button">
@@ -210,6 +283,7 @@ export const CartPage = () => {
             variant="solid"
             borderRadius="2px"
             height="2.625rem"
+            onClick={placeOrder}
           >
             Confirmar
           </Button>

@@ -67,6 +67,7 @@ export const RestaurantsPage = () => {
           request &&
           request.products.map((item) => {
             return {
+              id: item.id,
               photoUrl: item.photoUrl,
               name: item.name,
               description: item.description,
