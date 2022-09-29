@@ -1,6 +1,10 @@
-<h1 align="center">
+<!-- <h1 align="center">
      Labefood
-</h1>
+</h1> -->
+
+![](./src/img/capa-readme.png)
+
+
 
 <h4 align="left">
     Aplicativo web para serviços de delivery de restaurantes.
