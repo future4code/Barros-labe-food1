@@ -125,7 +125,7 @@ if (
 
         <PasswordInput
           isValid={isPasswordValid}
-          label={"Senha"}
+          label={"Senha*"}
           placeholder={"Mínimo 6 caracteres"}
           value={form.password}
           onChange={onChange}
@@ -136,7 +136,7 @@ if (
 
         <PasswordInput
           isValid={isPasswordConfirmValid}
-          label={"Confirmar"}
+          label={"Confirmar*"}
           placeholder={"Confirme a senha anterior."}
           value={passwordConfirm}
           onChange={(e) => setPasswordConfirm(e.target.value)}

@@ -35,3 +35,10 @@ export const goToProfile = (navigator) =>{
     navigator('/profile')
 }
 
+export const goToEditAddress = (navigator) =>{
+    navigator('/edit-address')
+}
+
+export const goToEditProfile = (navigator)=>{
+    navigator('./edit-profile')
+}

@@ -64,7 +64,7 @@ export const LoginPage = () => {
 
         <PasswordInput
           isValid={isPasswordValid}
-          label={"Senha"}
+          label={"Senha*"}
           placeholder={"Digite sua senha"}
           value={form.password}
           onChange={onChange}
