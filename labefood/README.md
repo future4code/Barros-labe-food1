@@ -2,7 +2,7 @@
      Labefood
 </h1> -->
 
-![](./src/img/capa-readme.png)
+![](./src/img/capa-readme1.png)
 
 ---
 
@@ -16,7 +16,7 @@
 ---
 
 ## 🔐 Acesso:
-- Cadastre-se ou acesse com login e senha (login: astrodev@gamil.com senha:123456),
+- Cadastre-se ou acesse com login e senha (login: astrodev@gmail.com senha:123456),
 
 ---
 
@@ -41,7 +41,7 @@
 
 Este é um projeto de Front-end, baseado em aplicativos de delivery de comida, desenvolvido no bootcamp da Labenu. Por ser o último projeto do módulo de Front-end o principal objetivo é estudar e compreender todas tecnologias utlizadas nesse módulo, sendo elas: 
 * _React_
-* !*[API]*(https://documenter.getpostman.com/view/7549981/SWTEdGtT#e6c05246-7dcc-483c-95a3-269792e59c37)
+* ![API](https://documenter.getpostman.com/view/7549981/SWTEdGtT#e6c05246-7dcc-483c-95a3-269792e59c37)
 * _Javascript_
 * _HTML_
 * _Styled-components_
@@ -57,13 +57,11 @@ Este é um projeto de Front-end, baseado em aplicativos de delivery de comida, d
 
 ### 💡 Funcionalidades:
 ✅ Login <br/> 
-
 ✅ Cadastro mais Cadastro endereço <br/>
-✅ Feed, com busca por nome ou categorias do restaurante e detalhes como frete tempo de entrega
-
-✅ Restaurante, com seus detalhes e seus respectivos produtos podendo ser adicionados com quantidade escolhida ao carrinho
-✅ Carrinho de compras, com endereço de entrega, produtos escolhidos( caso não possuir tem mensagem de aviso) e forma de pagamento
-✅ Perfil, contendo nome do user endereço e dados
+✅ Feed, com busca por nome ou categorias do restaurante e detalhes como frete tempo de entrega<br/>
+✅ Restaurante, com seus detalhes e seus respectivos produtos podendo ser adicionados com quantidade escolhida ao carrinho  <br/>
+✅ Carrinho de compras, com endereço de entrega, produtos escolhidos( caso não possuir tem mensagem de aviso) e forma de pagamento <br/>
+✅ Perfil, contendo nome do user endereço e dados <br/>
 ✅ 
 
 ## 📷 Prints Páginas
