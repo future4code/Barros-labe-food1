@@ -56,9 +56,11 @@ Este é um projeto de Front-end, baseado em aplicativos de delivery de comida, d
 ---
 
 ### 💡 Funcionalidades:
-> ✅ Login
-> ✅ Cadastro mais Cadastro endereço
-> ✅ Feed, com busca por nome ou categorias do restaurante e detalhes como frete tempo de entrega
+✅ Login <br/> 
+
+✅ Cadastro mais Cadastro endereço <br/>
+✅ Feed, com busca por nome ou categorias do restaurante e detalhes como frete tempo de entrega
+
 ✅ Restaurante, com seus detalhes e seus respectivos produtos podendo ser adicionados com quantidade escolhida ao carrinho
 ✅ Carrinho de compras, com endereço de entrega, produtos escolhidos( caso não possuir tem mensagem de aviso) e forma de pagamento
 ✅ Perfil, contendo nome do user endereço e dados
