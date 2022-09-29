@@ -1,19 +1,19 @@
 import { CartContainer } from "./style";
 import { Stack, Radio, RadioGroup, Button } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { CardCart } from "../../components/card";
 import { useContext } from "react";
 import { CartContext } from "../../context/Context";
 import { CardContainer } from "../../components/card/style";
 import { appName, BASE_URL, token } from "../../constants/index";
 import axios from "axios";
-import {Footer} from '../../components/footer/Footer'
+import { Footer } from "../../components/footer/Footer";
 
 export const CartPage = () => {
   const [cart, setCart] = useState();
   const { states, setStates, restInfo } = useContext(CartContext);
-  const [ totalPrice, setTotalPrice ] = useState();
-  const [ address, setAddress ] = useState({});
+  const [totalPrice, setTotalPrice] = useState();
+  const [address, setAddress] = useState({});
   const [cartProducts, setCartProducts] = useState(
     states &&
       states.filter((item) => {
@@ -21,27 +21,23 @@ export const CartPage = () => {
       })
   );
 
-
-
   const getAddress = () => {
-    axios.get(`${BASE_URL}/${appName}/profile/address`, {
-      headers: { auth: token },
-    })
-    .then((response) => {
-      setAddress(response.data.address)
-
-    })
-    .catch((err) => {
-      console.log(err.response);
-    })
-  }
-
-  const onClickProduct = (produto) => {
-    produto.quantity = 0;
+    axios
+      .get(`${BASE_URL}/${appName}/profile/address`, {
+        headers: { auth: token },
+      })
+      .then((response) => {
+        setAddress(response.data.address);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   };
 
-
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const onClickProduct = useCallback((produto) => {
+    produto.quantity = 0;
+  });
 
   // const cartProducts =
   //   states &&
@@ -50,25 +46,25 @@ export const CartPage = () => {
   //   });
 
   useEffect(() => {
-    setCartProducts([...cartProducts]);
-  }, [onClickProduct])
+    if (cartProducts.length > 0) {
+      setCartProducts([...cartProducts]);
+    }
+  }, [cartProducts]);
 
   useEffect(() => {
     getAddress();
-  },[])
-    
-    useEffect(() => {
-      if (cartProducts.length>0) {
-        setCart(true);
-       let newPrice = 0;
-       cartProducts.forEach((product) => {
-         newPrice += product.price * product.quantity;
-       });
+  }, []);
 
-       setTotalPrice(newPrice);
-      }
-     }, [onClickProduct]);
+  useEffect(() => {
+    if (cartProducts.length > 0) {
+      let newPrice = 0;
+      cartProducts.forEach((product) => {
+        newPrice += product.price * product.quantity;
+      });
 
+      setTotalPrice(newPrice);
+    }
+  }, [cartProducts]);
 
   if (cartProducts.length === 0) {
     return (
@@ -80,7 +76,9 @@ export const CartPage = () => {
         <div className="address">
           <p>Endereço de entrega</p>
           <p>
-            {address.complement
+            {address === undefined
+              ? "Endereço não encontrado :/"
+              : address.complement
               ? `${address.street}, ${address.number}, ${address.complement}`
               : `${address.street}, ${address.number}}`}
           </p>
@@ -104,8 +102,8 @@ export const CartPage = () => {
 
         <RadioGroup width="85vw">
           <Stack direction="column">
-            <Radio value="1">Dinheiro</Radio>
-            <Radio value="2">Cartão de crédito</Radio>
+            <Radio value="cash">Dinheiro</Radio>
+            <Radio value="creditCard">Cartão de crédito</Radio>
           </Stack>
         </RadioGroup>
         <div className="submit-button">
@@ -115,6 +113,7 @@ export const CartPage = () => {
             variant="solid"
             borderRadius="2px"
             height="2.625rem"
+            opacity="0.80"
           >
             Confirmar
           </Button>
@@ -131,7 +130,9 @@ export const CartPage = () => {
         <div className="address">
           <p>Endereço de entrega</p>
           <p>
-            {address.complement
+            {address === undefined
+              ? "Endereço não encontrado :/"
+              : address.complement
               ? `${address.street}, ${address.number}, ${address.complement}`
               : `${address.street}, ${address.number}}`}
           </p>
