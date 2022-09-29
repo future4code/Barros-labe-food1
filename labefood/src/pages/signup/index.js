@@ -56,7 +56,7 @@ export const SignupPage = () => {
     setIsEmailValid(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(form.email));
     setIsNameValid(/[A-Za-z]* [A-Za-z]{2,}$/.test(form.name));
     setIsCpfValid(
-      /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/.test(
+      /^(d{4})([ -]\d{4})([ -]\d{4})([ -]\d{4})/.test(
         form.cpf
       )
     );
