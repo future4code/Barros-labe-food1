@@ -2,7 +2,7 @@
      Labefood
 </h1> -->
 
-![](./src/img/capa-readme1.png)
+![](./src/img/capa-readme2.png)
 
 ---
 
@@ -13,10 +13,11 @@
 <h4 align="left">
     Aplicativo web para serviços de delivery de restaurantes.
 </h4>
+
 ---
 
 ## 🔐 Acesso:
-- Cadastre-se ou acesse com login e senha (login: astrodev@gmail.com senha:123456),
+- Cadastre-se ou acesse com login e senha (login: astrodev@gmail.com senha:123456)
 
 ---
 
@@ -41,7 +42,7 @@
 
 Este é um projeto de Front-end, baseado em aplicativos de delivery de comida, desenvolvido no bootcamp da Labenu. Por ser o último projeto do módulo de Front-end o principal objetivo é estudar e compreender todas tecnologias utlizadas nesse módulo, sendo elas: 
 * _React_
-* ![API](https://documenter.getpostman.com/view/7549981/SWTEdGtT#e6c05246-7dcc-483c-95a3-269792e59c37)
+* [API](https://documenter.getpostman.com/view/7549981/SWTEdGtT#e6c05246-7dcc-483c-95a3-269792e59c37)
 * _Javascript_
 * _HTML_
 * _Styled-components_
