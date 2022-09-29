@@ -10,7 +10,7 @@ import axios from "axios";
 import { Footer } from "../../components/footer/Footer";
 
 export const CartPage = () => {
-  const [cart, setCart] = useState();
+  const [cart, setCart] = useState(false);
   const { states, setStates, restInfo } = useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState();
   const [address, setAddress] = useState({});
@@ -27,7 +27,9 @@ export const CartPage = () => {
         headers: { auth: token },
       })
       .then((response) => {
-        setAddress(response.data.address);
+        if (response.data.address) {
+          setAddress(response.data.address);
+        }
       })
       .catch((err) => {
         console.log(err.response);
@@ -37,6 +39,7 @@ export const CartPage = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onClickProduct = useCallback((produto) => {
     produto.quantity = 0;
+    setCart(!cart)
   });
 
   // const cartProducts =
@@ -49,7 +52,7 @@ export const CartPage = () => {
     if (cartProducts.length > 0) {
       setCartProducts([...cartProducts]);
     }
-  }, [cartProducts]);
+  }, [cart]);
 
   useEffect(() => {
     getAddress();
@@ -76,11 +79,11 @@ export const CartPage = () => {
         <div className="address">
           <p>Endereço de entrega</p>
           <p>
-            {address === undefined
-              ? "Endereço não encontrado :/"
-              : address.complement
-              ? `${address.street}, ${address.number}, ${address.complement}`
-              : `${address.street}, ${address.number}}`}
+            {!address&&
+               "Endereço não encontrado :/"}
+              {address.complement
+              ? `${address.street!==undefined?address.street:''}, ${address.number!==undefined?address.number:""}, ${address.complement!==undefined?address.complement:""}`
+              : `${address.street!==undefined?address.street:''} ${address.number!==undefined?address.number:""}`}
           </p>
         </div>
         <div className="title">
