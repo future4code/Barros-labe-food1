@@ -3,7 +3,7 @@ import { useState } from "react";
 import * as Coordinator from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
 import { FiChevronLeft } from "react-icons/fi";
-import { AddressRegistrationContainer } from "./style";
+import { AddressRegistrationContainer,Header, Form } from "./style";
 import {
     Button,
     Divider
@@ -56,18 +56,20 @@ const [isComplementValid, setIsComplementValid] = useState(true)
             }
             return (
                 
-                <AddressRegistrationContainer>
-                    
+<AddressRegistrationContainer>                    
+    <Header>
     <button
         className="go-back-button"
         onClick={() => Coordinator.goBack(navigate)}
         >
         <FiChevronLeft />
     </button>
-        <Divider />
     <h2>
         <strong>Endereço</strong>
     </h2>
+</Header>
+        <Divider marginBottom="30px"/>
+<Form>
 
     <form onSubmit={onSubmit}>
         <StreetInput
@@ -75,33 +77,33 @@ const [isComplementValid, setIsComplementValid] = useState(true)
             onChange={onChangeInputs}
             isValid={isStreetValid}
             
-        ></StreetInput>
+            ></StreetInput>
         <NumberInput
             value={form.number} 
             onChange={onChangeInputs}
             isValid={isNumberValid}  
             
-        />
+            />
         <ComplementInput
             value={form.complement} 
             onChange={onChangeInputs}
             isValid={isComplementValid}  
-        />
+            />
         <NeighbourhoodInput
             value={form.neighbourhood} 
             onChange={onChangeInputs}
             isValid={isNeighbourhoodValid}  
-        />
+            />
         <CityInput
             value={form.city} 
             onChange={onChangeInputs}
             isValid={isCityValid}
-        />
+            />
         <StateInput
             value={form.state} 
             onChange={onChangeInputs}
             isValid={isStateValid}  
-        />
+            />
 
 
     <Button
@@ -112,10 +114,11 @@ const [isComplementValid, setIsComplementValid] = useState(true)
         colorScheme="red"
         variant="solid"
         color="black"
-    >
+        >
         Salvar
     </Button>
     </form>
+        </Form>
     </AddressRegistrationContainer>
 
 );
