@@ -11,7 +11,7 @@ export const validateInput = input =>/[a-zA-Z0-9]+/.test(input)
 
 //axios put para o endereço
 export const token = localStorage.getItem('token')
-console.log(token);
+
 export const AddressRegistration = async (body)=>{
     const {data} = await axios.put(
         `${BASE_URL}/${appName}/address`, body,
