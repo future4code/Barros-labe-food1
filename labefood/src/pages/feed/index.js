@@ -21,8 +21,7 @@ export const FeedPage = () => {
   const goToRestaurants = (id) => { navigate(`/restaurants/${id}`) };
 
   const token = localStorage.getItem("token")
-  console.log(token);
-
+ 
   const getRestaurants = () => {
     axios.get(`${BASE_URL}/${appName}/restaurants`, {
       headers: { auth: token }

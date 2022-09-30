@@ -1,6 +1,4 @@
-<!-- <h1 align="center">
-     Labefood
-</h1> -->
+
 
 ![](./src/img/capa-readme2.png)
 
@@ -52,7 +50,7 @@ Este é um projeto de Front-end, baseado em aplicativos de delivery de comida, d
 ---
 ## 🔗Link para Acessar
 
-- **Link do Surge:** 
+- [Ifuture.com](https://itchy-weight.surge.sh/)
 
 ---
 
@@ -62,8 +60,8 @@ Este é um projeto de Front-end, baseado em aplicativos de delivery de comida, d
 ✅ Feed, com busca por nome ou categorias do restaurante e detalhes como frete tempo de entrega<br/>
 ✅ Restaurante, com seus detalhes e seus respectivos produtos podendo ser adicionados com quantidade escolhida ao carrinho  <br/>
 ✅ Carrinho de compras, com endereço de entrega, produtos escolhidos( caso não possuir tem mensagem de aviso) e forma de pagamento <br/>
-✅ Perfil, contendo nome do user endereço e dados <br/>
-✅ 
+✅ Perfil, contendo nome do user endereço e dados, adicionamos uma opção de logout <br/>
+✅ Perfil, user pode fazer mudanças nos seus dados pessoais e visualizar seu historioco de pedidos
 
 ## 📷 Prints Páginas
 
