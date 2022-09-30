@@ -32,7 +32,6 @@ export const LoginPage = () => {
     axios
       .post(`${BASE_URL}/${appName}/login`, form)
       .then((response) => {
-        console.log(response.data);
         onClick();
         localStorage.setItem("token", response.data.token);
       })
@@ -60,7 +59,7 @@ export const LoginPage = () => {
           isValid={isEmailValid}
           value={form.email}
           onChange={onChange}
-        /> 
+        />
 
         <PasswordInput
           isValid={isPasswordValid}

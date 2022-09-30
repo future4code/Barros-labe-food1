@@ -14,7 +14,6 @@ export const token = localStorage.getItem('token')
 console.log(token);
 export const AddressRegistration = async (body)=>{
     const {data} = await axios.put(
-        // console.log(body)
         `${BASE_URL}/${appName}/address`, body,
         {
             headers:{
