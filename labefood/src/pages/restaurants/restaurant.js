@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { appName, BASE_URL } from "../../constants";
 import { useProtectPage } from "../../hooks/useProtectPage";
@@ -21,10 +21,10 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { CardContainer } from "../../components/card/style";
-// import { CartContext } from "../../context/Context";
+
 
 export const RestaurantsPage = () => {
-  // const { quantities, setQuantities } = useContext(CartContext);
+ 
   useProtectPage();
 
   const navigate = useNavigate();

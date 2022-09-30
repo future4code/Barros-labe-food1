@@ -69,9 +69,6 @@ export const CartPage = () => {
           <p>R. Fradique Coutinho, 1136 - Vila Madalena</p>
           <p>30 - 45 min</p>
         </div>
-        {/* <div className="title">
-            <h2>Carrinho cheio</h2>
-          </div> */}
         <CardCart />
         <div className="price-container">
           <div className="subtotal">

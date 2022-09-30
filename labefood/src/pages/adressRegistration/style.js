@@ -44,7 +44,6 @@ form {
     input {
     height: 3.5rem;
     margin: 0.5rem 0 0;
-      /* padding: 1.188rem 3rem 1.188rem 1rem; */
     position: relative;
     z-index: 1;
     margin-bottom: 0.5rem;

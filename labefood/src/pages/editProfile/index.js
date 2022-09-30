@@ -49,7 +49,6 @@ axios
     )
     .then((res)=>{
         Coordinator.goToProfile(navigate)
-        // localStorage.setItem("token", res.data.token)
     })
     .catch((er)=>{
         alert(er.response.data.message)
