@@ -18,7 +18,7 @@ export const UserAddress = styled.div`
     background-color: #eee;
     display:flex;
     justify-content:space-between;
-    padding:10px;
+    padding:0 20px;
     
 p{
     color: #b8b8b8;
@@ -37,7 +37,7 @@ export const UserRequests = styled.div`
 
 export const UserInfo = styled.div`
     display:flex;
-    padding:10px;
+    padding: 20px;
     justify-content: space-between;
     button{
         margin-bottom:40px;

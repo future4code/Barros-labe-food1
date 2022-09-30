@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { FiChevronLeft } from "react-icons/fi";
 
 import {
-  Button,
+  Button, Divider,
 } from "@chakra-ui/react";
 
 import {
@@ -103,7 +103,7 @@ if (
         onClick={() => Coordinator.goBack(navigate)}
       ><FiChevronLeft />
       </button>
-
+<Divider />
       <img src={LogoInvert} alt="logo da Future Eats" />
 
       <h2>Cadastrar</h2>
