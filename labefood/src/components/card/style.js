@@ -6,6 +6,7 @@ export const CardContainer = styled.div`
   height: 7rem;
   border-radius: 8px;
   border: solid 1px #b8b8b8;
+  justify-content: space-between;
 
   .image {
     display: flex;
@@ -145,3 +146,5 @@ export const CardContainer = styled.div`
     border: none;
   }
 `;
+
+// export const Content = styled() 
