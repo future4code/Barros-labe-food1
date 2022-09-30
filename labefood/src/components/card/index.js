@@ -21,7 +21,7 @@ export const CardCart = ({
         <div className="info">
           <h1>{title}</h1>
           <p>{description}</p>
-
+          <p>R${price}</p>
         </div>
 
 
