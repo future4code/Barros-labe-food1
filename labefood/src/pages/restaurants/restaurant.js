@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { appName, BASE_URL } from "../../constants";
 import { useProtectPage } from "../../hooks/useProtectPage";
@@ -35,9 +35,6 @@ export const RestaurantsPage = () => {
   const navigate = useNavigate();
   const parametro = useParams();
   const token = localStorage.getItem("token");
-
-  // const [states, setStates] = useState([]);
-  // const [restInfo, setRestInfo] = useState({});
 
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({

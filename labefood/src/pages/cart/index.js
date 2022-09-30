@@ -14,12 +14,12 @@ export const CartPage = () => {
   const { states, setStates, restInfo } = useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState();
   const [address, setAddress] = useState({});
-  const [ paymentMethodRadio, setPaymentMethodRadio ] = useState(undefined)
+  const [paymentMethodRadio, setPaymentMethodRadio] = useState(undefined)
   const [cartProducts, setCartProducts] = useState(
     states &&
-      states.filter((item) => {
-        return item.quantity > 0;
-      })
+    states.filter((item) => {
+      return item.quantity > 0;
+    })
   );
 
   let products =
@@ -27,14 +27,14 @@ export const CartPage = () => {
     cartProducts.map((item) => {
       return { id: item.id, quantity: item.quantity };
     });
-    console.log(products);
-    const body = {
-      products: products,
-      paymentMethod: paymentMethodRadio,
-    };
-    console.log(body);
+  console.log(products);
+  const body = {
+    products: products,
+    paymentMethod: paymentMethodRadio,
+  };
+  console.log(body);
 
-// console.log(cartProducts);
+
   const getAddress = () => {
     axios
       .get(`${BASE_URL}/${appName}/profile/address`, {
@@ -50,41 +50,26 @@ export const CartPage = () => {
       });
   };
 
-  // let body = {
-  //   products: [cartProducts && cartProducts.map((item) => {
-  //     return {id: item.id, quantity: item.quantity}
-  //   })],
-  //   paymentMethod: paymentMethodRadio
-  // }
-  // console.log(body);
+
 
   const placeOrder = () => {
     axios.post(`${BASE_URL}/${appName}/restaurants/${restInfo.id}/order`, body, {
       headers: { auth: token }
     })
-    .then((response)=>{
-      console.log(response);
-    })
-    .catch((err)=>{
-      console.log(err.response);
-    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        alert("Já possui pedido em andamento, POR FAVOR AGUARDE!");
+        console.log(err.response);
+      })
   }
 
-
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const onClickProduct = useCallback((produto) => {
     produto.quantity = 0;
-    cartProducts.splice(cartProducts.indexOf(produto),1)
+    cartProducts.splice(cartProducts.indexOf(produto), 1)
     setCart(!cart)
   });
-
-
-  // const cartProducts =
-  //   states &&
-  //   states.filter((item) => {
-  //     return item.quantity > 0;
-  //   });
 
   useEffect(() => {
     if (cartProducts.length > 0) {
@@ -121,14 +106,11 @@ export const CartPage = () => {
           <p>
             {!address && "Endereço não encontrado :/"}
             {address.complement
-              ? `${address.street !== undefined ? address.street : ""}, ${
-                  address.number !== undefined ? address.number : ""
-                }, ${
-                  address.complement !== undefined ? address.complement : ""
-                }`
-              : `${address.street !== undefined ? address.street : ""} ${
-                  address.number !== undefined ? address.number : ""
-                }`}
+              ? `${address.street !== undefined ? address.street : ""}, ${address.number !== undefined ? address.number : ""
+              }, ${address.complement !== undefined ? address.complement : ""
+              }`
+              : `${address.street !== undefined ? address.street : ""} ${address.number !== undefined ? address.number : ""
+              }`}
           </p>
         </div>
         <div className="title">
@@ -195,8 +177,8 @@ export const CartPage = () => {
             {address === undefined
               ? "Endereço não encontrado :/"
               : address.complement
-              ? `${address.street}, ${address.number}, ${address.complement}`
-              : `${address.street}, ${address.number}}`}
+                ? `${address.street}, ${address.number}, ${address.complement}`
+                : `${address.street}, ${address.number}}`}
           </p>
         </div>
         <div className="rest-info">
@@ -206,11 +188,6 @@ export const CartPage = () => {
         </div>
 
         <CardCart />
-
-        {/* <div className="title">
-            <h2>Carrinho cheio</h2>
-          </div> */}
-        {/* <CardCart /> */}
         {cartProducts &&
           cartProducts
             .filter((item) => {
@@ -225,8 +202,6 @@ export const CartPage = () => {
                       title={i.name}
                       description={i.description}
                       price={i.price.toFixed(2)}
-                      // quantity={i.quantity}
-                      // onClickProduct={() => onClickProduct(i)}
                     />
                     <div className="buttons">
                       {i.quantity === 0 || i.quantity === undefined ? (

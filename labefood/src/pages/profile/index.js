@@ -21,9 +21,7 @@ export const ProfilePage = () => {
   const [orders, setOrders] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const token = localStorage.getItem("token")
-
-
-
+ 
   const getProfile = () => {
     axios.get(`${BASE_URL}/${appName}/profile`,
       {
@@ -52,7 +50,6 @@ export const ProfilePage = () => {
       })
   }
   useEffect(() => { getOrders() }, [])
-
 
   return (
 
@@ -90,9 +87,9 @@ export const ProfilePage = () => {
           {orders && orders.map((i) => {
             return (
               <CardHistory>
-              <p>{i.restaurantName}</p>
-              <h2>{i.createdAt}</h2>
-              <h3>SUBTOTAL R${i.totalPrice}</h3>
+                <p>{i.restaurantName}</p>
+                <h2>{new Date(i.createdAt).toLocaleDateString('pt-br', 'long', 'long', 'numeric').substring(0,10)}</h2>
+                <h3>SUBTOTAL R${i.totalPrice.toFixed(2).replace(".",",")}</h3>
               </CardHistory>
             )
           })}
