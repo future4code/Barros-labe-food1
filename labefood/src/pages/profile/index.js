@@ -18,7 +18,7 @@ export const ProfilePage = () => {
   useProtectPage();
   const navigate = useNavigate();
   const [profiles, setProfiles] = useState({})
-  
+  const [orders, setOrders] = useState([])
 
   const token = localStorage.getItem("token")
   
@@ -39,7 +39,21 @@ const getProfile = () =>{
   }
   useEffect(() => { getProfile() }, [])
   
-  
+const getOrders = () =>{
+  axios.get(
+    `${BASE_URL}/${appName}/orders/history`,
+    {
+      headers:{
+        auth: token
+    }
+  }).then((response)=>{
+    setOrders(response.data.orders)
+    console.log(response.data.orders);
+  }).catch((e)=>{
+    console.log(e);
+  })
+}
+useEffect(()=>{getOrders()},[])
   
   
   return (
@@ -73,6 +87,11 @@ const getProfile = () =>{
         <UserRequests>
           <h2>Histórico de pedidos</h2>
         <Divider width="90vw" borderColor="black" />
+        <section>
+          <h2></h2>
+          <p></p>
+          <h1></h1>
+        </section>
         </UserRequests>
         <Footer />
         </ProfileContainer>
