@@ -7,6 +7,8 @@ import {AdressRegistrationPage} from "../pages/adressRegistration/index"
 import { RestaurantsPage} from '../pages/restaurants/restaurant'
 import { CartPage} from '../pages/cart/index'
 import { ProfilePage } from '../pages/profile';
+import { EditAddress } from '../pages/editAddress';
+import { EditProfilePage } from '../pages/editProfile';
 
 export const Router = () =>{
     return(
@@ -20,6 +22,8 @@ export const Router = () =>{
                 <Route path='/adress' element={< AdressRegistrationPage />}/>
                 <Route path='/cart' element={<CartPage/>}/>
                 <Route path='/profile' element={<ProfilePage/>}/>
+                <Route path='/edit-address' element={<EditAddress/>}/>
+                <Route path='profile/edit-profile' element={<EditProfilePage/>}/>
 
             </Routes>
         </BrowserRouter>

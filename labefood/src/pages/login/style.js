@@ -93,6 +93,7 @@ export const LoginPageContainer = styled.main`
       background-color: white;
       z-index: 2;
       color: #b8b8b8;
+      padding-right:10px;
     }
-    `;
+  }`;
     

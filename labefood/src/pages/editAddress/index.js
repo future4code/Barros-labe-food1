@@ -13,7 +13,7 @@ import { CityInput, ComplementInput, NeighbourhoodInput, NumberInput, StateInput
 import { useProtectPage } from "../../hooks/useProtectPage";
 import axios from "axios";
 
-export const AdressRegistrationPage = () => {
+export const EditAddress = () => {
     useProtectPage();
     const navigate = useNavigate();
     const [form, onChangeInputs] = useForm({
@@ -40,24 +40,24 @@ const [isComplementValid, setIsComplementValid] = useState(true)
             e.preventDefault();
             axios
                 .put(`${BASE_URL}/${appName}/address`, form,
-                        {
-                            headers:{
-                                auth: token
-                            }
+            {
+                    headers:{
+                            auth: token
                         }
-                        )
+                    }
+                    )
                 .then((response) => {
-                    Coordinator.goToFeedPage(navigate)
+                    Coordinator.goToProfile(navigate)
                     localStorage.setItem("token", response.data.token);
                 })
                 .catch((erro) => {
-                    alert(erro.response.data.message)
-                });
+                        alert(erro.response.data.message)
+                    });
             }
-        return (
-            
-            <AddressRegistrationContainer>
-
+            return (
+                
+                <AddressRegistrationContainer>
+                    
     <button
         className="go-back-button"
         onClick={() => Coordinator.goBack(navigate)}
@@ -66,19 +66,21 @@ const [isComplementValid, setIsComplementValid] = useState(true)
     </button>
         <Divider />
     <h2>
-        <strong>Meu endereço</strong>
+        <strong>Endereço</strong>
     </h2>
 
     <form onSubmit={onSubmit}>
         <StreetInput
             value={form.street} 
             onChange={onChangeInputs}
-            isValid={isStreetValid}  
-        />
+            isValid={isStreetValid}
+            
+        ></StreetInput>
         <NumberInput
             value={form.number} 
             onChange={onChangeInputs}
             isValid={isNumberValid}  
+            
         />
         <ComplementInput
             value={form.complement} 
@@ -93,7 +95,7 @@ const [isComplementValid, setIsComplementValid] = useState(true)
         <CityInput
             value={form.city} 
             onChange={onChangeInputs}
-            isValid={isCityValid}  
+            isValid={isCityValid}
         />
         <StateInput
             value={form.state} 
@@ -102,7 +104,7 @@ const [isComplementValid, setIsComplementValid] = useState(true)
         />
 
 
-      <Button
+    <Button
         marginTop="0.5rem"
         borderRadius="2px"
         height="2.625rem"
@@ -110,9 +112,9 @@ const [isComplementValid, setIsComplementValid] = useState(true)
         colorScheme="red"
         variant="solid"
         color="black"
-      >
+    >
         Salvar
-      </Button>
+    </Button>
     </form>
     </AddressRegistrationContainer>
 
