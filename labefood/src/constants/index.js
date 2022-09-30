@@ -24,7 +24,6 @@ export const AddressRegistration = async (body)=>{
         )
         return (localStorage.setItem('token', data.token))
     };
-// validação de input para o endereço
-export const validateInput = input =>/[a-zA-Z0-9]+/.test(input)
+
 
 
