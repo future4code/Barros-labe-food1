@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Footer } from "../../components/footer/Footer";
 import { appName, BASE_URL, updateProfile } from "../../constants";
 import { useProtectPage } from "../../hooks/useProtectPage";
-import { ProfileContainer, UserAddress, UserInfo, UserRequests, userInfoContainer} from "./style";
+import { ProfileContainer, UserAddress, UserInfo, UserRequests, userInfoContainer, Spin, Erro} from "./style";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
@@ -19,7 +19,7 @@ export const ProfilePage = () => {
   const navigate = useNavigate();
   const [profiles, setProfiles] = useState({})
   const [orders, setOrders] = useState([])
-
+  const [isLoading, setIsLoading] = useState(true)
   const token = localStorage.getItem("token")
   
 
@@ -31,8 +31,7 @@ const getProfile = () =>{
         auth: token
       }
     }).then((response)=>{
-      setProfiles(response.data.user)
-      console.log(response);
+      setProfiles(response.data.user);  setIsLoading(!isLoading)
     }).catch((e)=>{
       console.log(e);
     })
@@ -48,7 +47,7 @@ const getOrders = () =>{
     }
   }).then((response)=>{
     setOrders(response.data.orders)
-    console.log(response.data.orders);
+    console.log(response);
   }).catch((e)=>{
     console.log(e);
   })
@@ -88,9 +87,8 @@ useEffect(()=>{getOrders()},[])
           <h2>Histórico de pedidos</h2>
         <Divider width="90vw" borderColor="black" />
         <section>
-          <h2></h2>
-          <p></p>
-          <h1></h1>
+        {!isLoading && orders.length === 0 && <Erro>Você não realizou nenhum pedido </Erro>}
+        {isLoading && <Spin />}
         </section>
         </UserRequests>
         <Footer />
