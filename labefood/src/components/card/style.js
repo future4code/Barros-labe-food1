@@ -9,7 +9,6 @@ export const CardContainer = styled.div`
   justify-content: space-between;
 
   .image {
-    /* background-image: url(${(props) => props.bgImage}); */
     display: flex;
     align-items: center;
     width: 6rem;
@@ -42,7 +41,6 @@ export const CardContainer = styled.div`
   .info p:nth-child(2) {
     width: 12.5rem;
     height: 1.875rem;
-    /* margin: 0.5rem 1rem 0.25rem; */
     font-family: Roboto;
     font-size: 0.75rem;
     font-weight: normal;

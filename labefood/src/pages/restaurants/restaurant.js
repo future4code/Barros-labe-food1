@@ -22,10 +22,14 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { CardContainer } from "../../components/card/style";
-// import { CartContext } from "../../context/Context";
+
 
 export const RestaurantsPage = () => {
+
+ 
+
   const { states, setStates, restInfo, setRestInfo } = useContext(CartContext);
+
   useProtectPage();
 
   const navigate = useNavigate();

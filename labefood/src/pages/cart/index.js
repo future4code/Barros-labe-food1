@@ -204,6 +204,9 @@ export const CartPage = () => {
           <p>{restInfo.address}</p>
           <p>{restInfo.deliveryTime} min</p>
         </div>
+
+        <CardCart />
+
         {/* <div className="title">
             <h2>Carrinho cheio</h2>
           </div> */}
@@ -242,6 +245,7 @@ export const CartPage = () => {
                 </>
               );
             })}
+
         <div className="price-container">
           <div className="subtotal">
             <p>SUBTOTAL</p>
