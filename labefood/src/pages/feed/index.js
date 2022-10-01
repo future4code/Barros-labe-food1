@@ -7,6 +7,7 @@ import { Footer } from "../../components/footer/Footer";
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@chakra-ui/react'
 import { Span, ConteinerInput, Card, Restaurant, Detail, Main, Erro, Spin } from "./styledFeed";
 import search from '../../img/imgFooter/search_2022-09-22/search@2x.png'
+import { Banner } from "../../components/banner";
 
 
 export const FeedPage = () => {
@@ -294,6 +295,8 @@ export const FeedPage = () => {
       {!isLoading && filteredRest.length === 0 && <Erro>Não encontramos :( </Erro>}
       {isLoading && <Spin />}
       
+
+      <Banner name={'teste'} price={"6.00"} />
       <Footer />
     </Main>
   );
