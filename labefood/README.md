@@ -51,10 +51,12 @@ Este é um projeto de Front-end, baseado em aplicativos de delivery de comida, d
 ✅ Login <br/> 
 ✅ Cadastro mais Cadastro endereço <br/>
 ✅ Feed, com busca por nome ou categorias do restaurante e detalhes como frete tempo de entrega<br/>
+✅ Feed, com aviso caso possua pedido em andamento<br/>
 ✅ Restaurante, com seus detalhes e seus respectivos produtos podendo ser adicionados com quantidade escolhida ao carrinho  <br/>
 ✅ Carrinho de compras, com endereço de entrega, produtos escolhidos( caso não possuir tem mensagem de aviso) e forma de pagamento <br/>
-✅ Perfil, contendo nome do user endereço e dados, adicionamos uma opção de logout <br/>
-✅ Perfil, user pode fazer mudanças nos seus dados pessoais e visualizar seu historioco de pedidos
+✅ Carrinho de compras, não é possivel realizar outro pedido quando tem outro em andamento, user recebe aviso sobre<br/>
+✅ Perfil, contendo nome do user, endereço e dados, adicionamos uma opção de logout <br/>
+✅ Perfil, user pode fazer mudanças nos seus dados pessoais e visualizar seu historico de pedidos
 
 ## 📷 Prints Páginas
 
@@ -80,7 +82,10 @@ Este é um projeto de Front-end, baseado em aplicativos de delivery de comida, d
 ## Carrinho vazio
 ![](./src/img/cart-vazio.png)
 
-## Perfil 
-![]()
+## Perfil com histórico
+![](./src/img/perfil.png)
+
+## Edição do perfil 
+![](./src/img/edit-profile.JPG)
 
 
