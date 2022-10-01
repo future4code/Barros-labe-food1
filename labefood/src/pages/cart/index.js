@@ -8,6 +8,7 @@ import { CardContainer } from "../../components/card/style";
 import { appName, BASE_URL, token } from "../../constants/index";
 import axios from "axios";
 import { Footer } from "../../components/footer/Footer";
+import { useProtectPage } from "../../hooks/useProtectPage";
 
 export const CartPage = () => {
   const [cart, setCart] = useState(false);
@@ -21,6 +22,8 @@ export const CartPage = () => {
       return item.quantity > 0;
     })
   );
+  useProtectPage()
+  console.log(address);
 
   let products =
     cartProducts &&
@@ -32,7 +35,7 @@ export const CartPage = () => {
     products: products,
     paymentMethod: paymentMethodRadio,
   };
-  console.log(body);
+
 
 
   const getAddress = () => {
@@ -57,6 +60,7 @@ export const CartPage = () => {
       headers: { auth: token }
     })
       .then((response) => {
+        alert('Pedido realizado com sucesso!')
         console.log(response);
       })
       .catch((err) => {
@@ -106,11 +110,16 @@ export const CartPage = () => {
           <p>
             {!address && "Endereço não encontrado :/"}
             {address.complement
-              ? `${address.street !== undefined ? address.street : ""}, ${address.number !== undefined ? address.number : ""
-              }, ${address.complement !== undefined ? address.complement : ""
-              }`
-              : `${address.street !== undefined ? address.street : ""} ${address.number !== undefined ? address.number : ""
-              }`}
+              ? `${address.street !== undefined ? address.street : ""}, ${
+                  address.number !== undefined ? address.number : ""
+                }, ${
+                  address.complement !== undefined ? address.complement : ""
+                } ${address.neighbourhood !== undefined ? " - " + address.neighbourhood : ""}`
+              : `${address.street !== undefined ? address.street : ""} ${
+                  address.number !== undefined ? ", " + address.number : ""
+                } ${
+                  address.neighbourhood !== undefined ? " - " + address.neighbourhood : ""
+                }`}
           </p>
         </div>
         <div className="title">
@@ -174,11 +183,24 @@ export const CartPage = () => {
         <div className="address">
           <p>Endereço de entrega</p>
           <p>
-            {address === undefined
-              ? "Endereço não encontrado :/"
-              : address.complement
-                ? `${address.street}, ${address.number}, ${address.complement}`
-                : `${address.street}, ${address.number}}`}
+            {!address && "Endereço não encontrado :/"}
+            {address.complement
+              ? `${address.street !== undefined ? address.street : ""}, ${
+                  address.number !== undefined ? address.number : ""
+                }, ${
+                  address.complement !== undefined ? address.complement : ""
+                } ${
+                  address.neighbourhood !== undefined
+                    ? " - " + address.neighbourhood
+                    : ""
+                }`
+              : `${address.street !== undefined ? address.street : ""} ${
+                  address.number !== undefined ? ", " + address.number : ""
+                } ${
+                  address.neighbourhood !== undefined
+                    ? " - " + address.neighbourhood
+                    : ""
+                }`}
           </p>
         </div>
         <div className="rest-info">
