@@ -40,7 +40,7 @@ export const LoginPage = () => {
         alert("Acesso invalido");
       });
 
-    clearInputs();
+    // clearInputs();
   };
 
   const onClickShowPassword = () => {

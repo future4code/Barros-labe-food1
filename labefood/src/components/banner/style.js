@@ -4,7 +4,7 @@ export const BannerContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 22.5rem;
+  width: 100%;
   height: 7.375rem;
   margin: 6.188rem 0 3.063rem;
   padding: 1.5rem;
@@ -13,7 +13,7 @@ export const BannerContainer = styled.div`
   bottom: 0;
 
   .clock {
-    
+
   }
 
   .info {

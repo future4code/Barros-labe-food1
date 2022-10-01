@@ -8,6 +8,7 @@ import { CardContainer } from "../../components/card/style";
 import { appName, BASE_URL, token } from "../../constants/index";
 import axios from "axios";
 import { Footer } from "../../components/footer/Footer";
+import { useProtectPage } from "../../hooks/useProtectPage";
 
 export const CartPage = () => {
   const [cart, setCart] = useState(false);
@@ -21,6 +22,7 @@ export const CartPage = () => {
       return item.quantity > 0;
     })
   );
+  useProtectPage()
 
   let products =
     cartProducts &&
