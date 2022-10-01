@@ -29,13 +29,6 @@
 
 ---
 
-##  🧭Status do Projeto
-
- - ⏳ Fazendo
- - 📥 Testando 
-
----
-
 ##  🎯Objetivo do Projeto
 
 Este é um projeto de Front-end, baseado em aplicativos de delivery de comida, desenvolvido no bootcamp da Labenu. Por ser o último projeto do módulo de Front-end o principal objetivo é estudar e compreender todas tecnologias utlizadas nesse módulo, sendo elas: 
@@ -72,9 +65,18 @@ Este é um projeto de Front-end, baseado em aplicativos de delivery de comida, d
 ![](./src/img/name-endereco.png)
 
 ## Feed e Feed filtro Busca por nome
-![](./src//img/feed1.JPG)
+![](./src//img/feed1.0.JPG)
 
-## Feed filtro por Tipo de restaurante e Mensagem se não ouver nome procurado
-![](./src/img/feed2.JPG)
+## Feed filtro por tipo de restaurante e mensagem se não ouver nome procurado
+![](./src/img/feed2.0.JPG)
+
+## Fedd com pedido em andamento
+
+![](/src/img/feed-banner.png)
+
+## Carrinho com pedido
+![](/src/img/cart.JPG)
+
+## Carrinho vazio
 
 

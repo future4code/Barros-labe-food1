@@ -23,14 +23,14 @@ export const CartPage = () => {
     })
   );
   useProtectPage()
-  console.log(address);
+ 
 
   let products =
     cartProducts &&
     cartProducts.map((item) => {
       return { id: item.id, quantity: item.quantity };
     });
-  console.log(products);
+  
   const body = {
     products: products,
     paymentMethod: paymentMethodRadio,
@@ -61,7 +61,7 @@ export const CartPage = () => {
     })
       .then((response) => {
         alert('Pedido realizado com sucesso!')
-        console.log(response);
+      
       })
       .catch((err) => {
         alert("Já possui pedido em andamento, POR FAVOR AGUARDE!");
@@ -80,7 +80,7 @@ export const CartPage = () => {
 
       setCartProducts([...cartProducts]);
     }
-    console.log(cartProducts);
+   
   }, [cart]);
 
   useEffect(() => {
