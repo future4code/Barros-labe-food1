@@ -23,6 +23,7 @@ export const CartPage = () => {
     })
   );
   useProtectPage()
+  console.log(address);
 
   let products =
     cartProducts &&
@@ -34,7 +35,7 @@ export const CartPage = () => {
     products: products,
     paymentMethod: paymentMethodRadio,
   };
-  console.log(body);
+
 
 
   const getAddress = () => {
@@ -113,9 +114,11 @@ export const CartPage = () => {
                   address.number !== undefined ? address.number : ""
                 }, ${
                   address.complement !== undefined ? address.complement : ""
-                }`
+                } ${address.neighbourhood !== undefined ? " - " + address.neighbourhood : ""}`
               : `${address.street !== undefined ? address.street : ""} ${
                   address.number !== undefined ? ", " + address.number : ""
+                } ${
+                  address.neighbourhood !== undefined ? " - " + address.neighbourhood : ""
                 }`}
           </p>
         </div>
@@ -186,9 +189,17 @@ export const CartPage = () => {
                   address.number !== undefined ? address.number : ""
                 }, ${
                   address.complement !== undefined ? address.complement : ""
+                } ${
+                  address.neighbourhood !== undefined
+                    ? " - " + address.neighbourhood
+                    : ""
                 }`
-              : `${address.street !== undefined ? address.street : ""}, ${
-                  address.number !== undefined ? ', ' + address.number : ""
+              : `${address.street !== undefined ? address.street : ""} ${
+                  address.number !== undefined ? ", " + address.number : ""
+                } ${
+                  address.neighbourhood !== undefined
+                    ? " - " + address.neighbourhood
+                    : ""
                 }`}
           </p>
         </div>
