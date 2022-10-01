@@ -174,11 +174,16 @@ export const CartPage = () => {
         <div className="address">
           <p>Endereço de entrega</p>
           <p>
-            {address === undefined
-              ? "Endereço não encontrado :/"
-              : address.complement
-                ? `${address.street}, ${address.number}, ${address.complement}`
-                : `${address.street}, ${address.number}}`}
+            {!address && "Endereço não encontrado :/"}
+            {address.complement
+              ? `${address.street !== undefined ? address.street : ""}, ${
+                  address.number !== undefined ? address.number : ""
+                }, ${
+                  address.complement !== undefined ? address.complement : ""
+                }`
+              : `${address.street !== undefined ? address.street : ""} ${
+                  address.number !== undefined ? address.number : ""
+                }`}
           </p>
         </div>
         <div className="rest-info">
