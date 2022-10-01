@@ -16,12 +16,21 @@ export const FeedPage = () => {
   const [restaurants, setRestaurants] = useState([])
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(true)
-  
+  const [ activeOrder, setActiveOrder ] = useState(undefined)
+  console.log(activeOrder);
   const navigate = useNavigate()
   
   const goToRestaurants = (id) => { navigate(`/restaurants/${id}`) };
 
   const token = localStorage.getItem("token")
+
+  const getActiveOrder = () => {
+    axios.get(`${BASE_URL}/${appName}/active-order`, {
+      headers: { auth: token}
+    }).then((response)=>{
+      setActiveOrder(response.data.order)
+    })
+  }
  
   const getRestaurants = () => {
     axios.get(`${BASE_URL}/${appName}/restaurants`, {
@@ -31,7 +40,10 @@ export const FeedPage = () => {
     .catch((erro) => { console.log(erro) })
   }
 
-    useEffect(() => { getRestaurants() }, [])
+    useEffect(() => {
+       getRestaurants()
+       getActiveOrder()
+     }, [])
    
 
     //INPUT FILTRO
@@ -292,11 +304,18 @@ export const FeedPage = () => {
 
       {dataTab()}
 
-      {!isLoading && filteredRest.length === 0 && <Erro>Não encontramos :( </Erro>}
+      {!isLoading && filteredRest.length === 0 && (
+        <Erro>Não encontramos :( </Erro>
+      )}
       {isLoading && <Spin />}
-      
 
-      <Banner name={'teste'} price={"6.00"} />
+      {!activeOrder && ""}
+      {activeOrder && (
+        <Banner
+          name={activeOrder.restaurantName}
+          price={activeOrder.totalPrice.toFixed(2)}
+        />
+      )}
       <Footer />
     </Main>
   );

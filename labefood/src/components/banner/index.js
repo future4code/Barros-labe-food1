@@ -7,12 +7,14 @@ export const Banner = (props) => {
     return (
       <BannerContainer>
         <div className="clock">
-            <img src={clock} alt="" />
+          <img src={clock} alt="" />
         </div>
         <div className="info">
           <p>Pedido em andamento</p>
           <p>{props.name}</p>
-          <p>Subtotal R${props.price}</p>
+          <p>
+            <strong>Subtotal R${props.price}</strong>
+          </p>
         </div>
       </BannerContainer>
     );
