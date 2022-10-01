@@ -109,11 +109,14 @@ export const CartPage = () => {
           <p>
             {!address && "Endereço não encontrado :/"}
             {address.complement
-              ? `${address.street !== undefined ? address.street : ""}, ${address.number !== undefined ? address.number : ""
-              }, ${address.complement !== undefined ? address.complement : ""
-              }`
-              : `${address.street !== undefined ? address.street : ""} ${address.number !== undefined ? address.number : ""
-              }`}
+              ? `${address.street !== undefined ? address.street : ""}, ${
+                  address.number !== undefined ? address.number : ""
+                }, ${
+                  address.complement !== undefined ? address.complement : ""
+                }`
+              : `${address.street !== undefined ? address.street : ""} ${
+                  address.number !== undefined ? ", " + address.number : ""
+                }`}
           </p>
         </div>
         <div className="title">
@@ -184,8 +187,8 @@ export const CartPage = () => {
                 }, ${
                   address.complement !== undefined ? address.complement : ""
                 }`
-              : `${address.street !== undefined ? address.street : ""} ${
-                  address.number !== undefined ? address.number : ""
+              : `${address.street !== undefined ? address.street : ""}, ${
+                  address.number !== undefined ? ', ' + address.number : ""
                 }`}
           </p>
         </div>
