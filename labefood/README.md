@@ -70,13 +70,17 @@ Este é um projeto de Front-end, baseado em aplicativos de delivery de comida, d
 ## Feed filtro por tipo de restaurante e mensagem se não ouver nome procurado
 ![](./src/img/feed2.0.JPG)
 
-## Fedd com pedido em andamento
+## Feed com pedido em andamento
 
-![](/src/img/feed-banner.png)
+![](./src/img/feed-banner.png)
 
 ## Carrinho com pedido
-![](/src/img/cart.JPG)
+![](./src/img/cart.JPG)
 
 ## Carrinho vazio
+![](./src/img/cart-vazio.png)
+
+## Perfil 
+![]()
 
 
