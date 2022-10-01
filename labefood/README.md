@@ -65,7 +65,16 @@ Este é um projeto de Front-end, baseado em aplicativos de delivery de comida, d
 
 ## 📷 Prints Páginas
 
+## HOME e LOGIN
 ![](./src/img/home-login.png)
 
+## Cadastro Dados e Endereço
 ![](./src/img/name-endereco.png)
+
+## Feed e Feed filtro Busca por nome
+![](./src//img/feed1.JPG)
+
+## Feed filtro por Tipo de restaurante e Mensagem se não ouver nome procurado
+![](./src/img/feed2.JPG)
+
 
