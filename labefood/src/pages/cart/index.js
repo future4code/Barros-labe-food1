@@ -59,6 +59,7 @@ export const CartPage = () => {
       headers: { auth: token }
     })
       .then((response) => {
+        alert('Pedido realizado com sucesso!')
         console.log(response);
       })
       .catch((err) => {
