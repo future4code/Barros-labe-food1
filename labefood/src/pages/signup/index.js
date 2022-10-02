@@ -131,7 +131,7 @@ export const SignupPage = () => {
           onChange={(e) => setPasswordConfirm(e.target.value)}
           showPassword={showPasswordConfirm}
           handleClick={handleClickEyeConfirm}
-          errorMessage={"Senha nâo Confere"}
+          errorMessage={"Deve ser a mesma que a anterior!"}
         />
 
         <Button type="submit" colorScheme="red" variant="solid">
