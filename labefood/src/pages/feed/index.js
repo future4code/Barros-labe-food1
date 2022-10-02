@@ -17,7 +17,7 @@ export const FeedPage = () => {
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(true)
   const [ activeOrder, setActiveOrder ] = useState(undefined)
-  console.log(activeOrder);
+ 
   const navigate = useNavigate()
   
   const goToRestaurants = (id) => { navigate(`/restaurants/${id}`) };
