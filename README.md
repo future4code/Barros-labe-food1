@@ -1,6 +1,8 @@
 
 
-![](./labefood/src/img/capa-readme2.png)
+
+![](./src/img/capa-readme2.png)
+
 
 ---
 
@@ -43,7 +45,9 @@ Este é um projeto de Front-end, baseado em aplicativos de delivery de comida, d
 ---
 ## 🔗Link para Acessar
 
-- [Ifuture.com](https://hanging-fork.surge.sh/)
+
+- [Ifuture.com](https://kaput-flesh.surge.sh/)
+
 
 ---
 
@@ -61,32 +65,32 @@ Este é um projeto de Front-end, baseado em aplicativos de delivery de comida, d
 ## 📷 Prints Páginas
 
 ## HOME e LOGIN
-![](./labefood/src/img/home-login.png)
+
+![](./src/img/home-login.png)
 
 ## Cadastro Dados e Endereço
-![](./labefood/src/img/name-endereco.png)
+![](./src/img/name-endereco.png)
 
 ## Feed e Feed filtro Busca por nome
-![](./labefood/src/img/feed1.0.JPG)
+![](./src//img/feed1.0.JPG)
 
 ## Feed filtro por tipo de restaurante e mensagem se não ouver nome procurado
-![](./labefood/src/img/feed2.0.JPG)
+![](./src/img/feed2.0.JPG)
 
 ## Feed com pedido em andamento
 
-![](./labefood/src/img/feed-banner.png)
+![](./src/img/feed-banner.png)
 
 ## Carrinho com pedido
-
-![](./labefood/src/img/cart.JPG)
+![](./src/img/cart.JPG)
 
 ## Carrinho vazio
-![](./labefood/src/img/cart-vazio.png)
+![](./src/img/cart-vazio.png)
 
 ## Perfil com histórico
-![](./labefood/src/img/perfil.png)
+![](./src/img/perfil.png)
 
 ## Edição do perfil 
-![](./labefood/src/img/edit-profile.JPG)
+![](./src/img/edit-profile.JPG)
 
 
