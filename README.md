@@ -1,6 +1,8 @@
 
 
+
 ![](./src/img/capa-readme2.png)
+
 
 ---
 
@@ -43,7 +45,9 @@ Este é um projeto de Front-end, baseado em aplicativos de delivery de comida, d
 ---
 ## 🔗Link para Acessar
 
+
 - [Ifuture.com](https://kaput-flesh.surge.sh/)
+
 
 ---
 
@@ -61,6 +65,7 @@ Este é um projeto de Front-end, baseado em aplicativos de delivery de comida, d
 ## 📷 Prints Páginas
 
 ## HOME e LOGIN
+
 ![](./src/img/home-login.png)
 
 ## Cadastro Dados e Endereço
